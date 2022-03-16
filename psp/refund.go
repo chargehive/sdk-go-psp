@@ -1,8 +1,10 @@
 package psp
 
 type RefundRequest struct {
-	CaptureId string `json:"captureId"`
-	Amount    Amount `json:"amount"`
+	CaptureID         string            `json:"captureId"`
+	Amount            Amount            `json:"amount"`
+	BillingProfileID  string            `json:"billingProfileId"`
+	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 }
 
 type RefundResponse struct {
