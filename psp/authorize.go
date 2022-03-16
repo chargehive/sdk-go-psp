@@ -1,7 +1,6 @@
 package psp
 
 type AuthorizeRequest struct {
-	MerchantReference string            `json:"merchantReference"`
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
