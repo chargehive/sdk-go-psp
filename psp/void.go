@@ -8,4 +8,5 @@ type VoidRequest struct {
 }
 
 type VoidResponse struct {
+	TransactionResponse
 }

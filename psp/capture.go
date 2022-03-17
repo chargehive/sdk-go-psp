@@ -8,5 +8,6 @@ type CaptureRequest struct {
 }
 
 type CaptureResponse struct {
+	TransactionResponse
 	AmountCaptured Amount `json:"amountCaptured"`
 }

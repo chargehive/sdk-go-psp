@@ -9,5 +9,6 @@ type AuthorizeRequest struct {
 }
 
 type AuthorizeResponse struct {
+	TransactionResponse
 	AmountAuthorized Amount `json:"amountAuthorized"`
 }

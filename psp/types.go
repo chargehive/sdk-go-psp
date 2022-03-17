@@ -1,10 +1,13 @@
 package psp
 
+import "time"
+
 type Amount struct {
 	Units    int64  `json:"units"`
 	Currency string `json:"currency"`
 }
 
+//goland:noinspection GoUnusedExportedFunction
 func NewAmount(units int64, currency string) Amount {
 	return Amount{
 		Units:    units,
@@ -71,6 +74,7 @@ type PaymentInstrument struct {
 
 type PaymentInstrumentVerifyType int32
 
+//goland:noinspection GoUnusedConst
 const (
 	PaymentInstrumentVerifyTypeCvv               PaymentInstrumentVerifyType = 1
 	PaymentInstrumentVerifyTypeDeviceDetails     PaymentInstrumentVerifyType = 2
@@ -81,4 +85,16 @@ const (
 type PaymentInstrumentVerification struct {
 	Type  PaymentInstrumentVerifyType `json:"type"`
 	Value []byte                      `json:"value"`
+}
+
+type TransactionIdentifier struct {
+	Source string    `json:"source"`
+	Time   time.Time `json:"time"`
+	ID     string    `json:"id"`
+}
+
+type TransactionResponse struct {
+	TransactionID          string                  `json:"transactionId"`
+	TransactionTime        string                  `json:"transactionTime"`
+	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
 }

@@ -5,6 +5,7 @@ type AuthCaptureRequest struct {
 }
 
 type AuthCaptureResponse struct {
-	AuthorizeResponse
-	CaptureResponse
+	TransactionResponse
+	Authorize AuthorizeResponse
+	Capture   CaptureResponse
 }

@@ -9,4 +9,5 @@ type FraudScanRequest struct {
 }
 
 type FraudScanResponse struct {
+	TransactionResponse
 }

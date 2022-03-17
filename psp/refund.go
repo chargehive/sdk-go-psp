@@ -8,4 +8,5 @@ type RefundRequest struct {
 }
 
 type RefundResponse struct {
+	TransactionResponse
 }
