@@ -89,6 +89,7 @@ type PaymentInstrumentVerification struct {
 
 type TransactionIdentifier struct {
 	Source string `json:"source"`
+	Name   string `json:"name"`
 	ID     string `json:"id"`
 }
 
