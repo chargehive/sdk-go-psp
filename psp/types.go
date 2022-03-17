@@ -88,13 +88,12 @@ type PaymentInstrumentVerification struct {
 }
 
 type TransactionIdentifier struct {
-	Source string    `json:"source"`
-	Time   time.Time `json:"time"`
-	ID     string    `json:"id"`
+	Source string `json:"source"`
+	ID     string `json:"id"`
 }
 
 type TransactionResponse struct {
 	TransactionID          string                  `json:"transactionId"`
-	TransactionTime        string                  `json:"transactionTime"`
+	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
 }
