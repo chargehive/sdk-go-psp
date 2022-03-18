@@ -96,5 +96,26 @@ type TransactionIdentifier struct {
 type TransactionResponse struct {
 	TransactionID          string                  `json:"transactionId"`
 	TransactionTime        time.Time               `json:"transactionTime"`
+	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
 }
+
+type TransactionStatus string
+
+//goland:noinspection GoUnusedConst
+const (
+	// TransactionStatusReceived The transaction request has been received and is awaiting processing, primarily for asynchronous requests.
+	TransactionStatusReceived TransactionStatus = "received"
+
+	// TransactionStatusInProgress The transaction is currently processing with the gateway, acquirer or network. No definitive result is available yet.
+	TransactionStatusInProgress TransactionStatus = "in-progress"
+
+	// TransactionStatusSuccess The transaction was successful. This result is final.
+	TransactionStatusSuccess TransactionStatus = "success"
+
+	// TransactionStatusFailed The transaction has failed. This result is final.
+	TransactionStatusFailed TransactionStatus = "failed"
+
+	// TransactionStatusCancelled The transaction request has been cancelled. This result is final.
+	TransactionStatusCancelled TransactionStatus = "cancelled"
+)
