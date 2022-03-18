@@ -104,6 +104,9 @@ type TransactionStatus string
 
 //goland:noinspection GoUnusedConst
 const (
+	// TransactionStatusUnknown The status is not known or has not been set
+	TransactionStatusUnknown TransactionStatus = ""
+
 	// TransactionStatusReceived The transaction request has been received and is awaiting processing, primarily for asynchronous requests.
 	TransactionStatusReceived TransactionStatus = "received"
 
