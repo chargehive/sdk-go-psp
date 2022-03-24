@@ -11,3 +11,7 @@ type RefundResponse struct {
 	TransactionResponse
 	AmountRefunded Amount `json:"amount"`
 }
+
+func (a RefundRequest) GetPath(credentialID string) string {
+	return "/v1/" + credentialID + "/payments/refund"
+}

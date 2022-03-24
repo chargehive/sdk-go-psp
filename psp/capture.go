@@ -11,3 +11,7 @@ type CaptureResponse struct {
 	TransactionResponse
 	AmountCaptured Amount `json:"amountCaptured"`
 }
+
+func (a CaptureRequest) GetPath(credentialID string) string {
+	return "/v1/" + credentialID + "/payments/capture"
+}

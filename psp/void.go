@@ -10,3 +10,7 @@ type VoidRequest struct {
 type VoidResponse struct {
 	TransactionResponse
 }
+
+func (a VoidRequest) GetPath(credentialID string) string {
+	return "/v1/" + credentialID + "/payments/void"
+}

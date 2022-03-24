@@ -122,3 +122,7 @@ const (
 	// TransactionStatusCancelled The transaction request has been cancelled. This result is final.
 	TransactionStatusCancelled TransactionStatus = "cancelled"
 )
+
+type Request interface {
+	GetPath(credentialID string) string
+}

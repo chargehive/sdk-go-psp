@@ -12,3 +12,7 @@ type AuthorizeResponse struct {
 	TransactionResponse
 	AmountAuthorized Amount `json:"amountAuthorized"`
 }
+
+func (a AuthorizeRequest) GetPath(credentialID string) string {
+	return "/v1/" + credentialID + "/payments/authorize"
+}
