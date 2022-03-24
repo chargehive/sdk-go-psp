@@ -14,5 +14,5 @@ type AuthorizeResponse struct {
 }
 
 func (a AuthorizeRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/payments/authorize"
+	return "/v1/" + credentialID + "/payment/authorize"
 }

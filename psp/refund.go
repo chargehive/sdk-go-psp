@@ -13,5 +13,5 @@ type RefundResponse struct {
 }
 
 func (a RefundRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/payments/refund"
+	return "/v1/" + credentialID + "/payment/refund"
 }

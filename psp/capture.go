@@ -13,5 +13,5 @@ type CaptureResponse struct {
 }
 
 func (a CaptureRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/payments/capture"
+	return "/v1/" + credentialID + "/payment/capture"
 }

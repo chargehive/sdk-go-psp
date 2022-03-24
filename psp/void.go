@@ -12,5 +12,5 @@ type VoidResponse struct {
 }
 
 func (a VoidRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/payments/void"
+	return "/v1/" + credentialID + "/payment/void"
 }
