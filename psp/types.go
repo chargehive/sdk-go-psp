@@ -126,3 +126,13 @@ const (
 type Request interface {
 	GetPath(credentialID string) string
 }
+
+type Liability int
+
+//goland:noinspection GoUnusedConst
+const (
+	LiabilityInvalid Liability = iota
+	LiabilityUnknown
+	LiabilityMerchant
+	LiabilityIssuer
+)

@@ -10,7 +10,8 @@ type AuthorizeRequest struct {
 
 type AuthorizeResponse struct {
 	TransactionResponse
-	AmountAuthorized Amount `json:"amountAuthorized"`
+	AmountAuthorized Amount    `json:"amountAuthorized"`
+	Liability        Liability `json:"liability"`
 }
 
 func (a AuthorizeRequest) GetPath(credentialID string) string {
