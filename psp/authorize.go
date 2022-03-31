@@ -12,6 +12,7 @@ type AuthorizeResponse struct {
 	TransactionResponse
 	AmountAuthorized Amount `json:"amountAuthorized"`
 	AuthCode         string `json:"authCode"`
+	CVVResponse      string `json:"cvvResponse"`
 	AVS              string `json:"avs"`
 	ECI              string `json:"eci"`
 }
