@@ -1,6 +1,8 @@
 package psp
 
-import "time"
+import (
+	"time"
+)
 
 type Amount struct {
 	Units    int64  `json:"units"`
@@ -98,6 +100,10 @@ type TransactionResponse struct {
 	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
+	FailureCategory        FailureCategory         `json:"responseCategory"`
+	FailureType            FailureType             `json:"failureType"`
+	MerchantMessage        string                  `json:"merchantMessage"`
+	Tags                   []string                `json:"tags"`
 }
 
 type TransactionStatus string
@@ -135,4 +141,32 @@ const (
 	LiabilityUnknown
 	LiabilityMerchant
 	LiabilityIssuer
+)
+
+type FailureCategory int
+
+//goland:noinspection GoUnusedConst
+const (
+	FailureCategoryInvalid FailureCategory = iota
+	FailureCategoryNone
+	FailureCategoryPayload
+	FailureCategoryMethod
+	FailureCategoryPerson
+	FailureCategoryConfiguration
+	FailureCategoryConnectivity
+	FailureCategoryFraud
+	FailureCategoryVerification
+	FailureCategoryProcessing
+	FailureCategoryUnknown
+)
+
+type FailureType int
+
+//goland:noinspection GoUnusedConst
+const (
+	FailureTypeInvalid FailureType = iota
+	FailureTypeNone
+	FailureTypeRetry
+	FailureTypeSoft
+	FailureTypeHard
 )
