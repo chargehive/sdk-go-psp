@@ -97,7 +97,9 @@ type TransactionIdentifier struct {
 
 type TransactionResponse struct {
 	TransactionID          string                  `json:"transactionId"`
+	GatewayTransactionID   string                  `json:"gatewayTransactionId"`
 	NetworkTransactionID   string                  `json:"networkTransactionId"`
+	ARN                    string                  `json:"arn"`
 	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
@@ -105,7 +107,6 @@ type TransactionResponse struct {
 	FailureType            FailureType             `json:"failureType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
-	ARN                    string                  `json:"arn"`
 }
 
 type TransactionStatus string
