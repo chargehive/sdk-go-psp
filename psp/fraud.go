@@ -12,6 +12,6 @@ type FraudScanResponse struct {
 	TransactionResponse
 }
 
-func (a FraudScanRequest) GetPath(credentialID string) string {
+func (r FraudScanRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/fraud/scan"
 }

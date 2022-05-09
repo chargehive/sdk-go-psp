@@ -10,6 +10,6 @@ type AuthCaptureResponse struct {
 	Capture   CaptureResponse
 }
 
-func (a AuthCaptureRequest) GetPath(credentialID string) string {
+func (r AuthCaptureRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/auth-capture"
 }

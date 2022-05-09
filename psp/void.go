@@ -11,6 +11,11 @@ type VoidResponse struct {
 	TransactionResponse
 }
 
-func (a VoidRequest) GetPath(credentialID string) string {
+func (r VoidRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/void"
+}
+
+func (r VoidRequest) Do() VoidResponse {
+	// TODO implement me
+	panic("implement me")
 }

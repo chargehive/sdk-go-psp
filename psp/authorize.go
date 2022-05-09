@@ -1,5 +1,7 @@
 package psp
 
+import "encoding/json"
+
 type AuthorizeRequest struct {
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
@@ -17,6 +19,22 @@ type AuthorizeResponse struct {
 	ECI              string `json:"eci"`
 }
 
-func (a AuthorizeRequest) GetPath(credentialID string) string {
+func (r AuthorizeRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/authorize"
+}
+
+func (r AuthorizeRequest) Do(conn Connection) (*AuthorizeResponse, error) {
+	resp := &AuthorizeResponse{}
+
+	body, err := conn.Do(r)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
