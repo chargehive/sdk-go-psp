@@ -4,6 +4,7 @@ import "encoding/json"
 
 type AuthorizeRequest struct {
 	Amount            Amount            `json:"amount"`
+	MerchantReference string            `json:"merchantReference"`
 	BillingProfileID  string            `json:"billingProfileId"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
