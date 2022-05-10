@@ -1,5 +1,7 @@
 package psp
 
+import "encoding/json"
+
 type CaptureRequest struct {
 	AuthorizeID       string            `json:"authorizeId"`
 	Amount            Amount            `json:"amount"`
@@ -12,6 +14,14 @@ type CaptureResponse struct {
 	AmountCaptured Amount `json:"amountCaptured"`
 }
 
-func (a CaptureRequest) GetPath(credentialID string) string {
+func (r CaptureRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/capture"
+}
+
+func (r CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {
+	body, err := conn.Do(r)
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
+	}
+	return
 }
