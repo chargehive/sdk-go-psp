@@ -62,11 +62,31 @@ type TransactionSource struct {
 	UserAgent string `json:"userAgent"`
 }
 
+type Item struct {
+	Name           string      `json:"name"`
+	Description    string      `json:"description"`
+	ProductCode    string      `json:"productCode"`
+	SkuCode        string      `json:"skuCode"`
+	TermUnits      int64       `json:"termUnits"`
+	TermType       TermType    `json:"termType"`
+	ProductType    ProductType `json:"productType"`
+	SkuType        SKUType     `json:"skuType"`
+	Quantity       int64       `json:"quantity"`
+	UnitPrice      Amount      `json:"unitPrice"`
+	TaxAmount      Amount      `json:"taxAmount"`
+	DiscountAmount Amount      `json:"discountAmount"`
+	StartDate      *time.Time  `json:"startDate"`
+	EndDate        *time.Time  `json:"endDate"`
+	RenewalNumber  int32       `json:"renewalNumber"`
+	Reference      string      `json:"reference"`
+}
+
 type Meta struct {
 	Source          TransactionSource `json:"source"`
 	BillingAddress  Address           `json:"billingAddress"`
 	ShippingAddress Address           `json:"shippingAddress"`
 	CustomData      map[string]string `json:"customData"`
+	Items           []Item            `json:"items"`
 }
 
 type PaymentInstrument struct {
@@ -162,4 +182,35 @@ const (
 	FailureTypeRetry
 	FailureTypeSoft
 	FailureTypeHard
+)
+
+type ProductType int
+
+const (
+	ProductTypeInvalid ProductType = iota
+	ProductTypeProduct
+	ProductTypeService
+	ProductTypeSubscription
+)
+
+type SKUType int
+
+const (
+	SkuTypeInvalid SKUType = iota
+	SkuTypePrimary
+	SkuTypeAddon
+	SkuTypeUpsell
+)
+
+type TermType int
+
+const (
+	TermTypeInvalid TermType = iota
+	TermTypeOneTime
+	TermTypeMinute
+	TermTypeDay
+	TermTypeWeek
+	TermTypeMonth
+	TermTypeYear
+	TermTypeNone
 )
