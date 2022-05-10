@@ -53,7 +53,7 @@ func (t testReq) GetPath(credentialID string) string {
 func NewTestConnection(h testHandler) Connection {
 	srv := httptest.NewServer(h)
 	con := NewConnection(h.GetHandlerCredentials().id, h.GetHandlerCredentials().token)
-	con.host = srv.URL
+	con.SetHost(srv.URL)
 	con.newRequest = func(method, url string, body io.Reader) (*http.Request, error) {
 		return httptest.NewRequest(method, url, body), nil
 	}

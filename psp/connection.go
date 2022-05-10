@@ -28,11 +28,11 @@ func NewConnection(credentialID string, credentialToken string) Connection {
 	return c
 }
 
-func (c Connection) SetHost(host string) {
+func (c *Connection) SetHost(host string) {
 	c.host = host
 }
 
-func (c Connection) SetClient(client *http.Client) {
+func (c *Connection) SetClient(client *http.Client) {
 	c.httpClient = client
 }
 

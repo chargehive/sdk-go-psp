@@ -23,18 +23,10 @@ func (r AuthorizeRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/authorize"
 }
 
-func (r AuthorizeRequest) Do(conn Connection) (*AuthorizeResponse, error) {
-	resp := &AuthorizeResponse{}
-
+func (r AuthorizeRequest) Do(conn Connection) (resp AuthorizeResponse, err error) {
 	body, err := conn.Do(r)
-	if err != nil {
-		return nil, err
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
 	}
-
-	err = json.Unmarshal(body, resp)
-	if err != nil {
-		return nil, err
-	}
-
-	return resp, nil
+	return
 }

@@ -1,5 +1,7 @@
 package psp
 
+import "encoding/json"
+
 type FraudScanRequest struct {
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
@@ -14,4 +16,12 @@ type FraudScanResponse struct {
 
 func (r FraudScanRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/fraud/scan"
+}
+
+func (r FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err error) {
+	body, err := conn.Do(r)
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
+	}
+	return
 }
