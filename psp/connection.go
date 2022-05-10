@@ -46,7 +46,7 @@ func (c Connection) Do(r Request) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Authorization", c.authHeader)
+	req.Header.Set(RequestHeaderAuthorization, c.authHeader)
 
 	httpClient := c.httpClient
 	if httpClient == nil {
