@@ -5,6 +5,8 @@ import "encoding/json"
 type VerifyRequest struct {
 	Type              PaymentInstrumentVerifyType `json:"type"`  // Type is the type of verification we want to perform e.g. identify, challenge
 	Value             string                      `json:"value"` // Value to verify
+	Amount            Amount                      `json:"amount"`
+	BillPayer         Person                      `json:"billPayer"`
 	BillingProfileID  string                      `json:"billingProfileId"`
 	PaymentInstrument PaymentInstrument           `json:"paymentInstrument"`
 }
