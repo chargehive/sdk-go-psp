@@ -94,14 +94,14 @@ type PaymentInstrument struct {
 	Verification []PaymentInstrumentVerification `json:"verification"`
 }
 
-type PaymentInstrumentVerifyType int32
+type PaymentInstrumentVerifyType string
 
 //goland:noinspection GoUnusedConst
 const (
-	PaymentInstrumentVerifyTypeCvv               PaymentInstrumentVerifyType = 1
-	PaymentInstrumentVerifyTypeDeviceDetails     PaymentInstrumentVerifyType = 2
-	PaymentInstrumentVerifyTypeIdentifyResponse  PaymentInstrumentVerifyType = 3
-	PaymentInstrumentVerifyTypeChallengeResponse PaymentInstrumentVerifyType = 4
+	PaymentInstrumentVerifyTypeCvv               PaymentInstrumentVerifyType = "cvv"
+	PaymentInstrumentVerifyTypeDeviceDetails     PaymentInstrumentVerifyType = "device-details"
+	PaymentInstrumentVerifyTypeIdentifyResponse  PaymentInstrumentVerifyType = "identify-response"
+	PaymentInstrumentVerifyTypeChallengeResponse PaymentInstrumentVerifyType = "challenge-response"
 )
 
 type PaymentInstrumentVerification struct {
@@ -149,13 +149,13 @@ type ThreeDSResult struct {
 	SdkResponse         string    `json:"sdkResponse"`
 }
 
-type Liability int
+type Liability string
 
 const (
-	LiabilityInvalid Liability = iota
-	LiabilityUnknown
-	LiabilityMerchant
-	LiabilityIssuer
+	LiabilityInvalid  Liability = "invalid"
+	LiabilityUnknown  Liability = "unknown"
+	LiabilityMerchant Liability = "merchant"
+	LiabilityIssuer   Liability = "issuer"
 )
 
 type TransactionStatus string
@@ -185,61 +185,61 @@ type Request interface {
 	GetPath(credentialID string) string
 }
 
-type FailureCategory int
+type FailureCategory string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureCategoryInvalid FailureCategory = iota
-	FailureCategoryNone
-	FailureCategoryPayload
-	FailureCategoryMethod
-	FailureCategoryPerson
-	FailureCategoryConfiguration
-	FailureCategoryConnectivity
-	FailureCategoryFraud
-	FailureCategoryVerification
-	FailureCategoryProcessing
-	FailureCategoryUnknown
+	FailureCategoryInvalid       FailureCategory = "invalid"
+	FailureCategoryNone          FailureCategory = "none"
+	FailureCategoryPayload       FailureCategory = "payload"
+	FailureCategoryMethod        FailureCategory = "method"
+	FailureCategoryPerson        FailureCategory = "person"
+	FailureCategoryConfiguration FailureCategory = "configuration"
+	FailureCategoryConnectivity  FailureCategory = "connectivity"
+	FailureCategoryFraud         FailureCategory = "fraud"
+	FailureCategoryVerification  FailureCategory = "verification"
+	FailureCategoryProcessing    FailureCategory = "processing"
+	FailureCategoryUnknown       FailureCategory = "unknown"
 )
 
-type FailureType int
+type FailureType string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureTypeInvalid FailureType = iota
-	FailureTypeNone
-	FailureTypeRetry
-	FailureTypeSoft
-	FailureTypeHard
+	FailureTypeInvalid FailureType = "invalid"
+	FailureTypeNone    FailureType = "none"
+	FailureTypeRetry   FailureType = "retry"
+	FailureTypeSoft    FailureType = "soft"
+	FailureTypeHard    FailureType = "hard"
 )
 
-type ProductType int
+type ProductType string
 
 const (
-	ProductTypeInvalid ProductType = iota
-	ProductTypeProduct
-	ProductTypeService
-	ProductTypeSubscription
+	ProductTypeInvalid      ProductType = "invalid"
+	ProductTypeProduct      ProductType = "product"
+	ProductTypeService      ProductType = "service"
+	ProductTypeSubscription ProductType = "subscription"
 )
 
-type SKUType int
+type SKUType string
 
 const (
-	SkuTypeInvalid SKUType = iota
-	SkuTypePrimary
-	SkuTypeAddon
-	SkuTypeUpsell
+	SkuTypeInvalid SKUType = "invalid"
+	SkuTypePrimary SKUType = "primary"
+	SkuTypeAddon   SKUType = "addon"
+	SkuTypeUpsell  SKUType = "upsell"
 )
 
-type TermType int
+type TermType string
 
 const (
-	TermTypeInvalid TermType = iota
-	TermTypeOneTime
-	TermTypeMinute
-	TermTypeDay
-	TermTypeWeek
-	TermTypeMonth
-	TermTypeYear
-	TermTypeNone
+	TermTypeInvalid TermType = "invalid"
+	TermTypeOneTime TermType = "one-time"
+	TermTypeMinute  TermType = "minute"
+	TermTypeDay     TermType = "day"
+	TermTypeWeek    TermType = "week"
+	TermTypeMonth   TermType = "month"
+	TermTypeYear    TermType = "year"
+	TermTypeNone    TermType = "none"
 )
