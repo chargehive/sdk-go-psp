@@ -10,6 +10,7 @@ type VerifyRequest struct {
 }
 
 type VerifyResponse struct {
+	ThreeDSResult
 	TransactionResponse
 }
 
