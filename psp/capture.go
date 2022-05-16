@@ -2,7 +2,9 @@ package psp
 
 import "encoding/json"
 
-type CaptureRequest AuthorizeRequest
+type CaptureRequest struct {
+	BaseTransactionRequest
+}
 
 type CaptureResponse struct {
 	TransactionResponse

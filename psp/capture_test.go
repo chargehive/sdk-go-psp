@@ -8,11 +8,11 @@ import (
 	"testing"
 )
 
-func TestAuthCapture(t *testing.T) {
-	h := testAuthCapHandler{c: testHandlerCredentials{"abc", "123"}}
+func TestCapture(t *testing.T) {
+	h := testCaptureHandler{c: testHandlerCredentials{"abc", "123"}}
 
 	con := NewTestConnection(h)
-	req := CaptureRequest{Amount: NewAmount(123, "USD")}
+	req := CaptureRequest{BaseTransactionRequest{Amount: NewAmount(123, "USD")}}
 	resp, err := req.Do(con)
 
 	if err != nil {
@@ -28,16 +28,16 @@ func TestAuthCapture(t *testing.T) {
 	}
 }
 
-type testAuthCapHandler struct {
+type testCaptureHandler struct {
 	testHandler
 	c testHandlerCredentials
 }
 
-func (h testAuthCapHandler) GetHandlerCredentials() testHandlerCredentials {
+func (h testCaptureHandler) GetHandlerCredentials() testHandlerCredentials {
 	return h.c
 }
 
-func (h testAuthCapHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h testCaptureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	req := CaptureRequest{}
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -53,6 +53,6 @@ func (h testAuthCapHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		Authorize: AuthorizeResponse{AmountAuthorized: req.Amount},
 		Capture:   CaptureAuthResponse{AmountCaptured: req.Amount},
 	}
-	j, err := json.Marshal(resp)
+	j, _ := json.Marshal(resp)
 	_, _ = w.Write(j)
 }

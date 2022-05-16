@@ -264,3 +264,16 @@ const (
 	TermTypeYear    TermType = "year"
 	TermTypeNone    TermType = "none"
 )
+
+type BaseTransactionRequest struct {
+	Amount                   Amount                  `json:"amount"`
+	MerchantReference        string                  `json:"merchantReference"`
+	BillingProfileID         string                  `json:"billingProfileId"`
+	Initiator                RequestInitiator        `json:"initiator"`
+	IsMoto                   bool                    `json:"isMoto"`
+	SubscriptionType         RequestSubscriptionType `json:"subscriptionType"`
+	SubscribeAuthorizationID string                  `json:"subscribeAuthorizationId"`
+	PaymentInstrument        PaymentInstrument       `json:"paymentInstrument"`
+	BillPayer                Person                  `json:"billPayer"`
+	Meta                     Meta                    `json:"meta"`
+}
