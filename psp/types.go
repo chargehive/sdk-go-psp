@@ -200,7 +200,7 @@ type RequestSubscriptionType string
 const (
 	RequestSubscriptionTypeNone      RequestSubscriptionType = "none"
 	RequestSubscriptionTypeSubscribe RequestSubscriptionType = "subscribe"
-	RequestSubscriptionTypeRenewal   RequestSubscriptionType = "renewal"
+	RequestSubscriptionTypeRenew     RequestSubscriptionType = "renew"
 )
 
 type FailureCategory string
