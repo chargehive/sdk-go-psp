@@ -17,7 +17,7 @@ type CaptureAuthResponse struct {
 }
 
 func (r CaptureAuthRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/payment/capture"
+	return "/v1/" + credentialID + "/payment/capture-auth"
 }
 
 func (r CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err error) {
