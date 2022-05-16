@@ -186,17 +186,21 @@ type Request interface {
 	GetPath(credentialID string) string
 }
 
-type RequestSource string
+type RequestInitiator string
 
 //goland:noinspection GoUnusedConst
 const (
-	RequestSourceInvalid   RequestSource = "invalid"
-	RequestSourceMerchant  RequestSource = "merchant"
-	RequestSourceMOTO      RequestSource = "moto"
-	RequestSourceSubscribe RequestSource = "subscribe"
-	RequestSourceRenewal   RequestSource = "renewal"
-	RequestSourceAdhoc     RequestSource = "adhoc"
-	RequestSourceRetail    RequestSource = "retail"
+	RequestInitiatorMerchant RequestInitiator = "merchant"
+	RequestInitiatorCustomer RequestInitiator = "customer"
+)
+
+type RequestSubscriptionType string
+
+//goland:noinspection GoUnusedConst
+const (
+	RequestSubscriptionTypeNone      RequestSubscriptionType = "none"
+	RequestSubscriptionTypeSubscribe RequestSubscriptionType = "subscribe"
+	RequestSubscriptionTypeRenewal   RequestSubscriptionType = "renewal"
 )
 
 type FailureCategory string
