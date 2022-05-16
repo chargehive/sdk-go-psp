@@ -6,7 +6,7 @@ type AuthorizeRequest struct {
 	Amount            Amount            `json:"amount"`
 	MerchantReference string            `json:"merchantReference"`
 	BillingProfileID  string            `json:"billingProfileId"`
-	RequestSource     string            `json:"requestSource"`
+	RequestSource     RequestSource     `json:"requestSource"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
 	Meta              Meta              `json:"meta"`

@@ -190,13 +190,13 @@ type RequestSource string
 
 //goland:noinspection GoUnusedConst
 const (
-	RequestSourceInvalid   = "invalid"
-	RequestSourceMerchant  = "merchant"
-	RequestSourceMOTO      = "moto"
-	RequestSourceSubscribe = "subscribe"
-	RequestSourceRenewal   = "renewal"
-	RequestSourceAdhoc     = "adhoc"
-	RequestSourceRetail    = "retail"
+	RequestSourceInvalid   RequestSource = "invalid"
+	RequestSourceMerchant  RequestSource = "merchant"
+	RequestSourceMOTO      RequestSource = "moto"
+	RequestSourceSubscribe RequestSource = "subscribe"
+	RequestSourceRenewal   RequestSource = "renewal"
+	RequestSourceAdhoc     RequestSource = "adhoc"
+	RequestSourceRetail    RequestSource = "retail"
 )
 
 type FailureCategory string
