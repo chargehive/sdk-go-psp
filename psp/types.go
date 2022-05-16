@@ -151,6 +151,7 @@ type ThreeDSResult struct {
 
 type Liability string
 
+//goland:noinspection GoUnusedConst
 const (
 	LiabilityInvalid  Liability = "invalid"
 	LiabilityUnknown  Liability = "unknown"
@@ -185,6 +186,19 @@ type Request interface {
 	GetPath(credentialID string) string
 }
 
+type RequestSource string
+
+//goland:noinspection GoUnusedConst
+const (
+	RequestSourceInvalid   = "invalid"
+	RequestSourceMerchant  = "merchant"
+	RequestSourceMOTO      = "moto"
+	RequestSourceSubscribe = "subscribe"
+	RequestSourceRenewal   = "renewal"
+	RequestSourceAdhoc     = "adhoc"
+	RequestSourceRetail    = "retail"
+)
+
 type FailureCategory string
 
 //goland:noinspection GoUnusedConst
@@ -215,6 +229,7 @@ const (
 
 type ProductType string
 
+//goland:noinspection GoUnusedConst
 const (
 	ProductTypeInvalid      ProductType = "invalid"
 	ProductTypeProduct      ProductType = "product"
@@ -224,6 +239,7 @@ const (
 
 type SKUType string
 
+//goland:noinspection GoUnusedConst
 const (
 	SkuTypeInvalid SKUType = "invalid"
 	SkuTypePrimary SKUType = "primary"
@@ -233,6 +249,7 @@ const (
 
 type TermType string
 
+//goland:noinspection GoUnusedConst
 const (
 	TermTypeInvalid TermType = "invalid"
 	TermTypeOneTime TermType = "one-time"
