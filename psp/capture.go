@@ -2,22 +2,16 @@ package psp
 
 import "encoding/json"
 
-type CaptureRequest struct {
-	AuthorizeID       string            `json:"authorizeId"`
-	Amount            Amount            `json:"amount"`
-	BillingProfileID  string            `json:"billingProfileId"`
-	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
-	BillPayer         Person            `json:"billPayer"`
-	Meta              Meta              `json:"meta"`
-}
+type CaptureRequest AuthorizeRequest
 
 type CaptureResponse struct {
 	TransactionResponse
-	AmountCaptured Amount `json:"amountCaptured"`
+	Capture   CaptureAuthResponse
+	Authorize AuthorizeResponse
 }
 
 func (r CaptureRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/payment/capture"
+	return "/v1/" + credentialID + "/payment/auth-capture"
 }
 
 func (r CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {

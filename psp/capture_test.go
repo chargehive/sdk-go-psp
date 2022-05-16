@@ -8,8 +8,8 @@ import (
 	"testing"
 )
 
-func TestCapture(t *testing.T) {
-	h := testCaptureHandler{c: testHandlerCredentials{"abc", "123"}}
+func TestAuthCapture(t *testing.T) {
+	h := testAuthCapHandler{c: testHandlerCredentials{"abc", "123"}}
 
 	con := NewTestConnection(h)
 	req := CaptureRequest{Amount: NewAmount(123, "USD")}
@@ -19,21 +19,25 @@ func TestCapture(t *testing.T) {
 		t.Error(err)
 	}
 
-	if resp.AmountCaptured != req.Amount {
-		t.Error("amount doesnt match")
+	if resp.Authorize.AmountAuthorized != req.Amount {
+		t.Error("authorize amount doesnt match")
+	}
+
+	if resp.Capture.AmountCaptured != req.Amount {
+		t.Error("capture amount doesnt match")
 	}
 }
 
-type testCaptureHandler struct {
+type testAuthCapHandler struct {
 	testHandler
 	c testHandlerCredentials
 }
 
-func (h testCaptureHandler) GetHandlerCredentials() testHandlerCredentials {
+func (h testAuthCapHandler) GetHandlerCredentials() testHandlerCredentials {
 	return h.c
 }
 
-func (h testCaptureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h testAuthCapHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	req := CaptureRequest{}
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -45,7 +49,10 @@ func (h testCaptureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	resp := CaptureResponse{AmountCaptured: req.Amount}
+	resp := CaptureResponse{
+		Authorize: AuthorizeResponse{AmountAuthorized: req.Amount},
+		Capture:   CaptureAuthResponse{AmountCaptured: req.Amount},
+	}
 	j, err := json.Marshal(resp)
 	_, _ = w.Write(j)
 }
