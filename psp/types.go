@@ -123,7 +123,7 @@ type TransactionResponse struct {
 	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
-	FailureCategory        FailureCategory         `json:"responseCategory"`
+	Category               TransactionCategory     `json:"category"`
 	FailureType            FailureType             `json:"failureType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
@@ -203,21 +203,21 @@ const (
 	RequestSubscriptionTypeRenew     RequestSubscriptionType = "renew"
 )
 
-type FailureCategory string
+type TransactionCategory string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureCategoryInvalid       FailureCategory = "invalid"
-	FailureCategoryNone          FailureCategory = "none"
-	FailureCategoryPayload       FailureCategory = "payload"
-	FailureCategoryMethod        FailureCategory = "method"
-	FailureCategoryPerson        FailureCategory = "person"
-	FailureCategoryConfiguration FailureCategory = "configuration"
-	FailureCategoryConnectivity  FailureCategory = "connectivity"
-	FailureCategoryFraud         FailureCategory = "fraud"
-	FailureCategoryVerification  FailureCategory = "verification"
-	FailureCategoryProcessing    FailureCategory = "processing"
-	FailureCategoryUnknown       FailureCategory = "unknown"
+	TransactionCategoryInvalid       TransactionCategory = "invalid"
+	TransactionCategoryNone          TransactionCategory = "none"
+	TransactionCategoryPayload       TransactionCategory = "payload"
+	TransactionCategoryMethod        TransactionCategory = "method"
+	TransactionCategoryPerson        TransactionCategory = "person"
+	TransactionCategoryConfiguration TransactionCategory = "configuration"
+	TransactionCategoryConnectivity  TransactionCategory = "connectivity"
+	TransactionCategoryFraud         TransactionCategory = "fraud"
+	TransactionCategoryVerification  TransactionCategory = "verification"
+	TransactionCategoryProcessing    TransactionCategory = "processing"
+	TransactionCategoryUnknown       TransactionCategory = "unknown"
 )
 
 type FailureType string
