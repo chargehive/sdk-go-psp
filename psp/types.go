@@ -123,7 +123,7 @@ type TransactionResponse struct {
 	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
-	FailureCategory        FailureCategory         `json:"responseCategory"`
+	FailureCategory        FailureCategory         `json:"failureCategory"`
 	FailureType            FailureType             `json:"failureType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
