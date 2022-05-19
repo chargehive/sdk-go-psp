@@ -123,7 +123,7 @@ type TransactionResponse struct {
 	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
-	Category               TransactionCategory     `json:"category"`
+	FailureCategory        FailureCategory         `json:"responseCategory"`
 	FailureType            FailureType             `json:"failureType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
@@ -203,21 +203,21 @@ const (
 	RequestSubscriptionTypeRenew     RequestSubscriptionType = "renew"
 )
 
-type TransactionCategory string
+type FailureCategory string
 
 //goland:noinspection GoUnusedConst
 const (
-	TransactionCategoryInvalid       TransactionCategory = "invalid"
-	TransactionCategoryNone          TransactionCategory = "none"
-	TransactionCategoryPayload       TransactionCategory = "payload"
-	TransactionCategoryMethod        TransactionCategory = "method"
-	TransactionCategoryPerson        TransactionCategory = "person"
-	TransactionCategoryConfiguration TransactionCategory = "configuration"
-	TransactionCategoryConnectivity  TransactionCategory = "connectivity"
-	TransactionCategoryFraud         TransactionCategory = "fraud"
-	TransactionCategoryVerification  TransactionCategory = "verification"
-	TransactionCategoryProcessing    TransactionCategory = "processing"
-	TransactionCategoryUnknown       TransactionCategory = "unknown"
+	FailureCategoryInvalid       FailureCategory = "invalid"
+	FailureCategoryNone          FailureCategory = "none"
+	FailureCategoryPayload       FailureCategory = "payload"
+	FailureCategoryMethod        FailureCategory = "method"
+	FailureCategoryPerson        FailureCategory = "person"
+	FailureCategoryConfiguration FailureCategory = "configuration"
+	FailureCategoryConnectivity  FailureCategory = "connectivity"
+	FailureCategoryFraud         FailureCategory = "fraud"
+	FailureCategoryVerification  FailureCategory = "verification"
+	FailureCategoryProcessing    FailureCategory = "processing"
+	FailureCategoryUnknown       FailureCategory = "unknown"
 )
 
 type FailureType string
