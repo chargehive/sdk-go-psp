@@ -90,8 +90,9 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	HVT          string                          `json:"hvt"`
-	Verification []PaymentInstrumentVerification `json:"verification"`
+	HVT            string                          `json:"hvt"`
+	EphemeralToken string                          `json:"ephemeralToken"`
+	Verification   []PaymentInstrumentVerification `json:"verification"`
 }
 
 type PaymentInstrumentVerifyType string
