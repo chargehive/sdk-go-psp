@@ -4,6 +4,7 @@ import "encoding/json"
 
 type RefundRequest struct {
 	CaptureID         string            `json:"captureId"`
+	MerchantReference string            `json:"merchantReference"`
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
