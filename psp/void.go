@@ -1,6 +1,8 @@
 package psp
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type VoidRequest struct {
 	AuthorizeID       string            `json:"authorizeId"`
@@ -18,9 +20,10 @@ func (r VoidRequest) GetPath(credentialID string) string {
 }
 
 func (r VoidRequest) Do(conn Connection) (resp VoidResponse, err error) {
-	body, err := conn.Do(r)
+	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
 	}
+
 	return
 }

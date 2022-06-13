@@ -12,11 +12,12 @@ import (
 func TestConnection(t *testing.T) {
 	h := echoHandler{t: t, c: testHandlerCredentials{"abc", "123"}}
 	con := NewTestConnection(h)
-	resp, err := con.Do(testReq{Data: "this is a test"})
+	resp, _, err := con.Do(testReq{Data: "this is a test"})
 
 	if err != nil {
 		t.Error(err)
 	}
+
 	if string(resp) != `/v1/abc/my/test/path ~ {"Data":"this is a test"}` {
 		t.Errorf("unexpected response: %s", resp)
 	}
@@ -50,14 +51,14 @@ func (t testReq) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/my/test/path"
 }
 
-func NewTestConnection(h testHandler) HttpConnection {
+func NewTestConnection(h testHandler) *HttpConnection {
 	srv := httptest.NewServer(h)
 	con := NewHTTPConnection(h.GetHandlerCredentials().id, h.GetHandlerCredentials().token)
 	con.SetHost(srv.URL)
 	con.newRequest = func(method, url string, body io.Reader) (*http.Request, error) {
 		return httptest.NewRequest(method, url, body), nil
 	}
-	return con
+	return &con
 }
 
 type testHandler interface {

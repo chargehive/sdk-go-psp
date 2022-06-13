@@ -1,6 +1,8 @@
 package psp
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type VerifyRequest struct {
 	Type              PaymentInstrumentVerifyType `json:"type"`  // Type is the type of verification we want to perform e.g. identify, challenge
@@ -21,9 +23,10 @@ func (r VerifyRequest) GetPath(credentialID string) string {
 }
 
 func (r VerifyRequest) Do(conn Connection) (resp VoidResponse, err error) {
-	body, err := conn.Do(r)
+	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
 	}
+
 	return
 }

@@ -36,15 +36,15 @@ func (c *HttpConnection) SetClient(client *http.Client) {
 	c.httpClient = client
 }
 
-func (c HttpConnection) Do(r Request) ([]byte, error) {
+func (c *HttpConnection) Do(r Request) ([]byte, http.Header, error) {
 	j, err := json.Marshal(r)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	req, err := http.NewRequest(http.MethodPost, c.host+r.GetPath(c.credentialID), bytes.NewReader(j))
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	req.Header.Set(RequestHeaderAuthorization, c.authHeader)
 
@@ -55,12 +55,13 @@ func (c HttpConnection) Do(r Request) ([]byte, error) {
 
 	rawResp, err := httpClient.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	respBody, err := ioutil.ReadAll(rawResp.Body)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	return respBody, nil
+	return respBody, rawResp.Header, nil
+
 }

@@ -1,6 +1,8 @@
 package psp
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type CaptureRequest struct {
 	BaseTransactionRequest
@@ -17,9 +19,10 @@ func (r CaptureRequest) GetPath(credentialID string) string {
 }
 
 func (r CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {
-	body, err := conn.Do(r)
+	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
 	}
+
 	return
 }

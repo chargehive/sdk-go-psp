@@ -1,6 +1,8 @@
 package psp
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 type RefundRequest struct {
 	CaptureID         string            `json:"captureId"`
@@ -20,9 +22,10 @@ func (r RefundRequest) GetPath(credentialID string) string {
 }
 
 func (r RefundRequest) Do(conn Connection) (resp RefundResponse, err error) {
-	body, err := conn.Do(r)
+	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
 	}
+
 	return
 }
