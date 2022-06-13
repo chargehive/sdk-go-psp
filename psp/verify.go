@@ -2,7 +2,6 @@ package psp
 
 import (
 	"encoding/json"
-	"io/ioutil"
 )
 
 type VerifyRequest struct {
@@ -24,15 +23,10 @@ func (r VerifyRequest) GetPath(credentialID string) string {
 }
 
 func (r VerifyRequest) Do(conn Connection) (resp VoidResponse, err error) {
-	httpResp, err := conn.Do(r)
-	if err != nil {
-		return
-	}
-	body, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return
+	body, _, err := conn.Do(r)
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
 	}
 
-	err = json.Unmarshal(body, &resp)
 	return
 }

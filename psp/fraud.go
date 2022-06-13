@@ -2,7 +2,6 @@ package psp
 
 import (
 	"encoding/json"
-	"io/ioutil"
 )
 
 type FraudScanRequest struct {
@@ -22,15 +21,10 @@ func (r FraudScanRequest) GetPath(credentialID string) string {
 }
 
 func (r FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err error) {
-	httpResp, err := conn.Do(r)
-	if err != nil {
-		return
-	}
-	body, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return
+	body, _, err := conn.Do(r)
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
 	}
 
-	err = json.Unmarshal(body, &resp)
 	return
 }

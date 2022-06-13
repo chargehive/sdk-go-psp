@@ -2,7 +2,6 @@ package psp
 
 import (
 	"encoding/json"
-	"io/ioutil"
 )
 
 type RefundRequest struct {
@@ -23,15 +22,10 @@ func (r RefundRequest) GetPath(credentialID string) string {
 }
 
 func (r RefundRequest) Do(conn Connection) (resp RefundResponse, err error) {
-	httpResp, err := conn.Do(r)
-	if err != nil {
-		return
-	}
-	body, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return
+	body, _, err := conn.Do(r)
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
 	}
 
-	err = json.Unmarshal(body, &resp)
 	return
 }

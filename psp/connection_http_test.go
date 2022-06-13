@@ -12,12 +12,12 @@ import (
 func TestConnection(t *testing.T) {
 	h := echoHandler{t: t, c: testHandlerCredentials{"abc", "123"}}
 	con := NewTestConnection(h)
-	httpResp, err := con.Do(testReq{Data: "this is a test"})
+	resp, _, err := con.Do(testReq{Data: "this is a test"})
 
 	if err != nil {
 		t.Error(err)
 	}
-	resp, _ := io.ReadAll(httpResp.Body)
+
 	if string(resp) != `/v1/abc/my/test/path ~ {"Data":"this is a test"}` {
 		t.Errorf("unexpected response: %s", resp)
 	}

@@ -3,5 +3,5 @@ package psp
 import "net/http"
 
 type Connection interface {
-	Do(Request) (*http.Response, error)
+	Do(Request) (body []byte, headers http.Header, err error)
 }
