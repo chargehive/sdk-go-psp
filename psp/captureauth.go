@@ -1,6 +1,9 @@
 package psp
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"io/ioutil"
+)
 
 type CaptureAuthRequest struct {
 	AuthorizeID       string            `json:"authorizeId"`
@@ -21,9 +24,15 @@ func (r CaptureAuthRequest) GetPath(credentialID string) string {
 }
 
 func (r CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err error) {
-	body, err := conn.Do(r)
-	if err == nil {
-		err = json.Unmarshal(body, &resp)
+	httpResp, err := conn.Do(r)
+	if err != nil {
+		return
 	}
+	body, err := ioutil.ReadAll(httpResp.Body)
+	if err != nil {
+		return
+	}
+
+	err = json.Unmarshal(body, &resp)
 	return
 }

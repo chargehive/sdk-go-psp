@@ -1,6 +1,9 @@
 package psp
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"io/ioutil"
+)
 
 type AuthorizeRequest struct {
 	BaseTransactionRequest
@@ -20,9 +23,15 @@ func (r AuthorizeRequest) GetPath(credentialID string) string {
 }
 
 func (r AuthorizeRequest) Do(conn Connection) (resp AuthorizeResponse, err error) {
-	body, err := conn.Do(r)
-	if err == nil {
-		err = json.Unmarshal(body, &resp)
+	httpResp, err := conn.Do(r)
+	if err != nil {
+		return
 	}
+	body, err := ioutil.ReadAll(httpResp.Body)
+	if err != nil {
+		return
+	}
+
+	err = json.Unmarshal(body, &resp)
 	return
 }

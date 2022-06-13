@@ -5,7 +5,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -36,7 +35,7 @@ func (c *HttpConnection) SetClient(client *http.Client) {
 	c.httpClient = client
 }
 
-func (c HttpConnection) Do(r Request) ([]byte, error) {
+func (c *HttpConnection) Do(r Request) (*http.Response, error) {
 	j, err := json.Marshal(r)
 	if err != nil {
 		return nil, err
@@ -53,14 +52,5 @@ func (c HttpConnection) Do(r Request) ([]byte, error) {
 		httpClient = http.DefaultClient
 	}
 
-	rawResp, err := httpClient.Do(req)
-	if err != nil {
-		return nil, err
-	}
-
-	respBody, err := ioutil.ReadAll(rawResp.Body)
-	if err != nil {
-		return nil, err
-	}
-	return respBody, nil
+	return httpClient.Do(req)
 }
