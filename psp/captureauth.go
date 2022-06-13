@@ -6,6 +6,7 @@ import (
 
 type CaptureAuthRequest struct {
 	AuthorizeID       string            `json:"authorizeId"`
+	MerchantReference string            `json:"merchantReference"`
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
