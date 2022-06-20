@@ -298,5 +298,26 @@ const (
 	RiskLevelMinor       RiskLevel = "minor"
 	RiskLevelModerate    RiskLevel = "moderate"
 	RiskLevelSignificant RiskLevel = "significant"
-	RiskLevelServere     RiskLevel = "severe"
+	RiskLevelSevere      RiskLevel = "severe"
 )
+
+func (r RiskLevel) ToInt() int {
+	switch r {
+	case RiskLevelNotRated:
+		return 1
+	case RiskLevelNegligible:
+		return 10
+	case RiskLevelMinor:
+		return 30
+	case RiskLevelModerate:
+		return 50
+	case RiskLevelSignificant:
+		return 70
+	case RiskLevelSevere:
+		return 90
+	case RiskLevelInvalid:
+		return 0
+	}
+
+	return 0
+}
