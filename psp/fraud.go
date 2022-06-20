@@ -20,6 +20,7 @@ type FraudScanResponse struct {
 	ScanTime        time.Time
 	SuggestedAction SuggestedAction
 	Summary         string
+	AdditionalData  map[string]string
 }
 
 func (r FraudScanRequest) GetPath(credentialID string) string {
