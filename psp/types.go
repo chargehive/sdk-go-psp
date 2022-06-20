@@ -278,3 +278,25 @@ type BaseTransactionRequest struct {
 	BillPayer                Person                  `json:"billPayer"`
 	Meta                     Meta                    `json:"meta"`
 }
+
+type SuggestedAction string
+
+const (
+	SuggestedActionInvalid SuggestedAction = "invalid"
+	SuggestedActionNone    SuggestedAction = "none"
+	SuggestedActionReview  SuggestedAction = "review"
+	SuggestedActionAllow   SuggestedAction = "allow"
+	SuggestedActionDeny    SuggestedAction = "deny"
+)
+
+type RiskLevel string
+
+const (
+	RiskLevelInvalid     RiskLevel = "invalid"
+	RiskLevelNotRated    RiskLevel = "not-rated"
+	RiskLevelNegligible  RiskLevel = "negligible"
+	RiskLevelMinor       RiskLevel = "minor"
+	RiskLevelModerate    RiskLevel = "moderate"
+	RiskLevelSignificant RiskLevel = "significant"
+	RiskLevelServere     RiskLevel = "severe"
+)

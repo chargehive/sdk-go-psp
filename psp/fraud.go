@@ -2,6 +2,7 @@ package psp
 
 import (
 	"encoding/json"
+	"time"
 )
 
 type FraudScanRequest struct {
@@ -14,6 +15,11 @@ type FraudScanRequest struct {
 
 type FraudScanResponse struct {
 	TransactionResponse
+	FraudScore      float32
+	RiskLevel       RiskLevel
+	ScanTime        time.Time
+	SuggestedAction SuggestedAction
+	Summary         string
 }
 
 func (r FraudScanRequest) GetPath(credentialID string) string {
