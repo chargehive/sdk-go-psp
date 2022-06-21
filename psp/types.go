@@ -208,17 +208,17 @@ type FailureCategory string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureCategoryInvalid        FailureCategory = "invalid"
-	FailureCategoryNone           FailureCategory = "none"
-	FailureCategoryPayload        FailureCategory = "payload"
-	FailureCategoryMethod         FailureCategory = "method"
-	FailureCategoryPerson         FailureCategory = "person"
-	FailureCategoryConfiguration  FailureCategory = "configuration"
-	FailureCategoryConnectivity   FailureCategory = "connectivity"
-	FailureCategoryFraud          FailureCategory = "fraud"
-	FailureCategoryAuthentication FailureCategory = "authentication"
-	FailureCategoryProcessing     FailureCategory = "processing"
-	FailureCategoryUnknown        FailureCategory = "unknown"
+	FailureCategoryInvalid            FailureCategory = "invalid"
+	FailureCategoryNone               FailureCategory = "none"
+	FailureCategoryPayload            FailureCategory = "payload"
+	FailureCategoryMethod             FailureCategory = "method"
+	FailureCategoryPerson             FailureCategory = "person"
+	FailureCategoryConfiguration      FailureCategory = "configuration"
+	FailureCategoryConnectivity       FailureCategory = "connectivity"
+	FailureCategoryFraud              FailureCategory = "fraud"
+	FailureCategoryCardAuthentication FailureCategory = "card-authentication"
+	FailureCategoryProcessing         FailureCategory = "processing"
+	FailureCategoryUnknown            FailureCategory = "unknown"
 )
 
 type FailureType string
