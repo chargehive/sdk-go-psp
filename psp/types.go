@@ -90,24 +90,24 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	HVT            string                          `json:"hvt"`
-	EphemeralToken string                          `json:"ephemeralToken"`
-	Verification   []PaymentInstrumentVerification `json:"verification"`
+	HVT            string                            `json:"hvt"`
+	EphemeralToken string                            `json:"ephemeralToken"`
+	Authentication []PaymentInstrumentAuthentication `json:"authentication"`
 }
 
-type PaymentInstrumentVerifyType string
+type PaymentInstrumentAuthenticationType string
 
 //goland:noinspection GoUnusedConst
 const (
-	PaymentInstrumentVerifyTypeCvv               PaymentInstrumentVerifyType = "cvv"
-	PaymentInstrumentVerifyTypeDeviceDetails     PaymentInstrumentVerifyType = "device-details"
-	PaymentInstrumentVerifyTypeIdentifyResponse  PaymentInstrumentVerifyType = "identify-response"
-	PaymentInstrumentVerifyTypeChallengeResponse PaymentInstrumentVerifyType = "challenge-response"
+	PaymentInstrumentAuthenticationTypeCvv               PaymentInstrumentAuthenticationType = "cvv"
+	PaymentInstrumentAuthenticationTypeDeviceDetails     PaymentInstrumentAuthenticationType = "device-details"
+	PaymentInstrumentAuthenticationTypeIdentifyResponse  PaymentInstrumentAuthenticationType = "identify-response"
+	PaymentInstrumentAuthenticationTypeChallengeResponse PaymentInstrumentAuthenticationType = "challenge-response"
 )
 
-type PaymentInstrumentVerification struct {
-	Type  PaymentInstrumentVerifyType `json:"type"`
-	Value []byte                      `json:"value"`
+type PaymentInstrumentAuthentication struct {
+	Type  PaymentInstrumentAuthenticationType `json:"type"`
+	Value []byte                              `json:"value"`
 }
 
 type TransactionIdentifier struct {
@@ -208,17 +208,17 @@ type FailureCategory string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureCategoryInvalid       FailureCategory = "invalid"
-	FailureCategoryNone          FailureCategory = "none"
-	FailureCategoryPayload       FailureCategory = "payload"
-	FailureCategoryMethod        FailureCategory = "method"
-	FailureCategoryPerson        FailureCategory = "person"
-	FailureCategoryConfiguration FailureCategory = "configuration"
-	FailureCategoryConnectivity  FailureCategory = "connectivity"
-	FailureCategoryFraud         FailureCategory = "fraud"
-	FailureCategoryVerification  FailureCategory = "verification"
-	FailureCategoryProcessing    FailureCategory = "processing"
-	FailureCategoryUnknown       FailureCategory = "unknown"
+	FailureCategoryInvalid        FailureCategory = "invalid"
+	FailureCategoryNone           FailureCategory = "none"
+	FailureCategoryPayload        FailureCategory = "payload"
+	FailureCategoryMethod         FailureCategory = "method"
+	FailureCategoryPerson         FailureCategory = "person"
+	FailureCategoryConfiguration  FailureCategory = "configuration"
+	FailureCategoryConnectivity   FailureCategory = "connectivity"
+	FailureCategoryFraud          FailureCategory = "fraud"
+	FailureCategoryAuthentication FailureCategory = "authentication"
+	FailureCategoryProcessing     FailureCategory = "processing"
+	FailureCategoryUnknown        FailureCategory = "unknown"
 )
 
 type FailureType string
@@ -281,6 +281,7 @@ type BaseTransactionRequest struct {
 
 type SuggestedAction string
 
+//goland:noinspection GoUnusedConst
 const (
 	SuggestedActionInvalid SuggestedAction = "invalid"
 	SuggestedActionNone    SuggestedAction = "none"
