@@ -6,7 +6,6 @@ import (
 
 type AuthenticateRequest struct {
 	Type              PaymentInstrumentAuthenticationType `json:"type"` // Type is the type of authentication we want to perform e.g. identify, challenge
-	Value             string                              `json:"value"`
 	Amount            Amount                              `json:"amount"`
 	BillPayer         Person                              `json:"billPayer"`
 	BillingProfileID  string                              `json:"billingProfileId"`
