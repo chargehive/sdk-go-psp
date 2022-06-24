@@ -90,10 +90,10 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	LVT            string `json:"lvt"`
-	HVT            string `json:"hvt"`
-	EphemeralToken string `json:"ephemeralToken"`
-	ThreeDSecure   string `json:"3ds"`
+	LVT            string       `json:"lvt"`
+	HVT            string       `json:"hvt"`
+	EphemeralToken string       `json:"ephemeralToken"`
+	ThreeDSecure   ThreeDSecure `json:"3ds"`
 }
 
 type ThreeDSecure struct {
