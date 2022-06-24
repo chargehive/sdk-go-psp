@@ -101,6 +101,14 @@ type ThreeDSecure struct {
 	ChallengeResponse string `json:"challenge"`
 }
 
+type PaymentInstrumentAuthenticationType string
+
+//goland:noinspection GoUnusedConst
+const (
+	PaymentInstrumentAuthenticationTypeIdentifyResponse  PaymentInstrumentAuthenticationType = "identify-response"
+	PaymentInstrumentAuthenticationTypeChallengeResponse PaymentInstrumentAuthenticationType = "challenge-response"
+)
+
 type TransactionIdentifier struct {
 	Source string `json:"source"`
 	Name   string `json:"name"`
