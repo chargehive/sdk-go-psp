@@ -105,8 +105,8 @@ type PaymentInstrumentAuthenticationType string
 
 //goland:noinspection GoUnusedConst
 const (
-	PaymentInstrumentAuthenticationTypeIdentifyResponse  PaymentInstrumentAuthenticationType = "identify-response"
-	PaymentInstrumentAuthenticationTypeChallengeResponse PaymentInstrumentAuthenticationType = "challenge-response"
+	PaymentInstrumentAuthenticationTypeIdentify  PaymentInstrumentAuthenticationType = "identify"
+	PaymentInstrumentAuthenticationTypeChallenge PaymentInstrumentAuthenticationType = "challenge"
 )
 
 type TransactionIdentifier struct {
