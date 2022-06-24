@@ -90,25 +90,15 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	LVT            string                            `json:"lvt"`
-	HVT            string                            `json:"hvt"`
-	EphemeralToken string                            `json:"ephemeralToken"`
-	Authentication []PaymentInstrumentAuthentication `json:"authentication"`
+	LVT            string `json:"lvt"`
+	HVT            string `json:"hvt"`
+	EphemeralToken string `json:"ephemeralToken"`
+	ThreeDSecure   string `json:"3ds"`
 }
 
-type PaymentInstrumentAuthenticationType string
-
-//goland:noinspection GoUnusedConst
-const (
-	PaymentInstrumentAuthenticationTypeCvv               PaymentInstrumentAuthenticationType = "cvv"
-	PaymentInstrumentAuthenticationTypeDeviceDetails     PaymentInstrumentAuthenticationType = "device-details"
-	PaymentInstrumentAuthenticationTypeIdentifyResponse  PaymentInstrumentAuthenticationType = "identify-response"
-	PaymentInstrumentAuthenticationTypeChallengeResponse PaymentInstrumentAuthenticationType = "challenge-response"
-)
-
-type PaymentInstrumentAuthentication struct {
-	Type  PaymentInstrumentAuthenticationType `json:"type"`
-	Value []byte                              `json:"value"`
+type ThreeDSecure struct {
+	IdentifyResponse  string `json:"identify"`
+	ChallengeResponse string `json:"challenge"`
 }
 
 type TransactionIdentifier struct {
