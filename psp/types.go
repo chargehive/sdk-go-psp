@@ -97,6 +97,7 @@ type PaymentInstrument struct {
 }
 
 type ThreeDSecure struct {
+	ID                string `json:"id"`
 	IdentifyResponse  string `json:"identify"`
 	ChallengeResponse string `json:"challenge"`
 }
