@@ -8,6 +8,7 @@ import (
 type FraudScanRequest struct {
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
+	MerchantReference string            `json:"merchantReference"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
 	Meta              Meta              `json:"meta"`
