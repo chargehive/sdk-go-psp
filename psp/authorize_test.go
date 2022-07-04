@@ -47,5 +47,8 @@ func (h testAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	resp := AuthorizeResponse{AmountAuthorized: req.Amount}
 	j, err := json.Marshal(resp)
+	if err != nil {
+		log.Fatal(err)
+	}
 	_, _ = w.Write(j)
 }
