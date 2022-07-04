@@ -6,6 +6,7 @@ import (
 
 type AuthorizeRequest struct {
 	BaseTransactionRequest
+	PerformSCA bool `json:"performSca"`
 }
 
 type AuthorizeResponse struct {
