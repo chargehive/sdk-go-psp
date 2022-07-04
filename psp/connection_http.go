@@ -63,5 +63,4 @@ func (c *HttpConnection) Do(r Request) ([]byte, http.Header, error) {
 		return nil, nil, err
 	}
 	return respBody, rawResp.Header, nil
-
 }
