@@ -122,23 +122,22 @@ type TransactionResponse struct {
 }
 
 type ThreeDSResult struct {
-	Eci                 string    `json:"eci"`
-	Cavv                string    `json:"cavv"`
-	Xid                 string    `json:"xid"`
-	Enrollment          string    `json:"enrollment"`
-	Result              string    `json:"result"`
-	SignatureStatus     string    `json:"signatureStatus"`
-	ServerTransactionId string    `json:"serverTransactionId"`
-	Status              string    `json:"status"`
-	MajorVersion        int32     `json:"majorVersion"`
-	Version             string    `json:"version"`
-	PaReq               string    `json:"paReq"`
-	AcsUrl              string    `json:"acsUrl"`
-	PaRes               string    `json:"paRes"`
-	Id                  string    `json:"id"`
-	Timestamp           time.Time `json:"timestamp"`
-	Liability           Liability `json:"liability"`
-	SdkResponse         string    `json:"sdkResponse"`
+	ID              string            `json:"ID"`
+	Eci             string            `json:"eci"`
+	Cavv            string            `json:"cavv"`
+	Xid             string            `json:"xid"`
+	Enrollment      string            `json:"enrollment"`
+	Result          string            `json:"result"`
+	SignatureStatus string            `json:"signatureStatus"`
+	Status          string            `json:"status"`
+	MajorVersion    int32             `json:"majorVersion"`
+	Version         string            `json:"version"`
+	PaReq           string            `json:"paReq"`
+	AcsUrl          string            `json:"acsUrl"`
+	PaRes           string            `json:"paRes"`
+	Timestamp       time.Time         `json:"timestamp"`
+	Liability       Liability         `json:"liability"`
+	Data            map[string]string `json:"data"`
 }
 
 type Liability string
