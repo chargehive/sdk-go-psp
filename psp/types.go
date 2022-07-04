@@ -122,7 +122,7 @@ type TransactionResponse struct {
 }
 
 type ThreeDSResult struct {
-	ID              string            `json:"ID"`
+	ID              string            `json:"id"`
 	Eci             string            `json:"eci"`
 	Cavv            string            `json:"cavv"`
 	Xid             string            `json:"xid"`
