@@ -12,7 +12,7 @@ func TestAuthorize(t *testing.T) {
 	h := testAuthHandler{c: testHandlerCredentials{"abc", "123"}}
 
 	con := NewTestConnection(h)
-	req := AuthorizeRequest{BaseTransactionRequest{Amount: NewAmount(123, "USD")}}
+	req := AuthorizeRequest{BaseTransactionRequest: BaseTransactionRequest{Amount: NewAmount(123, "USD")}}
 	resp, err := req.Do(con)
 
 	if err != nil {
