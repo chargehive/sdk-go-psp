@@ -166,6 +166,9 @@ const (
 
 	// TransactionStatusCancelled The transaction request has been cancelled. This result is final.
 	TransactionStatusCancelled TransactionStatus = "cancelled"
+
+	// TransactionStatusChallenged The transaction request has been challenged and requires authentication information.
+	TransactionStatusChallenged TransactionStatus = "challenged"
 )
 
 type Request interface {
