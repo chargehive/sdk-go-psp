@@ -94,6 +94,12 @@ type PaymentInstrument struct {
 	HVT                string            `json:"hvt"`
 	EphemeralToken     string            `json:"ephemeralToken"`
 	AuthenticationData map[string]string `json:"authenticationData"`
+	PaymentToken       PaymentToken      `json:"paymentToken"`
+}
+
+type PaymentToken struct {
+	Type  TokenType
+	Token string
 }
 
 type TransactionIdentifier struct {
@@ -310,3 +316,10 @@ func (r RiskLevel) ToInt() int {
 
 	return 0
 }
+
+type TokenType string
+
+const (
+	TokenTypeGooglePay TokenType = "googlePay"
+	TokenTypeApplePay  TokenType = "applePay"
+)
