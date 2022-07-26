@@ -92,14 +92,9 @@ type Meta struct {
 type PaymentInstrument struct {
 	LVT                string            `json:"lvt"`
 	HVT                string            `json:"hvt"`
+	Type               TokenType         `json:"tokenType"`
 	EphemeralToken     string            `json:"ephemeralToken"`
 	AuthenticationData map[string]string `json:"authenticationData"`
-	PaymentToken       PaymentToken      `json:"paymentToken"`
-}
-
-type PaymentToken struct {
-	Type  TokenType
-	Token string
 }
 
 type TransactionIdentifier struct {
@@ -320,6 +315,8 @@ func (r RiskLevel) ToInt() int {
 type TokenType string
 
 const (
+	TokenTypePCIB      TokenType = "pcib"
 	TokenTypeGooglePay TokenType = "googlePay"
 	TokenTypeApplePay  TokenType = "applePay"
+	DefaultTokenType             = TokenTypePCIB
 )
