@@ -20,7 +20,9 @@ func NewAmount(units int64, currency string) Amount {
 type Person struct {
 	Title       string      `json:"title"`
 	First       string      `json:"first"`
+	Middle      string      `json:"middle"`
 	Last        string      `json:"last"`
+	Suffix      string      `json:"suffix"`
 	FullName    string      `json:"fullName"`
 	Email       Email       `json:"email"`
 	PhoneNumber PhoneNumber `json:"phoneNumber"`
