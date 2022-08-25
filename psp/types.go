@@ -2,6 +2,8 @@ package psp
 
 import (
 	"time"
+
+	"github.com/chargehive/sdk-go-core/payment"
 )
 
 type Amount struct {
@@ -268,6 +270,7 @@ type BaseTransactionRequest struct {
 	PaymentInstrument        PaymentInstrument       `json:"paymentInstrument"`
 	BillPayer                Person                  `json:"billPayer"`
 	Meta                     Meta                    `json:"meta"`
+	CardNetwork              payment.CardNetwork     `json:"cardNetwork"`
 }
 
 type SuggestedAction string
