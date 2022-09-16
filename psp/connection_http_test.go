@@ -3,7 +3,6 @@ package psp
 import (
 	"encoding/base64"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -34,7 +33,7 @@ func (h echoHandler) GetHandlerCredentials() testHandlerCredentials {
 }
 
 func (h echoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	b, _ := ioutil.ReadAll(r.Body)
+	b, _ := io.ReadAll(r.Body)
 
 	if r.Header.Get("authorization") != "Basic "+base64.StdEncoding.EncodeToString([]byte(h.GetHandlerCredentials().id+":"+h.GetHandlerCredentials().token)) {
 		h.t.Errorf("incorrect auth header: %s", r.Header.Get("authorization"))

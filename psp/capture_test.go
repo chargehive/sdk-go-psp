@@ -2,7 +2,7 @@ package psp
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"testing"
@@ -39,7 +39,7 @@ func (h testCaptureHandler) GetHandlerCredentials() testHandlerCredentials {
 
 func (h testCaptureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	req := CaptureRequest{}
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
