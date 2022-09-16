@@ -5,6 +5,8 @@ import (
 )
 
 type RefundRequest struct {
+	correlationID string
+
 	CaptureID         string            `json:"captureId"`
 	MerchantReference string            `json:"merchantReference"`
 	Amount            Amount            `json:"amount"`
@@ -28,4 +30,11 @@ func (r RefundRequest) Do(conn Connection) (resp RefundResponse, err error) {
 	}
 
 	return
+}
+
+func (r RefundRequest) SetCorrelationID(correlationID string) {
+	r.correlationID = correlationID
+}
+func (r RefundRequest) GetCorrelationID() string {
+	return r.correlationID
 }

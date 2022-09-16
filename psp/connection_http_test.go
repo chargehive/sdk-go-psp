@@ -50,6 +50,10 @@ func (t testReq) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/my/test/path"
 }
 
+func (t testReq) SetCorrelationID(_ string) {}
+
+func (t testReq) GetCorrelationID() string { return "" }
+
 func NewTestConnection(h testHandler) *HttpConnection {
 	srv := httptest.NewServer(h)
 	con := NewHTTPConnection(h.GetHandlerCredentials().id, h.GetHandlerCredentials().token)

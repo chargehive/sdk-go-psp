@@ -26,3 +26,10 @@ func (r CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {
 
 	return
 }
+
+func (r CaptureRequest) SetCorrelationID(correlationID string) {
+	r.correlationID = correlationID
+}
+func (r CaptureRequest) GetCorrelationID() string {
+	return r.correlationID
+}

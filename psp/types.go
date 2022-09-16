@@ -178,6 +178,9 @@ const (
 
 type Request interface {
 	GetPath(credentialID string) string
+
+	SetCorrelationID(string)
+	GetCorrelationID() string
 }
 
 type RequestInitiator string
@@ -260,6 +263,8 @@ const (
 )
 
 type BaseTransactionRequest struct {
+	correlationID string
+
 	Amount                   Amount                  `json:"amount"`
 	MerchantReference        string                  `json:"merchantReference"`
 	BillingProfileID         string                  `json:"billingProfileId"`
@@ -319,6 +324,7 @@ func (r RiskLevel) ToInt() int {
 
 type TokenType string
 
+//goland:noinspection GoUnusedConst
 const (
 	TokenTypePCIB      TokenType = "pcib"
 	TokenTypeGooglePay TokenType = "googlePay"
