@@ -2,7 +2,7 @@ package psp
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"testing"
@@ -35,7 +35,7 @@ func (h testAuthHandler) GetHandlerCredentials() testHandlerCredentials {
 
 func (h testAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	req := AuthorizeRequest{}
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		log.Fatal(err)
 	}

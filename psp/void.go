@@ -5,6 +5,8 @@ import (
 )
 
 type VoidRequest struct {
+	correlationID string
+
 	AuthorizeID       string            `json:"authorizeId"`
 	MerchantReference string            `json:"merchantReference"`
 	Amount            Amount            `json:"amount"`
@@ -27,4 +29,11 @@ func (r VoidRequest) Do(conn Connection) (resp VoidResponse, err error) {
 	}
 
 	return
+}
+
+func (r VoidRequest) SetCorrelationID(correlationID string) {
+	r.correlationID = correlationID
+}
+func (r VoidRequest) GetCorrelationID() string {
+	return r.correlationID
 }
