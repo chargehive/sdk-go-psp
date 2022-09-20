@@ -19,11 +19,11 @@ type AuthorizeResponse struct {
 	ECI              string         `json:"eci"`
 }
 
-func (r AuthorizeRequest) GetPath(credentialID string) string {
+func (r *AuthorizeRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/authorize"
 }
 
-func (r AuthorizeRequest) Do(conn Connection) (resp AuthorizeResponse, err error) {
+func (r *AuthorizeRequest) Do(conn Connection) (resp AuthorizeResponse, err error) {
 	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
@@ -32,9 +32,9 @@ func (r AuthorizeRequest) Do(conn Connection) (resp AuthorizeResponse, err error
 	return
 }
 
-func (r AuthorizeRequest) SetCorrelationID(correlationID string) {
+func (r *AuthorizeRequest) SetCorrelationID(correlationID string) {
 	r.correlationID = correlationID
 }
-func (r AuthorizeRequest) GetCorrelationID() string {
+func (r *AuthorizeRequest) GetCorrelationID() string {
 	return r.correlationID
 }
