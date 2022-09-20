@@ -21,11 +21,11 @@ type CaptureAuthResponse struct {
 	AmountCaptured Amount `json:"amountCaptured"`
 }
 
-func (r CaptureAuthRequest) GetPath(credentialID string) string {
+func (r *CaptureAuthRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/capture-auth"
 }
 
-func (r CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err error) {
+func (r *CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err error) {
 	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
@@ -34,9 +34,9 @@ func (r CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err e
 	return
 }
 
-func (r CaptureAuthRequest) SetCorrelationID(correlationID string) {
+func (r *CaptureAuthRequest) SetCorrelationID(correlationID string) {
 	r.correlationID = correlationID
 }
-func (r CaptureAuthRequest) GetCorrelationID() string {
+func (r *CaptureAuthRequest) GetCorrelationID() string {
 	return r.correlationID
 }
