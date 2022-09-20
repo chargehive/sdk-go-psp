@@ -19,11 +19,11 @@ type RefundResponse struct {
 	AmountRefunded Amount `json:"amount"`
 }
 
-func (r RefundRequest) GetPath(credentialID string) string {
+func (r *RefundRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/refund"
 }
 
-func (r RefundRequest) Do(conn Connection) (resp RefundResponse, err error) {
+func (r *RefundRequest) Do(conn Connection) (resp RefundResponse, err error) {
 	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
@@ -32,9 +32,9 @@ func (r RefundRequest) Do(conn Connection) (resp RefundResponse, err error) {
 	return
 }
 
-func (r RefundRequest) SetCorrelationID(correlationID string) {
+func (r *RefundRequest) SetCorrelationID(correlationID string) {
 	r.correlationID = correlationID
 }
-func (r RefundRequest) GetCorrelationID() string {
+func (r *RefundRequest) GetCorrelationID() string {
 	return r.correlationID
 }

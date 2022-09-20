@@ -18,11 +18,11 @@ type VoidResponse struct {
 	TransactionResponse
 }
 
-func (r VoidRequest) GetPath(credentialID string) string {
+func (r *VoidRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/void"
 }
 
-func (r VoidRequest) Do(conn Connection) (resp VoidResponse, err error) {
+func (r *VoidRequest) Do(conn Connection) (resp VoidResponse, err error) {
 	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
@@ -31,9 +31,9 @@ func (r VoidRequest) Do(conn Connection) (resp VoidResponse, err error) {
 	return
 }
 
-func (r VoidRequest) SetCorrelationID(correlationID string) {
+func (r *VoidRequest) SetCorrelationID(correlationID string) {
 	r.correlationID = correlationID
 }
-func (r VoidRequest) GetCorrelationID() string {
+func (r *VoidRequest) GetCorrelationID() string {
 	return r.correlationID
 }

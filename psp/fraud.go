@@ -26,11 +26,11 @@ type FraudScanResponse struct {
 	AdditionalData  map[string]string
 }
 
-func (r FraudScanRequest) GetPath(credentialID string) string {
+func (r *FraudScanRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/fraud/scan"
 }
 
-func (r FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err error) {
+func (r *FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err error) {
 	body, _, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
@@ -39,9 +39,9 @@ func (r FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err error
 	return
 }
 
-func (r FraudScanRequest) SetCorrelationID(correlationID string) {
+func (r *FraudScanRequest) SetCorrelationID(correlationID string) {
 	r.correlationID = correlationID
 }
-func (r FraudScanRequest) GetCorrelationID() string {
+func (r *FraudScanRequest) GetCorrelationID() string {
 	return r.correlationID
 }
