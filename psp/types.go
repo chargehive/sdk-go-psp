@@ -334,6 +334,7 @@ const (
 
 type MethodRefreshStatus string
 
+//goland:noinspection GoUnusedConst
 const (
 	MethodRefreshStatusPending            MethodRefreshStatus = "pending"
 	MethodRefreshStatusCompleteWithUpdate MethodRefreshStatus = "updated"
