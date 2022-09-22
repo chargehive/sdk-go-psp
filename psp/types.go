@@ -331,3 +331,13 @@ const (
 	TokenTypeApplePay  TokenType = "applePay"
 	DefaultTokenType             = TokenTypePCIB
 )
+
+type MethodRefreshStatus string
+
+//goland:noinspection GoUnusedConst
+const (
+	MethodRefreshStatusPending            MethodRefreshStatus = "pending"
+	MethodRefreshStatusCompleteWithUpdate MethodRefreshStatus = "updated"
+	MethodRefreshStatusCompleteNoUpdate   MethodRefreshStatus = "no-update"
+	MethodRefreshStatusFailed             MethodRefreshStatus = "failed"
+)
