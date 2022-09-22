@@ -331,3 +331,12 @@ const (
 	TokenTypeApplePay  TokenType = "applePay"
 	DefaultTokenType             = TokenTypePCIB
 )
+
+type MethodRefreshStatus string
+
+const (
+	MethodRefreshStatusPending            MethodRefreshStatus = "pending"
+	MethodRefreshStatusCompleteWithUpdate MethodRefreshStatus = "updated"
+	MethodRefreshStatusCompleteNoUpdate   MethodRefreshStatus = "no-update"
+	MethodRefreshStatusFailed             MethodRefreshStatus = "failed"
+)
