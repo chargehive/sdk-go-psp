@@ -21,7 +21,6 @@ func (r *RefreshRequest) GetPath(credentialID string) string {
 }
 
 func (r *RefreshRequest) Do(conn Connection) (resp RefreshResponse, err error) {
-
 	body, _, err := conn.Do(r)
 	if err != nil {
 		return resp, err
