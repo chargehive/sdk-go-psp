@@ -7,7 +7,7 @@ import (
 type RefreshRequest struct {
 	BillingProfileID  string            `json:"billingProfileId"`
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
-	CorrelationID     string            `json:"correlationID"`
+	correlationID     string
 }
 
 type RefreshResponse struct {
@@ -31,9 +31,9 @@ func (r *RefreshRequest) Do(conn Connection) (resp RefreshResponse, err error) {
 }
 
 func (r *RefreshRequest) SetCorrelationID(correlationID string) {
-	r.CorrelationID = correlationID
+	r.correlationID = correlationID
 }
 
 func (r *RefreshRequest) GetCorrelationID() string {
-	return r.CorrelationID
+	return r.correlationID
 }
