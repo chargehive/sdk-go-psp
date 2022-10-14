@@ -9,7 +9,7 @@ import (
 )
 
 func TestAuthorize(t *testing.T) {
-	h := testAuthHandler{c: testHandlerCredentials{"abc", "123"}}
+	h := testAuthHandler{c: testHandlerCredentials{"pcib-user", "pcib-password", "abc", "123"}}
 
 	con := NewTestConnection(h)
 	req := AuthorizeRequest{BaseTransactionRequest: BaseTransactionRequest{Amount: NewAmount(123, "USD")}}

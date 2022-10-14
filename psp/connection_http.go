@@ -9,19 +9,21 @@ import (
 )
 
 type HttpConnection struct {
-	credentialID string
-	authHeader   string
-	host         string
-	httpClient   *http.Client
-	newRequest   func(method, url string, body io.Reader) (*http.Request, error)
+	credentialID       string
+	providerAuthHeader string
+	authHeader         string
+	host               string
+	httpClient         *http.Client
+	newRequest         func(method, url string, body io.Reader) (*http.Request, error)
 }
 
-func NewHTTPConnection(credentialID string, credentialToken string) HttpConnection {
+func NewHTTPConnection(pcibUser, pcibPassword, credentialID, credentialToken string) HttpConnection {
 	c := HttpConnection{
-		host:         "https://psp.api.chargehive.com",
-		credentialID: credentialID,
-		authHeader:   "Basic " + base64.StdEncoding.EncodeToString([]byte(credentialID+":"+credentialToken)),
-		newRequest:   http.NewRequest,
+		host:               "https://psp.api.chargehive.com",
+		credentialID:       credentialID,
+		authHeader:         "Basic " + base64.StdEncoding.EncodeToString([]byte(pcibUser+":"+pcibPassword)),
+		providerAuthHeader: "Basic " + base64.StdEncoding.EncodeToString([]byte(credentialID+":"+credentialToken)),
+		newRequest:         http.NewRequest,
 	}
 
 	return c
@@ -46,6 +48,7 @@ func (c *HttpConnection) Do(r Request) ([]byte, http.Header, error) {
 		return nil, nil, err
 	}
 	req.Header.Set(RequestHeaderAuthorization, c.authHeader)
+	req.Header.Set(RequestHeaderProviderAuthorization, c.providerAuthHeader)
 	req.Header.Set(RequestHeaderCorrelationID, r.GetCorrelationID())
 
 	httpClient := c.httpClient

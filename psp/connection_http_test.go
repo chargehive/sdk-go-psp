@@ -9,7 +9,7 @@ import (
 )
 
 func TestConnection(t *testing.T) {
-	h := echoHandler{t: t, c: testHandlerCredentials{"abc", "123"}}
+	h := echoHandler{t: t, c: testHandlerCredentials{"pcib-user", "pcib-password", "abc", "123"}}
 	con := NewTestConnection(h)
 	resp, _, err := con.Do(testReq{Data: "this is a test"})
 
@@ -34,8 +34,12 @@ func (h echoHandler) GetHandlerCredentials() testHandlerCredentials {
 
 func (h echoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	b, _ := io.ReadAll(r.Body)
+	creds := h.GetHandlerCredentials()
+	if r.Header.Get("x-provider-authorization") != "Basic "+base64.StdEncoding.EncodeToString([]byte(creds.id+":"+creds.token)) {
+		h.t.Errorf("incorrect auth header: %s", r.Header.Get("authorization"))
+	}
 
-	if r.Header.Get("authorization") != "Basic "+base64.StdEncoding.EncodeToString([]byte(h.GetHandlerCredentials().id+":"+h.GetHandlerCredentials().token)) {
+	if r.Header.Get("authorization") != "Basic "+base64.StdEncoding.EncodeToString([]byte(creds.pcibUser+":"+creds.pcibPassword)) {
 		h.t.Errorf("incorrect auth header: %s", r.Header.Get("authorization"))
 	}
 
@@ -56,7 +60,8 @@ func (t testReq) GetCorrelationID() string { return "" }
 
 func NewTestConnection(h testHandler) *HttpConnection {
 	srv := httptest.NewServer(h)
-	con := NewHTTPConnection(h.GetHandlerCredentials().id, h.GetHandlerCredentials().token)
+	creds := h.GetHandlerCredentials()
+	con := NewHTTPConnection(creds.pcibUser, creds.pcibPassword, creds.id, creds.token)
 	con.SetHost(srv.URL)
 	con.newRequest = func(method, url string, body io.Reader) (*http.Request, error) {
 		return httptest.NewRequest(method, url, body), nil
@@ -70,6 +75,8 @@ type testHandler interface {
 }
 
 type testHandlerCredentials struct {
-	id    string
-	token string
+	pcibUser     string
+	pcibPassword string
+	id           string
+	token        string
 }

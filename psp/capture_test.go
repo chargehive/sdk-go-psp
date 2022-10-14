@@ -9,7 +9,7 @@ import (
 )
 
 func TestCapture(t *testing.T) {
-	h := testCaptureHandler{c: testHandlerCredentials{"abc", "123"}}
+	h := testCaptureHandler{c: testHandlerCredentials{"pcib-user", "pcib-password", "abc", "123"}}
 
 	con := NewTestConnection(h)
 	req := CaptureRequest{BaseTransactionRequest{Amount: NewAmount(123, "USD")}}
