@@ -128,7 +128,7 @@ type ThreeDSResult struct {
 	Cavv            string            `json:"cavv"`
 	Xid             string            `json:"xid"`
 	Enrollment      string            `json:"enrollment"`
-	Result          string            `json:"result"`
+	Result          ThreeDSResultCode `json:"result"`
 	SignatureStatus string            `json:"signatureStatus"`
 	Status          string            `json:"status"`
 	MajorVersion    int32             `json:"majorVersion"`
@@ -140,6 +140,19 @@ type ThreeDSResult struct {
 	Liability       Liability         `json:"liability"`
 	Data            map[string]string `json:"data"`
 }
+
+type ThreeDSResultCode string
+
+//goland:noinspection GoUnusedConst
+const (
+	ThreeDSResultY ThreeDSResultCode = "Y" // ✅ authentication successful
+	ThreeDSResultA ThreeDSResultCode = "A" // ✅ attempted, but no response or issuer does not support 3ds
+
+	ThreeDSResultN ThreeDSResultCode = "N" // ❌ failed, DO NOT PROCEED
+	ThreeDSResultR ThreeDSResultCode = "R" // ❌ rejected, DO NOT PROCEED
+
+	ThreeDSResultU ThreeDSResultCode = "U" // ❓ 3ds unavailable, service may be down
+)
 
 type Liability string
 
