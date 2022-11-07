@@ -120,7 +120,6 @@ type TransactionResponse struct {
 	FailureType            FailureType             `json:"failureType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
-	Asynchronous           bool                    `json:"asynchronous"`
 }
 
 type ThreeDSResult struct {
