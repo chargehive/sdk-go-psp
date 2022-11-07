@@ -10,8 +10,9 @@ type CaptureRequest struct {
 
 type CaptureResponse struct {
 	TransactionResponse
-	Capture   CaptureAuthResponse
-	Authorize AuthorizeResponse
+	Authorize    AuthorizeResponse
+	Capture      CaptureAuthResponse
+	Asynchronous bool
 }
 
 func (r *CaptureRequest) GetPath(credentialID string) string {
