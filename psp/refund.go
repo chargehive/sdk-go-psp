@@ -7,6 +7,7 @@ import (
 type RefundRequest struct {
 	correlationID string
 
+	AuthorizeID       string            `json:"authorizeId"`
 	CaptureID         string            `json:"captureId"`
 	MerchantReference string            `json:"merchantReference"`
 	Amount            Amount            `json:"amount"`
