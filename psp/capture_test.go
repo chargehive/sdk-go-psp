@@ -20,11 +20,11 @@ func TestCapture(t *testing.T) {
 	}
 
 	if resp.Authorize.AmountAuthorized != req.Amount {
-		t.Error("authorize amount doesnt match")
+		t.Error("authorize amount doesn't match")
 	}
 
 	if resp.Capture.AmountCaptured != req.Amount {
-		t.Error("capture amount doesnt match")
+		t.Error("capture amount doesn't match")
 	}
 }
 

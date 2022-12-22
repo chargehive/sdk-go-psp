@@ -20,7 +20,7 @@ func TestAuthorize(t *testing.T) {
 	}
 
 	if resp.AmountAuthorized != req.Amount {
-		t.Error("amount doesnt match")
+		t.Error("amount doesn't match")
 	}
 }
 
