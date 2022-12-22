@@ -10,7 +10,7 @@ type AuthenticateRequest struct {
 
 type AuthenticateResponse struct {
 	TransactionResponse
-	ThreeDSResult *ThreeDSResult
+	ThreeDSResult *ThreeDSResult `json:"3dsResult"`
 }
 
 func (r *AuthenticateRequest) GetPath(credentialID string) string {
