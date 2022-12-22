@@ -6,18 +6,17 @@ import (
 
 type AuthorizeRequest struct {
 	BaseTransactionRequest
-	PerformSCA bool `json:"performSca"`
+	ThreeDSResult *ThreeDSResult `json:"3dsResult"`
 }
 
 type AuthorizeResponse struct {
 	BaseResponse
 	TransactionResponse
-	ThreeDSResult    *ThreeDSResult `json:"3dsResult"`
-	AmountAuthorized Amount         `json:"amountAuthorized"`
-	AuthCode         string         `json:"authCode"`
-	CVVResponse      string         `json:"cvvResponse"`
-	AVS              string         `json:"avs"`
-	ECI              string         `json:"eci"`
+	AmountAuthorized Amount `json:"amountAuthorized"`
+	AuthCode         string `json:"authCode"`
+	CVVResponse      string `json:"cvvResponse"`
+	AVS              string `json:"avs"`
+	ECI              string `json:"eci"`
 }
 
 func (r *AuthorizeRequest) GetPath(credentialID string) string {
