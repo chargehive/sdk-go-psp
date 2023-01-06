@@ -9,6 +9,7 @@ type CaptureRequest struct {
 }
 
 type CaptureResponse struct {
+	BaseResponse
 	TransactionResponse
 	Capture   CaptureAuthResponse
 	Authorize AuthorizeResponse

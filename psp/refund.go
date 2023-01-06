@@ -16,6 +16,7 @@ type RefundRequest struct {
 }
 
 type RefundResponse struct {
+	BaseResponse
 	TransactionResponse
 	AmountRefunded Amount `json:"amount"`
 }

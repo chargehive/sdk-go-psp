@@ -10,6 +10,7 @@ type AuthorizeRequest struct {
 }
 
 type AuthorizeResponse struct {
+	BaseResponse
 	TransactionResponse
 	ThreeDSResult    *ThreeDSResult `json:"3dsResult"`
 	AmountAuthorized Amount         `json:"amountAuthorized"`
