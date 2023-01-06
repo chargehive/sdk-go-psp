@@ -17,6 +17,7 @@ type CaptureAuthRequest struct {
 }
 
 type CaptureAuthResponse struct {
+	BaseResponse
 	TransactionResponse
 	AmountCaptured Amount `json:"amountCaptured"`
 }

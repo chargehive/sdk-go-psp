@@ -15,6 +15,7 @@ type VoidRequest struct {
 }
 
 type VoidResponse struct {
+	BaseResponse
 	TransactionResponse
 }
 

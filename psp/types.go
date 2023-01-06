@@ -1,6 +1,7 @@
 package psp
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/chargehive/sdk-go-core/payment"
@@ -290,6 +291,51 @@ type BaseTransactionRequest struct {
 	BillPayer                Person                  `json:"billPayer"`
 	Meta                     Meta                    `json:"meta"`
 	CardNetwork              payment.CardNetwork     `json:"cardNetwork"`
+}
+
+type BaseResponse struct {
+	Status *StatusResponse `json:"status"`
+}
+
+func (r *BaseResponse) SetStatus(code int, message string) {
+	r.Status = NewStatus(code, message)
+}
+
+type StatusResponse struct {
+	Message string `json:"message"`
+	Code    int    `json:"code"`
+}
+
+func NewStatus(code int, message string) *StatusResponse {
+	return &StatusResponse{
+		Message: message,
+		Code:    code,
+	}
+}
+
+func (r *StatusResponse) Error() string {
+	if r == nil {
+		return ""
+	}
+	return fmt.Sprintf("[%d] %s", r.GetCode(), r.GetMessage())
+}
+
+func (r *StatusResponse) IsError() bool {
+	return r.GetCode() >= 300
+}
+
+func (r *StatusResponse) GetMessage() string {
+	if r == nil {
+		return ""
+	}
+	return r.Message
+}
+
+func (r *StatusResponse) GetCode() int {
+	if r == nil {
+		return 200
+	}
+	return r.Code
 }
 
 type SuggestedAction string
