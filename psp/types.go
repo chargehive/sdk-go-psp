@@ -111,6 +111,7 @@ type TransactionIdentifier struct {
 type TransactionResponse struct {
 	TransactionID          string                  `json:"transactionId"`
 	GatewayTransactionID   string                  `json:"gatewayTransactionId"`
+	GatewayStatusCode      string                  `json:"gatewayStatusCode"`
 	AcquirerTransactionID  string                  `json:"acquirerTransactionId"`
 	NetworkTransactionID   string                  `json:"networkTransactionId"`
 	ARN                    string                  `json:"arn"`
