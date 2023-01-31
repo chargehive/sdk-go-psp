@@ -20,7 +20,7 @@ func TestCaptureAuth(t *testing.T) {
 	}
 
 	if resp.AmountCaptured != req.Amount {
-		t.Error("amount doesnt match")
+		t.Error("amount doesn't match")
 	}
 
 	if resp.GatewayTransactionID != req.AuthorizeID+":captured" {
