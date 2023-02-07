@@ -100,6 +100,7 @@ type PaymentInstrument struct {
 	TokenType          TokenType         `json:"tokenType"`
 	EphemeralToken     string            `json:"ephemeralToken"`
 	AuthenticationData map[string]string `json:"authenticationData"`
+	AccountHolder      string            `json:"accountHolder"`
 }
 
 type TransactionIdentifier struct {
