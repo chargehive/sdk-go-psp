@@ -142,6 +142,7 @@ type ThreeDSResult struct {
 	Timestamp       time.Time         `json:"timestamp"`
 	Liability       Liability         `json:"liability"`
 	Data            map[string]string `json:"data"`
+	Type            ThreeDSResultType `json:"type"`
 }
 
 type ThreeDSResultCode string
@@ -155,6 +156,14 @@ const (
 	ThreeDSResultR ThreeDSResultCode = "R" // ❌ rejected, DO NOT PROCEED
 
 	ThreeDSResultU ThreeDSResultCode = "U" // ❓ 3ds unavailable, service may be down
+)
+
+type ThreeDSResultType string
+
+//goland:noinspection GoUnusedConst
+const (
+	ThreeDSResultTypeChallenge    ThreeDSResultType = "challenge"
+	ThreeDSResultTypeFrictionless ThreeDSResultType = "frictionless"
 )
 
 type Liability string
