@@ -305,7 +305,8 @@ type BaseTransactionRequest struct {
 }
 
 type BaseResponse struct {
-	Status *StatusResponse `json:"status"`
+	Status              *StatusResponse `json:"status"`
+	MethodUpgradeTokens []string        `json:"methodUpgradeTokens"`
 }
 
 func (r *BaseResponse) SetStatus(code int, message string) {
