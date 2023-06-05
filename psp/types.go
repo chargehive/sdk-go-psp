@@ -121,6 +121,7 @@ type TransactionResponse struct {
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
 	FailureCategory        FailureCategory         `json:"failureCategory"`
 	FailureType            FailureType             `json:"failureType"`
+	ErrorType              ErrorType               `json:"errorType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
 }
@@ -252,6 +253,42 @@ const (
 	FailureTypeRetry   FailureType = "retry"
 	FailureTypeSoft    FailureType = "soft"
 	FailureTypeHard    FailureType = "hard"
+)
+
+type ErrorType string
+
+//goland:noinspection GoUnusedConst
+const (
+	ErrorTypeInvalid        ErrorType = "invalid"
+	ErrorTypeNone           ErrorType = "none"
+	ErrorTypeAvailableFunds ErrorType = "available-funds"
+	ErrorTypePayload        ErrorType = "payload"
+	ErrorTypeLimit          ErrorType = "limit"
+	ErrorTypeExpired        ErrorType = "expired"
+	ErrorTypeUnavailable    ErrorType = "unavailable"
+	ErrorTypeUnsupported    ErrorType = "unsupported"
+	ErrorTypeLost           ErrorType = "lost"
+	ErrorTypeStolen         ErrorType = "stolen"
+	ErrorTypeFraud          ErrorType = "fraud"
+	ErrorTypePickup         ErrorType = "pickup"
+	ErrorTypeVelocity       ErrorType = "velocity"
+	ErrorTypeAddress        ErrorType = "address"
+	ErrorTypeDuplicate      ErrorType = "duplicate"
+	ErrorTypeTimeout        ErrorType = "timeout"
+	ErrorTypeNotFound       ErrorType = "not-found"
+	ErrorTypeDisputed       ErrorType = "disputed"
+	ErrorTypePermission     ErrorType = "permission"
+	ErrorTypeDecline        ErrorType = "decline"
+	ErrorTypeUserInput      ErrorType = "user-input"
+	ErrorTypeUserDevice     ErrorType = "user-device"
+	ErrorTypeAlreadyDone    ErrorType = "already-done"
+	ErrorTypeRetry          ErrorType = "retry"
+	ErrorTypeQueued         ErrorType = "queued"
+	ErrorTypeSystem         ErrorType = "system"
+	ErrorTypeUnknown        ErrorType = "unknown"
+	ErrorTypeNotReady       ErrorType = "not-ready"
+	ErrorTypeDisabled       ErrorType = "disabled"
+	ErrorTypeCVV            ErrorType = "cvv"
 )
 
 type ProductType string
