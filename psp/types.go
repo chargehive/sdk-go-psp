@@ -108,6 +108,9 @@ type PaymentInstrumentResponse struct {
 	MethodType MethodType `json:"methodType"`
 	TokenType  TokenType  `json:"tokenType"`
 
+	// NewInstrument indicates if this is a new instrument, not a token replacement
+	NewInstrument bool `json:"newInstrument"`
+
 	// LVT low value token, useful for retrieval of non-sensitive data
 	LVT string `json:"lvt"`
 	// HVT high value token, chargeable token
@@ -372,9 +375,9 @@ type BaseTransactionRequest struct {
 }
 
 type BaseResponse struct {
-	Status              *StatusResponse           `json:"status"`
-	MethodUpgradeTokens []string                  `json:"methodUpgradeTokens"`
-	Instrument          PaymentInstrumentResponse `json:"instrument"`
+	Status              *StatusResponse            `json:"status"`
+	MethodUpgradeTokens []string                   `json:"methodUpgradeTokens"`
+	Instrument          *PaymentInstrumentResponse `json:"instrument"`
 }
 
 func (r *BaseResponse) SetStatus(code int, message string) {
