@@ -105,10 +105,19 @@ type PaymentInstrument struct {
 }
 
 type PaymentInstrumentResponse struct {
-	LVT        string     `json:"lvt"`
-	HVT        string     `json:"hvt"`
-	TokenType  TokenType  `json:"tokenType"`
 	MethodType MethodType `json:"methodType"`
+	TokenType  TokenType  `json:"tokenType"`
+
+	// LVT low value token, useful for retrieval of non-sensitive data
+	LVT string `json:"lvt"`
+	// HVT high value token, chargeable token
+	HVT string `json:"hvt"`
+	// MFP merchant's fingerprint for this instrument
+	MFP string `json:"mfp"`
+	// PFP billing profile's fingerprint for this instrument
+	PFP string `json:"pfp"`
+	// TokenExpiry expiry date of the token (not to be confused with the card expiry date)
+	TokenExpiry string
 
 	AccountHolder string       `json:"accountHolder"`
 	Bin           string       `json:"bin"`
@@ -117,6 +126,11 @@ type PaymentInstrumentResponse struct {
 	ExpiryMonth   int32        `json:"expiryMonth"`
 	ExpiryYear    int32        `json:"expiryYear"`
 	BinData       pcib.BinData `json:"binData"`
+
+	// TSID tokenization session id
+	TSID string
+	// TSIDK tokenization session id key
+	TSIDK string
 }
 
 type TransactionIdentifier struct {
