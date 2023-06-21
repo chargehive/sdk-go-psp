@@ -105,9 +105,10 @@ type PaymentInstrument struct {
 }
 
 type PaymentInstrumentResponse struct {
-	LVT       string    `json:"lvt"`
-	HVT       string    `json:"hvt"`
-	TokenType TokenType `json:"tokenType"`
+	LVT        string     `json:"lvt"`
+	HVT        string     `json:"hvt"`
+	TokenType  TokenType  `json:"tokenType"`
+	MethodType MethodType `json:"methodType"`
 
 	AccountHolder string       `json:"accountHolder"`
 	Bin           string       `json:"bin"`
@@ -456,4 +457,13 @@ const (
 	TokenTypeGooglePay TokenType = "googlePay"
 	TokenTypeApplePay  TokenType = "applePay"
 	DefaultTokenType             = TokenTypePCIB
+)
+
+type MethodType string
+
+//goland:noinspection GoUnusedConst
+const (
+	MethodTypeCard      MethodType = "card"
+	MethodTypeGooglePay MethodType = "googlePay"
+	MethodTypeApplePay  MethodType = "applePay"
 )
