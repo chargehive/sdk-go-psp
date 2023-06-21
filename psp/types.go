@@ -2,6 +2,7 @@ package psp
 
 import (
 	"fmt"
+	"github.com/pci-bridge/sdk-go/pcib"
 	"time"
 
 	"github.com/chargehive/sdk-go-core/payment"
@@ -101,6 +102,20 @@ type PaymentInstrument struct {
 	EphemeralToken     string            `json:"ephemeralToken"`
 	AuthenticationData map[string]string `json:"authenticationData"`
 	AccountHolder      string            `json:"accountHolder"`
+}
+
+type PaymentInstrumentResponse struct {
+	LVT       string    `json:"lvt"`
+	HVT       string    `json:"hvt"`
+	TokenType TokenType `json:"tokenType"`
+
+	AccountHolder string       `json:"accountHolder"`
+	Bin           string       `json:"bin"`
+	Last4         string       `json:"last4"`
+	CardLength    int32        `json:"cardLength"`
+	ExpiryMonth   int32        `json:"expiryMonth"`
+	ExpiryYear    int32        `json:"expiryYear"`
+	BinData       pcib.BinData `json:"binData"`
 }
 
 type TransactionIdentifier struct {
@@ -342,8 +357,9 @@ type BaseTransactionRequest struct {
 }
 
 type BaseResponse struct {
-	Status              *StatusResponse `json:"status"`
-	MethodUpgradeTokens []string        `json:"methodUpgradeTokens"`
+	Status              *StatusResponse           `json:"status"`
+	MethodUpgradeTokens []string                  `json:"methodUpgradeTokens"`
+	Instrument          PaymentInstrumentResponse `json:"instrument"`
 }
 
 func (r *BaseResponse) SetStatus(code int, message string) {
@@ -436,6 +452,7 @@ type TokenType string
 //goland:noinspection GoUnusedConst
 const (
 	TokenTypePCIB      TokenType = "pcib"
+	TokenTypeConnector TokenType = "connector"
 	TokenTypeGooglePay TokenType = "googlePay"
 	TokenTypeApplePay  TokenType = "applePay"
 	DefaultTokenType             = TokenTypePCIB
