@@ -375,6 +375,7 @@ type BaseTransactionRequest struct {
 }
 
 type BaseResponse struct {
+	RequestID           string                     `json:"requestId"`
 	Status              *StatusResponse            `json:"status"`
 	MethodUpgradeTokens []string                   `json:"methodUpgradeTokens"`
 	Instrument          *PaymentInstrumentResponse `json:"instrument"`

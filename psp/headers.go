@@ -4,4 +4,5 @@ package psp
 const (
 	RequestHeaderAuthorization = "Authorization"
 	RequestHeaderCorrelationID = "X-Correlation-ID"
+	RequestHeaderRequestID     = "X-CH-RQID"
 )
