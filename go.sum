@@ -1,4 +1,4 @@
-github.com/chargehive/sdk-go-core v0.0.0-20220825102355-cdf59eaa9e78 h1:Z/IlCBmjx+vd3/eWrjHL59aZf9mn+ajHYAcLun0bZjg=
-github.com/chargehive/sdk-go-core v0.0.0-20220825102355-cdf59eaa9e78/go.mod h1:7jiTqra66VGfgyFnyvmwIXEmcV1LtBJLIXVdv8hHQro=
 github.com/chargehive/sdk-go-core v0.0.0-20220825134804-4885439f6c55 h1:oVeoD18ggbt6YcZS8QdeaLsrHEhH0znTEqC6XKTwKJU=
 github.com/chargehive/sdk-go-core v0.0.0-20220825134804-4885439f6c55/go.mod h1:7jiTqra66VGfgyFnyvmwIXEmcV1LtBJLIXVdv8hHQro=
+github.com/pci-bridge/sdk-go v0.0.0-20220506112602-74ee90b2046f h1:MO5qb9mbh7kwli1APiY5zOvZ8NkUzL7A9Isu3b0EpLA=
+github.com/pci-bridge/sdk-go v0.0.0-20220506112602-74ee90b2046f/go.mod h1:/uOtr8XCcugbjFbJ0u/e7tI2ec/ejf5F/ZWfWmR2wkA=
