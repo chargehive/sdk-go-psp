@@ -32,9 +32,10 @@ func (r *FraudScanRequest) GetPath(credentialID string) string {
 }
 
 func (r *FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err error) {
-	body, _, err := conn.Do(r)
+	body, headers, err := conn.Do(r)
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
+		resp.RequestID = headers.Get(RequestHeaderRequestID)
 	}
 
 	return
