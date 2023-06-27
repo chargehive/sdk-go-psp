@@ -260,6 +260,21 @@ const (
 	RequestSubscriptionTypeRenew     RequestSubscriptionType = "renew"
 )
 
+type FailureLabel string
+
+//goland:noinspection GoUnusedConst
+const (
+	FailureLabelInvalidPayload       FailureLabel = "invalid-payload"
+	FailureLabelInvalidMethod        FailureLabel = "invalid-method"
+	FailureLabelInvalidPerson        FailureLabel = "invalid-person"
+	FailureLabelUnsupportedMethod    FailureLabel = "unsupported-method"
+	FailureLabelInsufficientFunds    FailureLabel = "insufficient-funds"
+	FailureLabelFraud                FailureLabel = "fraud"
+	FailureLabelExpiredMethod        FailureLabel = "expired-method"
+	FailureLabelDuplicateTransaction FailureLabel = "duplicate-transaction"
+	FailureLabelTimeout              FailureLabel = "timeout"
+)
+
 type FailureCategory string
 
 //goland:noinspection GoUnusedConst
