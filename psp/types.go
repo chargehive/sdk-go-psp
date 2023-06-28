@@ -217,6 +217,9 @@ const (
 	// TransactionStatusUnknown The status is not known or has not been set
 	TransactionStatusUnknown TransactionStatus = ""
 
+	//TransactionStatusInfo This transaction is informational only and does not represent a transaction result.
+	TransactionStatusInfo TransactionStatus = "info"
+
 	// TransactionStatusReceived The transaction request has been received and is awaiting processing, primarily for asynchronous requests.
 	TransactionStatusReceived TransactionStatus = "received"
 
@@ -264,15 +267,17 @@ type FailureLabel string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureLabelInvalidPayload       FailureLabel = "invalid-payload"
-	FailureLabelInvalidMethod        FailureLabel = "invalid-method"
-	FailureLabelInvalidPerson        FailureLabel = "invalid-person"
-	FailureLabelUnsupportedMethod    FailureLabel = "unsupported-method"
-	FailureLabelInsufficientFunds    FailureLabel = "insufficient-funds"
-	FailureLabelFraud                FailureLabel = "fraud"
-	FailureLabelExpiredMethod        FailureLabel = "expired-method"
-	FailureLabelDuplicateTransaction FailureLabel = "duplicate-transaction"
-	FailureLabelTimeout              FailureLabel = "timeout"
+	FailureLabelInvalidPayload            FailureLabel = "invalid-payload"
+	FailureLabelInvalidMethod             FailureLabel = "invalid-method"
+	FailureLabelInvalidPerson             FailureLabel = "invalid-person"
+	FailureLabelUnsupportedMethod         FailureLabel = "unsupported-method"
+	FailureLabelInsufficientFunds         FailureLabel = "insufficient-funds"
+	FailureLabelFraud                     FailureLabel = "fraud"
+	FailureLabelExpiredMethod             FailureLabel = "expired-method"
+	FailureLabelDuplicateTransaction      FailureLabel = "duplicate-transaction"
+	FailureLabelTimeout                   FailureLabel = "timeout"
+	FailureLabelContactNetwork            FailureLabel = "contact-network"
+	FailureLabelFailureLabelContactIssuer FailureLabel = "contact-issuer"
 )
 
 type FailureCategory string
