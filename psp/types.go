@@ -267,17 +267,17 @@ type FailureLabel string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureLabelInvalidPayload            FailureLabel = "invalid-payload"
-	FailureLabelInvalidMethod             FailureLabel = "invalid-method"
-	FailureLabelInvalidPerson             FailureLabel = "invalid-person"
-	FailureLabelUnsupportedMethod         FailureLabel = "unsupported-method"
-	FailureLabelInsufficientFunds         FailureLabel = "insufficient-funds"
-	FailureLabelFraud                     FailureLabel = "fraud"
-	FailureLabelExpiredMethod             FailureLabel = "expired-method"
-	FailureLabelDuplicateTransaction      FailureLabel = "duplicate-transaction"
-	FailureLabelTimeout                   FailureLabel = "timeout"
-	FailureLabelContactNetwork            FailureLabel = "contact-network"
-	FailureLabelFailureLabelContactIssuer FailureLabel = "contact-issuer"
+	FailureLabelInvalidPayload       FailureLabel = "invalid-payload"
+	FailureLabelInvalidMethod        FailureLabel = "invalid-method"
+	FailureLabelInvalidPerson        FailureLabel = "invalid-person"
+	FailureLabelUnsupportedMethod    FailureLabel = "unsupported-method"
+	FailureLabelInsufficientFunds    FailureLabel = "insufficient-funds"
+	FailureLabelFraud                FailureLabel = "fraud"
+	FailureLabelExpiredMethod        FailureLabel = "expired-method"
+	FailureLabelDuplicateTransaction FailureLabel = "duplicate-transaction"
+	FailureLabelTimeout              FailureLabel = "timeout"
+	FailureLabelContactNetwork       FailureLabel = "contact-network"
+	FailureLabelContactIssuer        FailureLabel = "contact-issuer"
 )
 
 type FailureCategory string
