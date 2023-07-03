@@ -295,17 +295,19 @@ const (
 	FailureCategoryCardAuthentication FailureCategory = "card-authentication"
 	FailureCategoryProcessing         FailureCategory = "processing"
 	FailureCategoryUnknown            FailureCategory = "unknown"
+	FailureCategoryCharge             FailureCategory = "charge"
 )
 
 type FailureType string
 
 //goland:noinspection GoUnusedConst
 const (
-	FailureTypeInvalid FailureType = "invalid"
-	FailureTypeNone    FailureType = "none"
-	FailureTypeRetry   FailureType = "retry"
-	FailureTypeSoft    FailureType = "soft"
-	FailureTypeHard    FailureType = "hard"
+	FailureTypeInvalid  FailureType = "invalid"
+	FailureTypeNone     FailureType = "none"
+	FailureTypeRetry    FailureType = "retry"
+	FailureTypeSoft     FailureType = "soft"
+	FailureTypeHard     FailureType = "hard"
+	FailureTypeInternal FailureType = "internal"
 )
 
 type ErrorType string
