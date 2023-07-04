@@ -11,8 +11,26 @@ type CaptureRequest struct {
 type CaptureResponse struct {
 	BaseResponse
 	TransactionResponse
-	Capture   CaptureAuthResponse
-	Authorize AuthorizeResponse
+
+	// Deprecated: AmountCaptured is now inline
+	Capture        CaptureAuthResponse
+	AmountCaptured Amount `json:"amountCaptured"`
+
+	// Deprecated: Authorize fields are now inline
+	Authorize            AuthorizeResponse
+	AuthorizeTransaction *TransactionResponse `json:"authorizeTransaction,omitempty"`
+	ThreeDSResult        *ThreeDSResult       `json:"3dsResult"`
+	AmountAuthorized     *Amount              `json:"amountAuthorized"`
+	AuthCode             string               `json:"authCode"`
+	CVVResponse          string               `json:"cvvResponse"`
+	AVS                  string               `json:"avs"`
+	ECI                  string               `json:"eci"`
+}
+
+func NewCaptureResponse(currency string) CaptureResponse {
+	return CaptureResponse{
+		Capture: CaptureAuthResponse{AmountCaptured: NewAmount(0, currency)},
+	}
 }
 
 func (r *CaptureRequest) GetPath(credentialID string) string {
@@ -24,6 +42,33 @@ func (r *CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
 		resp.RequestID = headers.Get(RequestHeaderRequestID)
+
+		if resp.Capture.AmountCaptured.Units != 0 {
+			resp.AmountCaptured = resp.Capture.AmountCaptured
+		}
+
+		if resp.AuthorizeTransaction == nil && resp.Authorize.TransactionResponse.TransactionID != "" {
+			resp.AuthorizeTransaction = &resp.Authorize.TransactionResponse
+		}
+		if resp.ThreeDSResult == nil && resp.Authorize.ThreeDSResult != nil {
+			resp.ThreeDSResult = resp.Authorize.ThreeDSResult
+		}
+		if resp.AmountAuthorized == nil && resp.Authorize.AmountAuthorized.Units != 0 {
+			resp.AmountAuthorized = &resp.Authorize.AmountAuthorized
+		}
+		if resp.AuthCode == "" && resp.Authorize.AuthCode != "" {
+			resp.AuthCode = resp.Authorize.AuthCode
+		}
+		if resp.CVVResponse == "" && resp.Authorize.CVVResponse != "" {
+			resp.CVVResponse = resp.Authorize.CVVResponse
+		}
+		if resp.AVS == "" && resp.Authorize.AVS != "" {
+			resp.AVS = resp.Authorize.AVS
+		}
+		if resp.ECI == "" && resp.Authorize.ECI != "" {
+			resp.ECI = resp.Authorize.ECI
+		}
+
 	}
 
 	return
