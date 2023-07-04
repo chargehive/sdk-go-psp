@@ -27,10 +27,9 @@ type CaptureResponse struct {
 	ECI                  string               `json:"eci"`
 }
 
-func NewCaptureResponse(amountCaptured Amount) CaptureResponse {
+func NewCaptureResponse(currency string) CaptureResponse {
 	return CaptureResponse{
-		Capture:        CaptureAuthResponse{AmountCaptured: amountCaptured},
-		AmountCaptured: amountCaptured,
+		Capture: CaptureAuthResponse{AmountCaptured: NewAmount(0, currency)},
 	}
 }
 
@@ -43,6 +42,10 @@ func (r *CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {
 	if err == nil {
 		err = json.Unmarshal(body, &resp)
 		resp.RequestID = headers.Get(RequestHeaderRequestID)
+
+		if resp.Capture.AmountCaptured.Units != 0 {
+			resp.AmountCaptured = resp.Capture.AmountCaptured
+		}
 
 		if resp.AuthorizeTransaction == nil && resp.Authorize.TransactionResponse.TransactionID != "" {
 			resp.AuthorizeTransaction = &resp.Authorize.TransactionResponse

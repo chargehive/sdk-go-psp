@@ -21,9 +21,9 @@ type AuthorizeResponse struct {
 	ECI              string         `json:"eci"`
 }
 
-func NewAuthorizeResponse(amountAuthorized Amount) AuthorizeResponse {
+func NewAuthorizeResponse(currency string) AuthorizeResponse {
 	return AuthorizeResponse{
-		AmountAuthorized: amountAuthorized,
+		AmountAuthorized: NewAmount(0, currency),
 	}
 }
 

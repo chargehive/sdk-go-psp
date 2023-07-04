@@ -22,9 +22,9 @@ type CaptureAuthResponse struct {
 	AmountCaptured Amount `json:"amountCaptured"`
 }
 
-func NewCaptureAuthResponse(amountCaptured Amount) CaptureAuthResponse {
+func NewCaptureAuthResponse(currency string) CaptureAuthResponse {
 	return CaptureAuthResponse{
-		AmountCaptured: amountCaptured,
+		AmountCaptured: NewAmount(0, currency),
 	}
 }
 

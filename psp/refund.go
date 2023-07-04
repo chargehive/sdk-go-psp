@@ -21,9 +21,9 @@ type RefundResponse struct {
 	AmountRefunded Amount `json:"amount"`
 }
 
-func NewRefundResponse(amountRefunded Amount) RefundResponse {
+func NewRefundResponse(currency string) RefundResponse {
 	return RefundResponse{
-		AmountRefunded: amountRefunded,
+		AmountRefunded: NewAmount(0, currency),
 	}
 }
 

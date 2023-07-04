@@ -57,7 +57,8 @@ func (h testCaptureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	resp := NewCaptureResponse(req.Amount)
+	resp := NewCaptureResponse(req.Amount.Currency)
+	resp.Capture.AmountCaptured = req.Amount
 	resp.Authorize = AuthorizeResponse{AmountAuthorized: req.Amount}
 
 	j, _ := json.Marshal(resp)

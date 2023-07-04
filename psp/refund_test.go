@@ -49,7 +49,8 @@ func (h testRefundHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	resp := NewRefundResponse(req.Amount)
+	resp := NewRefundResponse(req.Amount.Currency)
+	resp.AmountRefunded = req.Amount
 	resp.GatewayTransactionID = req.AuthorizeID + ":refunded"
 	j, _ := json.Marshal(resp)
 	_, _ = w.Write(j)
