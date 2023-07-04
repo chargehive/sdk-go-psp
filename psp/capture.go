@@ -11,8 +11,20 @@ type CaptureRequest struct {
 type CaptureResponse struct {
 	BaseResponse
 	TransactionResponse
-	Capture   CaptureAuthResponse
-	Authorize AuthorizeResponse
+
+	// Deprecated: AmountCaptured is now inline
+	Capture        CaptureAuthResponse
+	AmountCaptured Amount `json:"amountCaptured"`
+
+	// Deprecated: Authorize fields are now inline
+	Authorize            AuthorizeResponse
+	AuthorizeTransaction *TransactionResponse `json:"authorizeTransaction,omitempty"`
+	ThreeDSResult        *ThreeDSResult       `json:"3dsResult"`
+	AmountAuthorized     Amount               `json:"amountAuthorized"`
+	AuthCode             string               `json:"authCode"`
+	CVVResponse          string               `json:"cvvResponse"`
+	AVS                  string               `json:"avs"`
+	ECI                  string               `json:"eci"`
 }
 
 func (r *CaptureRequest) GetPath(credentialID string) string {
