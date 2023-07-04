@@ -27,6 +27,13 @@ type CaptureResponse struct {
 	ECI                  string               `json:"eci"`
 }
 
+func NewCaptureResponse(amountCaptured Amount) CaptureResponse {
+	return CaptureResponse{
+		Capture:        CaptureAuthResponse{AmountCaptured: amountCaptured},
+		AmountCaptured: amountCaptured,
+	}
+}
+
 func (r *CaptureRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/capture"
 }

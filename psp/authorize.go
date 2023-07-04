@@ -21,6 +21,12 @@ type AuthorizeResponse struct {
 	ECI              string         `json:"eci"`
 }
 
+func NewAuthorizeResponse(amountAuthorized Amount) AuthorizeResponse {
+	return AuthorizeResponse{
+		AmountAuthorized: amountAuthorized,
+	}
+}
+
 func (r *AuthorizeRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/authorize"
 }

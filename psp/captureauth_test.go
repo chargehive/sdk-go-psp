@@ -49,7 +49,7 @@ func (h testCaptureAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		log.Fatal(err)
 	}
 
-	resp := CaptureAuthResponse{AmountCaptured: req.Amount}
+	resp := NewCaptureAuthResponse(req.Amount)
 	resp.GatewayTransactionID = req.AuthorizeID + ":captured"
 	j, _ := json.Marshal(resp)
 	_, _ = w.Write(j)

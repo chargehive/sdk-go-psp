@@ -19,6 +19,10 @@ type VoidResponse struct {
 	TransactionResponse
 }
 
+func NewVoidResponse() VoidResponse {
+	return VoidResponse{}
+}
+
 func (r *VoidRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/void"
 }
