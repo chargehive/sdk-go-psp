@@ -14,6 +14,7 @@ type CaptureAuthRequest struct {
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
 	Meta              Meta              `json:"meta"`
+	AuthCode          string            `json:"authCode"`
 }
 
 type CaptureAuthResponse struct {
