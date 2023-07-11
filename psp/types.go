@@ -392,7 +392,7 @@ type BaseTransactionRequest struct {
 	PaymentInstrument        PaymentInstrument       `json:"paymentInstrument"`
 	BillPayer                Person                  `json:"billPayer"`
 	Meta                     Meta                    `json:"meta"`
-	//deprecated - Use Payment Instrument > CardNetwork
+	// CardNetwork Deprecated - Use Payment Instrument > CardNetwork
 	CardNetwork payment.CardNetwork `json:"cardNetwork"`
 }
 
