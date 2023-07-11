@@ -96,12 +96,13 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	LVT                string            `json:"lvt"`
-	HVT                string            `json:"hvt"`
-	TokenType          TokenType         `json:"tokenType"`
-	EphemeralToken     string            `json:"ephemeralToken"`
-	AuthenticationData map[string]string `json:"authenticationData"`
-	AccountHolder      string            `json:"accountHolder"`
+	LVT                string              `json:"lvt"`
+	HVT                string              `json:"hvt"`
+	TokenType          TokenType           `json:"tokenType"`
+	EphemeralToken     string              `json:"ephemeralToken"`
+	AuthenticationData map[string]string   `json:"authenticationData"`
+	AccountHolder      string              `json:"accountHolder"`
+	CardNetwork        payment.CardNetwork `json:"cardNetwork"`
 }
 
 type PaymentInstrumentResponse struct {
@@ -391,7 +392,8 @@ type BaseTransactionRequest struct {
 	PaymentInstrument        PaymentInstrument       `json:"paymentInstrument"`
 	BillPayer                Person                  `json:"billPayer"`
 	Meta                     Meta                    `json:"meta"`
-	CardNetwork              payment.CardNetwork     `json:"cardNetwork"`
+	//deprecated - Use Payment Instrument > CardNetwork
+	CardNetwork payment.CardNetwork `json:"cardNetwork"`
 }
 
 type BaseResponse struct {
