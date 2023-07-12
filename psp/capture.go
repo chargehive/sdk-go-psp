@@ -29,7 +29,8 @@ type CaptureResponse struct {
 
 func NewCaptureResponse(currency string) CaptureResponse {
 	return CaptureResponse{
-		Capture: CaptureAuthResponse{AmountCaptured: NewAmount(0, currency)},
+		Capture:        CaptureAuthResponse{AmountCaptured: NewAmount(0, currency)},
+		AmountCaptured: NewAmount(0, currency),
 	}
 }
 
