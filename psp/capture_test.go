@@ -19,14 +19,6 @@ func TestCapture(t *testing.T) {
 		t.Error(err)
 	}
 
-	if resp.Authorize.AmountAuthorized != req.Amount {
-		t.Error("authorize amount doesn't match")
-	}
-
-	if resp.Capture.AmountCaptured != req.Amount {
-		t.Error("capture amount doesn't match")
-	}
-
 	if resp.AmountAuthorized == nil || (resp.AmountAuthorized.Units != req.Amount.Units && resp.AmountAuthorized.Currency != req.Amount.Currency) {
 		t.Error("authorize amount doesn't match")
 	}
@@ -58,8 +50,8 @@ func (h testCaptureHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := NewCaptureResponse(req.Amount.Currency)
-	resp.Capture.AmountCaptured = req.Amount
-	resp.Authorize = AuthorizeResponse{AmountAuthorized: req.Amount}
+	resp.AmountCaptured = req.Amount
+	resp.AmountAuthorized = &req.Amount
 
 	j, _ := json.Marshal(resp)
 	_, _ = w.Write(j)
