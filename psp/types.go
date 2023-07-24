@@ -382,16 +382,22 @@ const (
 type BaseTransactionRequest struct {
 	correlationID string
 
-	Amount                   Amount                  `json:"amount"`
-	MerchantReference        string                  `json:"merchantReference"`
-	BillingProfileID         string                  `json:"billingProfileId"`
-	Initiator                RequestInitiator        `json:"initiator"`
-	IsMoto                   bool                    `json:"isMoto"`
-	SubscriptionType         RequestSubscriptionType `json:"subscriptionType"`
-	SubscribeAuthorizationID string                  `json:"subscribeAuthorizationId"`
-	PaymentInstrument        PaymentInstrument       `json:"paymentInstrument"`
-	BillPayer                Person                  `json:"billPayer"`
-	Meta                     Meta                    `json:"meta"`
+	Amount            Amount                  `json:"amount"`
+	MerchantReference string                  `json:"merchantReference"`
+	BillingProfileID  string                  `json:"billingProfileId"`
+	Initiator         RequestInitiator        `json:"initiator"`
+	IsMoto            bool                    `json:"isMoto"`
+	SubscriptionType  RequestSubscriptionType `json:"subscriptionType"`
+
+	// SubscribeAuthorizationID is the gateway transaction id for the original auth in the sequence
+	// some connectors require this to be passed instead of the network transaction id
+	SubscribeAuthorizationID string `json:"subscribeAuthorizationId"`
+	// SubscribeAuthorizationID is the network transaction id for the original auth in the sequence
+	SubscribeAuthorizationNetworkID string `json:"subscribeAuthorizationNetworkId"`
+
+	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
+	BillPayer         Person            `json:"billPayer"`
+	Meta              Meta              `json:"meta"`
 	// CardNetwork Deprecated - Use Payment Instrument > CardNetwork
 	CardNetwork payment.CardNetwork `json:"cardNetwork"`
 }
