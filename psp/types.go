@@ -2,10 +2,11 @@ package psp
 
 import (
 	"fmt"
-	"github.com/pci-bridge/sdk-go/pcib"
+	"strings"
 	"time"
 
 	"github.com/chargehive/sdk-go-core/payment"
+	"github.com/pci-bridge/sdk-go/pcib"
 )
 
 type Amount struct {
@@ -35,7 +36,7 @@ type Person struct {
 
 func (p Person) Name() string {
 	if p.FullName == "" {
-		return p.First + " " + p.Last
+		return strings.TrimSpace(p.First + " " + p.Last)
 	}
 	return p.FullName
 }
