@@ -11,8 +11,22 @@ type CaptureRequest struct {
 type CaptureResponse struct {
 	BaseResponse
 	TransactionResponse
-	Capture   CaptureAuthResponse
-	Authorize AuthorizeResponse
+
+	AmountCaptured Amount `json:"amountCaptured"`
+
+	AuthorizeTransaction *TransactionResponse `json:"authorizeTransaction,omitempty"`
+	ThreeDSResult        *ThreeDSResult       `json:"3dsResult"`
+	AmountAuthorized     *Amount              `json:"amountAuthorized"`
+	AuthCode             string               `json:"authCode"`
+	CVVResponse          string               `json:"cvvResponse"`
+	AVS                  string               `json:"avs"`
+	ECI                  string               `json:"eci"`
+}
+
+func NewCaptureResponse(currency string) CaptureResponse {
+	return CaptureResponse{
+		AmountCaptured: NewAmount(0, currency),
+	}
 }
 
 func (r *CaptureRequest) GetPath(credentialID string) string {
@@ -25,7 +39,6 @@ func (r *CaptureRequest) Do(conn Connection) (resp CaptureResponse, err error) {
 		err = json.Unmarshal(body, &resp)
 		resp.RequestID = headers.Get(RequestHeaderRequestID)
 	}
-
 	return
 }
 

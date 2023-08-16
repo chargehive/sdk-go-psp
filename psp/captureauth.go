@@ -22,6 +22,12 @@ type CaptureAuthResponse struct {
 	AmountCaptured Amount `json:"amountCaptured"`
 }
 
+func NewCaptureAuthResponse(currency string) CaptureAuthResponse {
+	return CaptureAuthResponse{
+		AmountCaptured: NewAmount(0, currency),
+	}
+}
+
 func (r *CaptureAuthRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/payment/capture-auth"
 }

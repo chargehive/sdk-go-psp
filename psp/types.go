@@ -2,10 +2,11 @@ package psp
 
 import (
 	"fmt"
-	"github.com/pci-bridge/sdk-go/pcib"
+	"strings"
 	"time"
 
 	"github.com/chargehive/sdk-go-core/payment"
+	"github.com/pci-bridge/sdk-go/pcib"
 )
 
 type Amount struct {
@@ -35,7 +36,7 @@ type Person struct {
 
 func (p Person) Name() string {
 	if p.FullName == "" {
-		return p.First + " " + p.Last
+		return strings.TrimSpace(p.First + " " + p.Last)
 	}
 	return p.FullName
 }
@@ -96,12 +97,14 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	LVT                string            `json:"lvt"`
-	HVT                string            `json:"hvt"`
-	TokenType          TokenType         `json:"tokenType"`
-	EphemeralToken     string            `json:"ephemeralToken"`
-	AuthenticationData map[string]string `json:"authenticationData"`
-	AccountHolder      string            `json:"accountHolder"`
+	LVT                string              `json:"lvt"`
+	HVT                string              `json:"hvt"`
+	TokenType          TokenType           `json:"tokenType"`
+	MethodType         MethodType          `json:"methodType"`
+	EphemeralToken     string              `json:"ephemeralToken"`
+	AuthenticationData map[string]string   `json:"authenticationData"`
+	AccountHolder      string              `json:"accountHolder"`
+	CardNetwork        payment.CardNetwork `json:"cardNetwork"`
 }
 
 type PaymentInstrumentResponse struct {
@@ -383,17 +386,22 @@ const (
 type BaseTransactionRequest struct {
 	correlationID string
 
-	Amount                   Amount                  `json:"amount"`
-	MerchantReference        string                  `json:"merchantReference"`
-	BillingProfileID         string                  `json:"billingProfileId"`
-	Initiator                RequestInitiator        `json:"initiator"`
-	IsMoto                   bool                    `json:"isMoto"`
-	SubscriptionType         RequestSubscriptionType `json:"subscriptionType"`
-	SubscribeAuthorizationID string                  `json:"subscribeAuthorizationId"`
-	PaymentInstrument        PaymentInstrument       `json:"paymentInstrument"`
-	BillPayer                Person                  `json:"billPayer"`
-	Meta                     Meta                    `json:"meta"`
-	CardNetwork              payment.CardNetwork     `json:"cardNetwork"`
+	Amount            Amount                  `json:"amount"`
+	MerchantReference string                  `json:"merchantReference"`
+	BillingProfileID  string                  `json:"billingProfileId"`
+	Initiator         RequestInitiator        `json:"initiator"`
+	IsMoto            bool                    `json:"isMoto"`
+	SubscriptionType  RequestSubscriptionType `json:"subscriptionType"`
+
+	// SubscribeAuthorizationID is the gateway transaction id for the original auth in the sequence
+	// some connectors require this to be passed instead of the network transaction id
+	SubscribeAuthorizationID string `json:"subscribeAuthorizationId"`
+	// SubscribeAuthorizationID is the network transaction id for the original auth in the sequence
+	SubscribeAuthorizationNetworkID string `json:"subscribeAuthorizationNetworkId"`
+
+	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
+	BillPayer         Person            `json:"billPayer"`
+	Meta              Meta              `json:"meta"`
 }
 
 type BaseResponse struct {
