@@ -105,6 +105,8 @@ type PaymentInstrument struct {
 	AuthenticationData map[string]string   `json:"authenticationData"`
 	AccountHolder      string              `json:"accountHolder"`
 	CardNetwork        payment.CardNetwork `json:"cardNetwork"`
+	ExpiryMonth        int32               `json:"expiryMonth"`
+	ExpiryYear         int32               `json:"expiryYear"`
 }
 
 type PaymentInstrumentResponse struct {
