@@ -100,6 +100,7 @@ type PaymentInstrument struct {
 	LVT                string              `json:"lvt"`
 	HVT                string              `json:"hvt"`
 	TokenType          TokenType           `json:"tokenType"`
+	MethodType         MethodType          `json:"methodType"`
 	EphemeralToken     string              `json:"ephemeralToken"`
 	AuthenticationData map[string]string   `json:"authenticationData"`
 	AccountHolder      string              `json:"accountHolder"`
