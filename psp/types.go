@@ -394,6 +394,7 @@ type BaseTransactionRequest struct {
 	Initiator         RequestInitiator        `json:"initiator"`
 	IsMoto            bool                    `json:"isMoto"`
 	SubscriptionType  RequestSubscriptionType `json:"subscriptionType"`
+	SubscriptionTime  time.Time               `json:"subscriptionTime"`
 
 	// SubscribeAuthorizationID is the gateway transaction id for the original auth in the sequence
 	// some connectors require this to be passed instead of the network transaction id
