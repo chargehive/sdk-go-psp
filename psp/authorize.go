@@ -6,8 +6,9 @@ import (
 
 type AuthorizeRequest struct {
 	BaseTransactionRequest
-	PerformSCA    bool           `json:"performSca"`
-	ThreeDSResult *ThreeDSResult `json:"3dsResult"`
+	PerformSCA          bool                   `json:"performSca"`
+	SCAChallengeRequest SCAChallengePreference `json:"scaChallengeRequest"`
+	ThreeDSResult       *ThreeDSResult         `json:"3dsResult"`
 }
 
 type AuthorizeResponse struct {

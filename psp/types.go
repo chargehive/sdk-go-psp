@@ -518,3 +518,12 @@ const (
 	MethodTypeGooglePay MethodType = "googlePay"
 	MethodTypeApplePay  MethodType = "applePay"
 )
+
+type SCAChallengePreference string
+
+//goland:noinspection GoUnusedConst
+const (
+	SCAChallengePreferenceNone    SCAChallengePreference = "none"
+	SCAChallengePreferenceRequest SCAChallengePreference = "request"
+	SCAChallengePreferenceMandate SCAChallengePreference = "mandate"
+)
