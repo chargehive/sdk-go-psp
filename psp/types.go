@@ -388,13 +388,13 @@ const (
 type BaseTransactionRequest struct {
 	correlationID string
 
-	Amount            Amount                  `json:"amount"`
-	MerchantReference string                  `json:"merchantReference"`
-	BillingProfileID  string                  `json:"billingProfileId"`
-	Initiator         RequestInitiator        `json:"initiator"`
-	IsMoto            bool                    `json:"isMoto"`
-	SubscriptionType  RequestSubscriptionType `json:"subscriptionType"`
-	SubscriptionTime  time.Time               `json:"subscriptionTime"`
+	Amount                Amount                  `json:"amount"`
+	MerchantReference     string                  `json:"merchantReference"`
+	BillingProfileID      string                  `json:"billingProfileId"`
+	Initiator             RequestInitiator        `json:"initiator"`
+	IsMoto                bool                    `json:"isMoto"`
+	SubscriptionType      RequestSubscriptionType `json:"subscriptionType"`
+	SubscriptionStartTime time.Time               `json:"subscriptionTime"`
 
 	// SubscribeAuthorizationID is the gateway transaction id for the original auth in the sequence
 	// some connectors require this to be passed instead of the network transaction id
