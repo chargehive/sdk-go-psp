@@ -186,15 +186,19 @@ type ThreeDSResult struct {
 
 type ThreeDSResultCode string
 
+// https://www.emvco.com/specifications/emv-3-d-secure-protocol-and-core-functions-specification-6/
+//
 //goland:noinspection GoUnusedConst
 const (
-	ThreeDSResultY ThreeDSResultCode = "Y" // ✅ authentication successful
-	ThreeDSResultA ThreeDSResultCode = "A" // ✅ attempted, but no response or issuer does not support 3ds
-
-	ThreeDSResultN ThreeDSResultCode = "N" // ❌ failed, DO NOT PROCEED
-	ThreeDSResultR ThreeDSResultCode = "R" // ❌ rejected, DO NOT PROCEED
-
-	ThreeDSResultU ThreeDSResultCode = "U" // ❓ 3ds unavailable, service may be down
+	ThreeDSResultY ThreeDSResultCode = "Y" // ✅ Authentication Verification Successful.
+	ThreeDSResultN ThreeDSResultCode = "N" // ❌ Not Authenticated / Account Not Verified; Transaction denied.
+	ThreeDSResultU ThreeDSResultCode = "U" // ❓ Authentication / Account Verification Could Not Be Performed; Technical or other problem, as indicated in ARes or RReq.
+	ThreeDSResultA ThreeDSResultCode = "A" // ✅ Attempts Processing Performed; Not Authenticated/ Verified, but a proof of attempted authentication/verification is provided (Attempted, but no response or issuer does not support 3ds)
+	ThreeDSResultC ThreeDSResultCode = "C" // ❓ Challenge Required; Additional authentication is required using the CReq/CRes.
+	ThreeDSResultD ThreeDSResultCode = "D" // ❓ Challenge Required; Decoupled Authentication confirmed.
+	ThreeDSResultR ThreeDSResultCode = "R" // ❌ Authentication / Account Verification Rejected; Issuer is rejecting authentication/verification and request that authorisation not be attempted.
+	ThreeDSResultI ThreeDSResultCode = "I" // ❓ Informational Only; 3DS Requestor challenge preference acknowledged.
+	ThreeDSResultS ThreeDSResultCode = "S" // ❓ Challenge using SPC
 )
 
 type ThreeDSResultType string
