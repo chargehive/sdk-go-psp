@@ -165,23 +165,25 @@ type TransactionResponse struct {
 }
 
 type ThreeDSResult struct {
-	ID              string            `json:"id"`
-	Eci             string            `json:"eci"`
-	Cavv            string            `json:"cavv"`
-	Xid             string            `json:"xid"`
-	Enrollment      string            `json:"enrollment"`
-	Result          ThreeDSResultCode `json:"result"`
-	SignatureStatus string            `json:"signatureStatus"`
-	Status          string            `json:"status"`
-	MajorVersion    int32             `json:"majorVersion"`
-	Version         string            `json:"version"`
-	PaReq           string            `json:"paReq"`
-	AcsUrl          string            `json:"acsUrl"`
-	PaRes           string            `json:"paRes"`
-	Timestamp       time.Time         `json:"timestamp"`
-	Liability       Liability         `json:"liability"`
-	Data            map[string]string `json:"data"`
-	Type            ThreeDSResultType `json:"type"`
+	ID                     string            `json:"id"`
+	DirectoryServerID      string            `json:"directoryServerId"`
+	DeviceFingerprintingID string            `json:"deviceFingerprintingId"`
+	Eci                    string            `json:"eci"`
+	Cavv                   string            `json:"cavv"`
+	Xid                    string            `json:"xid"`
+	Enrollment             string            `json:"enrollment"`
+	Result                 ThreeDSResultCode `json:"result"`
+	SignatureStatus        string            `json:"signatureStatus"`
+	Status                 string            `json:"status"`
+	MajorVersion           int32             `json:"majorVersion"`
+	Version                string            `json:"version"`
+	PaReq                  string            `json:"paReq"`
+	AcsUrl                 string            `json:"acsUrl"`
+	PaRes                  string            `json:"paRes"`
+	Timestamp              time.Time         `json:"timestamp"`
+	Liability              Liability         `json:"liability"`
+	Data                   map[string]string `json:"data"`
+	Type                   ThreeDSResultType `json:"type"`
 }
 
 type ThreeDSResultCode string
