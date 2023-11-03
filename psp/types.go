@@ -69,6 +69,39 @@ type TransactionSource struct {
 	UserAgent string `json:"userAgent"`
 }
 
+type Device struct {
+	BrowserAcceptHeader string     `json:"browserAcceptHeader,omitempty"`
+	ColorDepth          int32      `json:"colorDepth,omitempty"`
+	JavaEnabled         bool       `json:"javaEnabled,omitempty"`
+	JavascriptEnabled   bool       `json:"javascriptEnabled,omitempty"`
+	Language            string     `json:"language,omitempty"`
+	Screen              Dimension  `json:"screen,omitempty"`
+	ScreenAvailable     Dimension  `json:"screenAvailable,omitempty"`
+	WindowInner         Dimension  `json:"windowInner,omitempty"`
+	WindowOuter         Dimension  `json:"windowOuter,omitempty"`
+	TimezoneOffsetMins  int32      `json:"timezoneOffsetMins,omitempty"`
+	UserAgent           string     `json:"userAgent,omitempty"`
+	IpAddress           string     `json:"ipAddress,omitempty"`
+	CookiesEnabled      bool       `json:"cookiesEnabled,omitempty"`
+	FlashVersion        string     `json:"flashVersion,omitempty"`
+	IsTouch             bool       `json:"isTouch,omitempty"`
+	Os                  string     `json:"os,omitempty"`
+	OsVersion           string     `json:"osVersion,omitempty"`
+	Browser             string     `json:"browser,omitempty"`
+	BrowserVersion      string     `json:"browserVersion,omitempty"`
+	DeviceManufacturer  string     `json:"deviceManufacturer,omitempty"`
+	DeviceName          string     `json:"deviceName,omitempty"`
+	DeviceVersion       string     `json:"deviceVersion,omitempty"`
+	Fingerprint         string     `json:"fingerprint,omitempty"`
+	Type                DeviceType `json:"type,omitempty"`
+	Timezone            string     `json:"timezone,omitempty"`
+}
+
+type Dimension struct {
+	Width  int32 `son:"width,omitempty"`
+	Height int32 `json:"height,omitempty"`
+}
+
 type Item struct {
 	Name           string      `json:"name"`
 	Description    string      `json:"description"`
@@ -94,6 +127,7 @@ type Meta struct {
 	ShippingAddress Address           `json:"shippingAddress"`
 	CustomData      map[string]string `json:"customData"`
 	Items           []Item            `json:"items"`
+	Device          Device            `json:"device"`
 }
 
 type PaymentInstrument struct {
@@ -515,6 +549,39 @@ const (
 	TokenTypeApplePay  TokenType = "applePay"
 	DefaultTokenType             = TokenTypePCIB
 )
+
+type DeviceType string
+
+const (
+	DeviceTypeInvalid  = "invalid"
+	DeviceTypeMobile   = "mobile"
+	DeviceTypeTablet   = "tablet"
+	DeviceTypeDesktop  = "desktop"
+	DeviceTypeWearable = "wearable"
+	DeviceTypeConsole  = "console"
+	DeviceTypeVehicle  = "vehicle"
+)
+
+func (d DeviceType) ToInt() int {
+	switch d {
+	case DeviceTypeInvalid:
+		return 0
+	case DeviceTypeMobile:
+		return 1
+	case DeviceTypeTablet:
+		return 2
+	case DeviceTypeDesktop:
+		return 3
+	case DeviceTypeWearable:
+		return 4
+	case DeviceTypeConsole:
+		return 5
+	case DeviceTypeVehicle:
+		return 6
+	}
+
+	return 0
+}
 
 type MethodType string
 
