@@ -2,6 +2,7 @@ package psp
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 	"time"
 
@@ -43,6 +44,13 @@ func (p Person) Name() string {
 
 type Language string
 type Email string
+
+var emailRegex = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
+
+func (e Email) Valid() bool {
+	return emailRegex.MatchString(string(e))
+}
+
 type PhoneNumber string
 type Country string
 
