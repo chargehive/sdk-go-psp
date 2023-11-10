@@ -196,7 +196,9 @@ type TransactionResponse struct {
 	ErrorType              ErrorType               `json:"errorType"`
 	MerchantMessage        string                  `json:"merchantMessage"`
 	Tags                   []string                `json:"tags"`
-	RetryDelay             *time.Duration          `json:"retryDelay"`
+	RetryDelay             *time.Duration          `json:"retryDelay"`             // Delay before retrying the transaction
+	RetryMaxAttempts       *int                    `json:"retryMaxAttempts"`       // Only retry this many times
+	RetryMaxAttemptsPeriod *time.Duration          `json:"retryMaxAttemptsPeriod"` // within this time perdiod
 }
 
 type ThreeDSResult struct {
