@@ -475,6 +475,30 @@ type BaseTransactionRequest struct {
 	Meta              Meta              `json:"meta"`
 }
 
+func (r *BaseTransactionRequest) GetInitialTransactionId(allowLastCapture bool) string {
+	tid := r.SubscribeAuthorizationID
+	if tid == "" && allowLastCapture {
+		tid = r.LastSuccessfulCaptureID
+	}
+	return tid
+}
+
+func (r *BaseTransactionRequest) GetInitialNetworkTransactionID(allowLastCapture bool) string {
+	tid := r.SubscribeAuthorizationNetworkID
+	if tid == "" && allowLastCapture {
+		tid = r.LastSuccessfulCaptureNetworkID
+	}
+	return tid
+}
+
+func (r *BaseTransactionRequest) GetInitialExternalNetworkTransactionID(allowLastCapture bool) string {
+	tid := r.SubscribeExternalAuthorizationNetworkID
+	if tid == "" && allowLastCapture {
+		tid = r.LastSuccessfulCaptureExternalNetworkID
+	}
+	return tid
+}
+
 type BaseResponse struct {
 	RequestID           string                     `json:"requestId"`
 	Status              *StatusResponse            `json:"status"`
