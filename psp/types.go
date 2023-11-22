@@ -467,8 +467,8 @@ type BaseTransactionRequest struct {
 	LastSuccessfulCaptureID string `json:"lastSuccessfulCaptureID"`
 	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
-	// LastSuccessfulExternalCaptureNetworkID is the network transaction id for the last successful capture in the sequence, provided by different gateway
-	LastSuccessfulExternalCaptureNetworkID string `json:"lastSuccessfulExternalCaptureNetworkID"`
+	// LastSuccessfulCaptureExternalNetworkID is the network transaction id for the last successful capture in the sequence, provided by different gateway
+	LastSuccessfulCaptureExternalNetworkID string `json:"lastSuccessfulCaptureExternalNetworkID"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
