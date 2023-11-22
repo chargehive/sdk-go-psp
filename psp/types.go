@@ -181,6 +181,18 @@ type PaymentInstrumentResponse struct {
 	TSID string
 	// TSIDK tokenization session id key
 	TSIDK string
+
+	Issuer        string `json:"issuer"`        // Fifth Third Bank
+	IssuerCountry string `json:"issuerCountry"` // US - The card issuer's country, as an ISO-2 code
+	Scheme        string `json:"scheme"`
+	SchemeLocal   string `json:"schemeLocal"`  // e.g. Mada - CoBranded schemes
+	CardType      string `json:"cardType"`     //e.g. PrePaid
+	CardCategory  string `json:"cardCategory"` // e.g. Consumer
+	Product       string `json:"product"`      // e.g. MDJ - The card issuer or scheme's product identifier
+	ProductType   string `json:"productType"`  // e.g. Debit MasterCard (Enhanced) - The card issuer or scheme's product type
+
+	GatewayInstrumentID string `json:"gatewayInstrumentId"` // e.g. Gateway ID for this method
+	AccountReference    string `json:"accountReference"`    // e.g. 1234567890123456
 }
 
 type TransactionIdentifier struct {
@@ -207,26 +219,6 @@ type TransactionResponse struct {
 	RetryDelay             *time.Duration          `json:"retryDelay"`             // Delay before retrying the transaction
 	RetryMaxAttempts       *int                    `json:"retryMaxAttempts"`       // Only retry this many times
 	RetryMaxAttemptsPeriod *time.Duration          `json:"retryMaxAttemptsPeriod"` // within this time period
-
-	CardData CardDataResponse `json:"cardData"` // Gateway information about the card
-}
-
-type CardDataResponse struct {
-	Issuer        string `json:"issuer"`        // Fifth Third Bank
-	IssuerCountry string `json:"issuerCountry"` // US - The card issuer's country, as an ISO-2 code
-	Bin           string `json:"bin"`           // 6-8 - The issuer's Bank Identification Number (BIN)
-	Scheme        string `json:"scheme"`
-	SchemeLocal   string `json:"schemeLocal"`  // e.g. Mada - CoBranded schemes
-	CardType      string `json:"cardType"`     //e.g. PrePaid
-	CardCategory  string `json:"cardCategory"` // e.g. Consumer
-	Product       string `json:"product"`      // e.g. MDJ - The card issuer or scheme's product identifier
-	ProductType   string `json:"productType"`  // e.g. Debit MasterCard (Enhanced) - The card issuer or scheme's product type
-
-	ExpiryMonth int
-	ExpiryYear  int
-
-	GatewayInstrumentID string `json:"gatewayInstrumentId"` // e.g. Gateway ID for this method
-	AccountReference    string `json:"accountReference"`    // e.g. 1234567890123456
 }
 
 type ThreeDSResult struct {
