@@ -182,17 +182,14 @@ type PaymentInstrumentResponse struct {
 	// TSIDK tokenization session id key
 	TSIDK string
 
-	Issuer        string `json:"issuer"`        // Fifth Third Bank
-	IssuerCountry string `json:"issuerCountry"` // US - The card issuer's country, as an ISO-2 code
-	Scheme        string `json:"scheme"`
-	SchemeLocal   string `json:"schemeLocal"`  // e.g. Mada - CoBranded schemes
-	CardType      string `json:"cardType"`     //e.g. PrePaid
-	CardCategory  string `json:"cardCategory"` // e.g. Consumer
-	Product       string `json:"product"`      // e.g. MDJ - The card issuer or scheme's product identifier
-	ProductType   string `json:"productType"`  // e.g. Debit MasterCard (Enhanced) - The card issuer or scheme's product type
+	CardCategory string `json:"cardCategory"` // e.g. Consumer
+	Product      string `json:"product"`      // e.g. MDJ - The card issuer or scheme's product identifier
+	ProductType  string `json:"productType"`  // e.g. Debit MasterCard (Enhanced) - The card issuer or scheme's product type
 
 	GatewayInstrumentID string `json:"gatewayInstrumentId"` // e.g. Gateway ID for this method
-	AccountReference    string `json:"accountReference"`    // e.g. 1234567890123456
+
+	// PaymentAccountReference Unique reference that links PANs and their affiliated tokens to a single funding account
+	PaymentAccountReference string `json:"paymentAccountReference"` // e.g. 1234567890123456
 }
 
 type TransactionIdentifier struct {
@@ -460,10 +457,18 @@ type BaseTransactionRequest struct {
 	SubscriptionStartTime time.Time               `json:"subscriptionTime"`
 
 	// SubscribeAuthorizationID is the gateway transaction id for the original auth in the sequence
-	// some connectors require this to be passed instead of the network transaction id
 	SubscribeAuthorizationID string `json:"subscribeAuthorizationId"`
-	// SubscribeAuthorizationID is the network transaction id for the original auth in the sequence
+	// SubscribeAuthorizationNetworkID is the network transaction id for the original auth in the sequence
 	SubscribeAuthorizationNetworkID string `json:"subscribeAuthorizationNetworkId"`
+	// SubscribeExternalAuthorizationNetworkID is the network transaction id for the original auth in the sequence, provided by different gateway
+	SubscribeExternalAuthorizationNetworkID string `json:"subscribeExternalAuthorizationNetworkId"`
+
+	// LastSuccessfulCaptureID is the gateway transaction id for the last successful capture in the sequence
+	LastSuccessfulCaptureID string `json:"lastSuccessfulCaptureID"`
+	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
+	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
+	// LastSuccessfulCaptureExternalNetworkID is the network transaction id for the last successful capture in the sequence, provided by different gateway
+	LastSuccessfulCaptureExternalNetworkID string `json:"lastSuccessfulCaptureExternalNetworkID"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
