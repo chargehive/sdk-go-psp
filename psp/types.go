@@ -457,10 +457,18 @@ type BaseTransactionRequest struct {
 	SubscriptionStartTime time.Time               `json:"subscriptionTime"`
 
 	// SubscribeAuthorizationID is the gateway transaction id for the original auth in the sequence
-	// some connectors require this to be passed instead of the network transaction id
 	SubscribeAuthorizationID string `json:"subscribeAuthorizationId"`
-	// SubscribeAuthorizationID is the network transaction id for the original auth in the sequence
+	// SubscribeAuthorizationNetworkID is the network transaction id for the original auth in the sequence
 	SubscribeAuthorizationNetworkID string `json:"subscribeAuthorizationNetworkId"`
+	// SubscribeExternalAuthorizationNetworkID is the network transaction id for the original auth in the sequence, provided by different gateway
+	SubscribeExternalAuthorizationNetworkID string `json:"subscribeExternalAuthorizationNetworkId"`
+
+	// LastSuccessfulCaptureID is the gateway transaction id for the last successful capture in the sequence
+	LastSuccessfulCaptureID string `json:"lastSuccessfulCaptureID"`
+	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
+	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
+	// LastSuccessfulExternalCaptureNetworkID is the network transaction id for the last successful capture in the sequence, provided by different gateway
+	LastSuccessfulExternalCaptureNetworkID string `json:"lastSuccessfulExternalCaptureNetworkID"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
