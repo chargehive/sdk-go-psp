@@ -149,6 +149,8 @@ type PaymentInstrument struct {
 	CardNetwork        payment.CardNetwork `json:"cardNetwork"`
 	ExpiryMonth        int32               `json:"expiryMonth"`
 	ExpiryYear         int32               `json:"expiryYear"`
+	Bin                string              `json:"bin"`
+	BinData            *pcib.BinData       `json:"binData"`
 }
 
 type PaymentInstrumentResponse struct {
