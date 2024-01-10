@@ -487,7 +487,7 @@ func (r *BaseTransactionRequest) GetInitialTransactionId(allowLastCapture bool) 
 
 func (r *BaseTransactionRequest) GetInitialNetworkTransactionID(allowLastCapture bool) string {
 	tid := r.SubscribeAuthorizationNetworkID
-	if tid == "" && allowLastCapture {
+	if tid == "" && allowLastCapture && r.PaymentInstrument.CardNetwork == payment.CardNetworkVisa {
 		tid = r.LastSuccessfulCaptureNetworkID
 	}
 	return tid
@@ -495,7 +495,7 @@ func (r *BaseTransactionRequest) GetInitialNetworkTransactionID(allowLastCapture
 
 func (r *BaseTransactionRequest) GetInitialExternalNetworkTransactionID(allowLastCapture bool) string {
 	tid := r.SubscribeExternalAuthorizationNetworkID
-	if tid == "" && allowLastCapture {
+	if tid == "" && allowLastCapture && r.PaymentInstrument.CardNetwork == payment.CardNetworkVisa {
 		tid = r.LastSuccessfulCaptureExternalNetworkID
 	}
 	return tid
