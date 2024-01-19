@@ -501,6 +501,30 @@ func (r *BaseTransactionRequest) GetInitialExternalNetworkTransactionID(allowLas
 	return tid
 }
 
+func (r *BaseTransactionRequest) GetInitialAuthTransaction(external bool) (tid string) {
+	if external {
+		tid = r.SubscribeAuthorizationNetworkID
+		if tid == "" {
+			tid = r.SubscribeExternalAuthorizationNetworkID
+		}
+	} else {
+		tid = r.SubscribeAuthorizationID
+	}
+	return tid
+}
+
+func (r *BaseTransactionRequest) GetLastCaptureTransaction(external bool) (tid string) {
+	if external {
+		tid = r.LastSuccessfulCaptureNetworkID
+		if tid == "" {
+			tid = r.LastSuccessfulCaptureExternalNetworkID
+		}
+	} else {
+		tid = r.LastSuccessfulCaptureID
+	}
+	return tid
+}
+
 type BaseResponse struct {
 	RequestID           string                     `json:"requestId"`
 	Status              *StatusResponse            `json:"status"`
