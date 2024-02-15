@@ -6,6 +6,7 @@ import (
 
 type AuthenticateRequest struct {
 	BaseTransactionRequest
+	SCAChallengeRequest SCAChallengePreference `json:"scaChallengeRequest"`
 }
 
 type AuthenticateResponse struct {
