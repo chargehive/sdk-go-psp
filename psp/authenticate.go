@@ -10,6 +10,7 @@ type AuthenticateRequest struct {
 }
 
 type AuthenticateResponse struct {
+	BaseResponse
 	TransactionResponse
 	ThreeDSResult *ThreeDSResult `json:"3dsResult"`
 }
