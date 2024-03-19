@@ -57,6 +57,7 @@ func (c *HttpConnection) Do(r Request) ([]byte, http.Header, error) {
 	if err != nil {
 		return nil, nil, err
 	}
+	defer rawResp.Body.Close()
 
 	respBody, err := io.ReadAll(rawResp.Body)
 	if err != nil {
