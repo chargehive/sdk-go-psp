@@ -678,3 +678,20 @@ const (
 	SCAChallengePreferenceRequest SCAChallengePreference = "request"
 	SCAChallengePreferenceMandate SCAChallengePreference = "mandate"
 )
+
+type ThreeRI struct {
+	PriorAuthData      string // information about how previous 3DS transaction was done
+	PriorAuthMethod    ThreeDSAuthMethod
+	PriorAuthTimestamp time.Time
+	PriorACSTransID    string // ACS Transaction ID for a prior authenticated transaction
+}
+
+type ThreeDSAuthMethod string
+
+//goland:noinspection GoUnusedConst
+const (
+	ThreeDSAuthMethodFrictionless ThreeDSAuthMethod = "frictionless"
+	ThreeDSAuthMethodChallenged   ThreeDSAuthMethod = "challenged"
+	ThreeDSAuthMethodAVS          ThreeDSAuthMethod = "avs"
+	ThreeDSAuthMethodOther        ThreeDSAuthMethod = "other"
+)
