@@ -222,6 +222,7 @@ type TransactionResponse struct {
 
 type ThreeDSResult struct {
 	ID                     string            `json:"id"`
+	AcsTransID             string            `json:"acsTransId"`
 	DirectoryServerID      string            `json:"directoryServerId"`
 	DeviceFingerprintingID string            `json:"deviceFingerprintingId"`
 	Eci                    string            `json:"eci"`
