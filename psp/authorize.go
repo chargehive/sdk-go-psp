@@ -42,10 +42,3 @@ func (r *AuthorizeRequest) Do(conn Connection) (resp AuthorizeResponse, err erro
 
 	return
 }
-
-func (r *AuthorizeRequest) SetCorrelationID(correlationID string) {
-	r.correlationID = correlationID
-}
-func (r *AuthorizeRequest) GetCorrelationID() string {
-	return r.correlationID
-}

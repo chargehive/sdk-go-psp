@@ -5,7 +5,7 @@ import (
 )
 
 type CaptureAuthRequest struct {
-	correlationID string
+	BaseRequest
 
 	AuthorizeID       string            `json:"authorizeId"`
 	MerchantReference string            `json:"merchantReference"`
@@ -40,11 +40,4 @@ func (r *CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err 
 	}
 
 	return
-}
-
-func (r *CaptureAuthRequest) SetCorrelationID(correlationID string) {
-	r.correlationID = correlationID
-}
-func (r *CaptureAuthRequest) GetCorrelationID() string {
-	return r.correlationID
 }
