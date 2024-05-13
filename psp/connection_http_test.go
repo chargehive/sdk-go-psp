@@ -11,7 +11,7 @@ import (
 func TestConnection(t *testing.T) {
 	h := echoHandler{t: t, c: testHandlerCredentials{"abc", "123"}}
 	con := NewTestConnection(h)
-	resp, _, err := con.Do(testReq{Data: "this is a test"})
+	resp, _, err := con.Do(&testReq{Data: "this is a test"})
 
 	if err != nil {
 		t.Error(err)
@@ -43,16 +43,13 @@ func (h echoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 type testReq struct {
+	BaseRequest
 	Data string
 }
 
 func (t testReq) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/my/test/path"
 }
-
-func (t testReq) SetCorrelationID(_ string) {}
-
-func (t testReq) GetCorrelationID() string { return "" }
 
 func NewTestConnection(h testHandler) *HttpConnection {
 	srv := httptest.NewServer(h)
