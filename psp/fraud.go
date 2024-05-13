@@ -6,7 +6,7 @@ import (
 )
 
 type FraudScanRequest struct {
-	correlationID string
+	BaseRequest
 
 	Amount            Amount            `json:"amount"`
 	BillingProfileID  string            `json:"billingProfileId"`
@@ -39,11 +39,4 @@ func (r *FraudScanRequest) Do(conn Connection) (resp FraudScanResponse, err erro
 	}
 
 	return
-}
-
-func (r *FraudScanRequest) SetCorrelationID(correlationID string) {
-	r.correlationID = correlationID
-}
-func (r *FraudScanRequest) GetCorrelationID() string {
-	return r.correlationID
 }

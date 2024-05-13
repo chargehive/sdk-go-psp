@@ -29,10 +29,3 @@ func (r *AuthenticateRequest) Do(conn Connection) (resp AuthenticateResponse, er
 
 	return
 }
-
-func (r *AuthenticateRequest) SetCorrelationID(correlationID string) {
-	r.correlationID = correlationID
-}
-func (r *AuthenticateRequest) GetCorrelationID() string {
-	return r.correlationID
-}

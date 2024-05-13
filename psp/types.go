@@ -312,6 +312,8 @@ type Request interface {
 
 	SetCorrelationID(string)
 	GetCorrelationID() string
+	SetWorkspaceID(string)
+	GetWorkspaceID() string
 }
 
 type RequestInitiator string
@@ -448,8 +450,27 @@ const (
 	TermTypeNone    TermType = "none"
 )
 
-type BaseTransactionRequest struct {
+type BaseRequest struct {
 	correlationID string
+	workspaceID   string
+}
+
+func (r *BaseRequest) SetCorrelationID(correlationID string) {
+	r.correlationID = correlationID
+}
+func (r *BaseRequest) GetCorrelationID() string {
+	return r.correlationID
+}
+
+func (r *BaseRequest) SetWorkspaceID(workspaceID string) {
+	r.workspaceID = workspaceID
+}
+func (r *BaseRequest) GetWorkspaceID() string {
+	return r.workspaceID
+}
+
+type BaseTransactionRequest struct {
+	BaseRequest
 
 	Amount                Amount                  `json:"amount"`
 	MerchantReference     string                  `json:"merchantReference"`
