@@ -41,17 +41,3 @@ func (r *CaptureAuthRequest) Do(conn Connection) (resp CaptureAuthResponse, err 
 
 	return
 }
-
-func (r *CaptureAuthRequest) SetCorrelationID(correlationID string) {
-	r.correlationID = correlationID
-}
-func (r *CaptureAuthRequest) GetCorrelationID() string {
-	return r.correlationID
-}
-
-func (r *CaptureAuthRequest) SetWorkspaceID(workspaceID string) {
-	r.workspaceID = workspaceID
-}
-func (r *CaptureAuthRequest) GetWorkspaceID() string {
-	return r.workspaceID
-}
