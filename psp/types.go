@@ -139,6 +139,7 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
+	InstrumentID       string              `json:"instrumentId"`
 	LVT                string              `json:"lvt"`
 	HVT                string              `json:"hvt"`
 	TokenType          TokenType           `json:"tokenType"`
