@@ -77,9 +77,21 @@ type TransactionSource struct {
 	UserAgent string `json:"userAgent"`
 }
 
+type ColorDepth int32
+
+func (c ColorDepth) GetNormalized() int32 {
+	allowed := []int32{48, 32, 24, 16, 15, 8, 4, 1}
+	for _, a := range allowed {
+		if int32(c) >= a {
+			return a
+		}
+	}
+	return 1
+}
+
 type Device struct {
 	BrowserAcceptHeader string     `json:"browserAcceptHeader,omitempty"`
-	ColorDepth          int32      `json:"colorDepth,omitempty"`
+	ColorDepth          ColorDepth `json:"colorDepth,omitempty"`
 	JavaEnabled         bool       `json:"javaEnabled,omitempty"`
 	JavascriptEnabled   bool       `json:"javascriptEnabled,omitempty"`
 	Language            string     `json:"language,omitempty"`
