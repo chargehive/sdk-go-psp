@@ -214,6 +214,7 @@ type TransactionIdentifier struct {
 }
 
 type TransactionResponse struct {
+	BaseResponse
 	TransactionID          string                  `json:"transactionId"`
 	GatewayTransactionID   string                  `json:"gatewayTransactionId"`
 	GatewayStatusCode      string                  `json:"gatewayStatusCode"`
