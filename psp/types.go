@@ -660,6 +660,7 @@ const (
 	TokenTypeConnector TokenType = "connector"
 	TokenTypeGooglePay TokenType = "googlePay"
 	TokenTypeApplePay  TokenType = "applePay"
+	TokenTypeNetwork   TokenType = "network"
 	DefaultTokenType             = TokenTypePCIB
 )
 
