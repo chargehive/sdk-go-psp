@@ -11,7 +11,7 @@ type NetworkTokenRequest struct {
 }
 
 type NetworkTokenResponse struct {
-	BaseResponse
+	TransactionResponse
 	NetworkTokenStatusResponse
 	Token string `json:"token"`
 }
@@ -72,7 +72,7 @@ type CryptogramRequest struct {
 }
 
 type CryptogramResponse struct {
-	BaseResponse
+	TransactionResponse
 	Cryptogram string `json:"cryptogram"`
 	ECI        string `json:"eci"`
 }
@@ -97,7 +97,7 @@ type NetworkTokenAssetRequest struct {
 }
 
 type NetworkTokenAssetResponse struct {
-	BaseResponse
+	TransactionResponse
 	CardArtURL string `json:"cardImageUrl"`
 }
 
