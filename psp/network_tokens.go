@@ -36,7 +36,7 @@ type NetworkTokenStatusRequest struct {
 }
 
 type NetworkTokenStatusResponse struct {
-	BaseResponse
+	TransactionResponse
 	CardNetwork      payment.CardNetwork `json:"cardNetwork"`
 	TokenReferenceID string              `json:"tokenReferenceId"`
 	TokenState       NetworkTokenState   `json:"tokenState"`

@@ -9,7 +9,6 @@ type CaptureRequest struct {
 }
 
 type CaptureResponse struct {
-	BaseResponse
 	TransactionResponse
 
 	AmountCaptured Amount `json:"amountCaptured"`

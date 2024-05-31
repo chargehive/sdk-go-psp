@@ -17,7 +17,6 @@ type FraudScanRequest struct {
 }
 
 type FraudScanResponse struct {
-	BaseResponse
 	TransactionResponse
 	FraudScore      float32
 	RiskLevel       RiskLevel
