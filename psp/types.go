@@ -154,6 +154,7 @@ type PaymentInstrument struct {
 	InstrumentID       string              `json:"instrumentId"`
 	LVT                string              `json:"lvt"`
 	HVT                string              `json:"hvt"`
+	NetworkToken       string              `json:"networkToken"`
 	TokenType          TokenType           `json:"tokenType"`
 	MethodType         MethodType          `json:"methodType"`
 	EphemeralToken     string              `json:"ephemeralToken"`
