@@ -31,6 +31,38 @@ func (r *NetworkTokenRequest) Do(conn Connection) (resp NetworkTokenResponse, er
 	return
 }
 
+type NetworkTokenManageAction string
+
+const (
+	NetworkTokenManageActionSuspend NetworkTokenManageAction = "suspend"
+	NetworkTokenManageActionResume  NetworkTokenManageAction = "resume"
+	NetworkTokenManageActionDelete  NetworkTokenManageAction = "delete"
+)
+
+type NetworkTokenManageRequest struct {
+	BaseTransactionRequest
+	Action NetworkTokenManageAction `json:"action"`
+}
+
+type NetworkTokenManageResponse struct {
+	TransactionResponse
+}
+
+func (r *NetworkTokenManageRequest) GetPath(credentialID string) string {
+	return "/v1/" + credentialID + "/network-token/tokenize"
+}
+
+func (r *NetworkTokenManageRequest) Do(conn Connection) (resp NetworkTokenResponse, err error) {
+	body, headers, err := conn.Do(r)
+
+	if err == nil {
+		err = json.Unmarshal(body, &resp)
+		resp.RequestID = headers.Get(RequestHeaderRequestID)
+	}
+
+	return
+}
+
 type NetworkTokenStatusRequest struct {
 	BaseTransactionRequest
 }
@@ -69,6 +101,8 @@ func (r *NetworkTokenStatusRequest) Do(conn Connection) (resp NetworkTokenRespon
 
 type CryptogramRequest struct {
 	BaseTransactionRequest
+	Cryptogram string `json:"cryptogram"`
+	ECI        string `json:"eci"`
 }
 
 type CryptogramResponse struct {
