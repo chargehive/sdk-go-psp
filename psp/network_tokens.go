@@ -52,7 +52,7 @@ func (r *NetworkTokenManageRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/network-token/tokenize"
 }
 
-func (r *NetworkTokenManageRequest) Do(conn Connection) (resp NetworkTokenResponse, err error) {
+func (r *NetworkTokenManageRequest) Do(conn Connection) (resp NetworkTokenManageResponse, err error) {
 	body, headers, err := conn.Do(r)
 
 	if err == nil {
@@ -88,7 +88,7 @@ func (r *NetworkTokenStatusRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/network-token/token-status"
 }
 
-func (r *NetworkTokenStatusRequest) Do(conn Connection) (resp NetworkTokenResponse, err error) {
+func (r *NetworkTokenStatusRequest) Do(conn Connection) (resp NetworkTokenStatusResponse, err error) {
 	body, headers, err := conn.Do(r)
 
 	if err == nil {
@@ -115,7 +115,7 @@ func (r *CryptogramRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/network-token/cryptogram"
 }
 
-func (r *CryptogramRequest) Do(conn Connection) (resp NetworkTokenResponse, err error) {
+func (r *CryptogramRequest) Do(conn Connection) (resp CryptogramResponse, err error) {
 	body, headers, err := conn.Do(r)
 
 	if err == nil {
@@ -139,7 +139,7 @@ func (r *NetworkTokenAssetRequest) GetPath(credentialID string) string {
 	return "/v1/" + credentialID + "/network-token/asset"
 }
 
-func (r *NetworkTokenAssetRequest) Do(conn Connection) (resp NetworkTokenResponse, err error) {
+func (r *NetworkTokenAssetRequest) Do(conn Connection) (resp NetworkTokenAssetResponse, err error) {
 	body, headers, err := conn.Do(r)
 
 	if err == nil {
