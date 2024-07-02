@@ -154,7 +154,7 @@ type PaymentInstrument struct {
 	InstrumentID       string              `json:"instrumentId"`
 	LVT                string              `json:"lvt"`
 	HVT                string              `json:"hvt"`
-	NetworkToken       string              `json:"networkToken"`
+	NetworkToken       NetworkToken        `json:"networkToken"`
 	TokenType          TokenType           `json:"tokenType"`
 	MethodType         MethodType          `json:"methodType"`
 	EphemeralToken     string              `json:"ephemeralToken"`
@@ -165,6 +165,12 @@ type PaymentInstrument struct {
 	ExpiryYear         int32               `json:"expiryYear"`
 	Bin                string              `json:"bin"`
 	BinData            *pcib.BinData       `json:"binData"`
+}
+
+type NetworkToken struct {
+	Token      string `json:"token"`
+	Eci        string `json:"eci"`
+	Cryptogram string `json:"cryptogram"` // aka TAVV
 }
 
 type PaymentInstrumentResponse struct {
