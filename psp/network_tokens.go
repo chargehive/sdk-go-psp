@@ -49,7 +49,7 @@ type NetworkTokenManageResponse struct {
 }
 
 func (r *NetworkTokenManageRequest) GetPath(credentialID string) string {
-	return "/v1/" + credentialID + "/network-token/tokenize"
+	return "/v1/" + credentialID + "/network-token/manage"
 }
 
 func (r *NetworkTokenManageRequest) Do(conn Connection) (resp NetworkTokenManageResponse, err error) {
