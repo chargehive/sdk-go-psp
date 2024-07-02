@@ -179,7 +179,7 @@ type NetworkToken struct {
 type NetworkTokenType string
 
 const (
-	NetworkTokenTypeUnknown    NetworkTokenType = "unknown"
+	NetworkTokenTypeUnknown    NetworkTokenType = ""
 	NetworkTokenTypeVisa       NetworkTokenType = "vts"
 	NetworkTokenTypeMasterCard NetworkTokenType = "mdes"
 	NetworkTokenTypeApplePay   NetworkTokenType = "applepay"
