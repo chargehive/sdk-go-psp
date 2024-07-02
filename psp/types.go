@@ -168,23 +168,12 @@ type PaymentInstrument struct {
 }
 
 type NetworkToken struct {
-	Token       string           `json:"token"`
-	Type        NetworkTokenType `json:"type"`
-	Eci         string           `json:"eci"`
-	Cryptogram  string           `json:"cryptogram"` // aka TAVV
-	ExpiryMonth int32            `json:"expiryMonth"`
-	ExpiryYear  int32            `json:"expiryYear"`
+	Token       string `json:"token"`
+	Eci         string `json:"eci"`
+	Cryptogram  string `json:"cryptogram"` // aka TAVV
+	ExpiryMonth int32  `json:"expiryMonth"`
+	ExpiryYear  int32  `json:"expiryYear"`
 }
-
-type NetworkTokenType string
-
-const (
-	NetworkTokenTypeUnknown    NetworkTokenType = ""
-	NetworkTokenTypeVisa       NetworkTokenType = "vts"
-	NetworkTokenTypeMasterCard NetworkTokenType = "mdes"
-	NetworkTokenTypeApplePay   NetworkTokenType = "applepay"
-	NetworkTokenTypeGooglePay  NetworkTokenType = "googlepay"
-)
 
 type PaymentInstrumentResponse struct {
 	MethodType MethodType `json:"methodType"`
