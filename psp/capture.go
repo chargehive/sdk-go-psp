@@ -6,6 +6,7 @@ import (
 
 type CaptureRequest struct {
 	BaseTransactionRequest
+	ThreeDSResult *ThreeDSResult `json:"3dsResult"`
 }
 
 type CaptureResponse struct {
