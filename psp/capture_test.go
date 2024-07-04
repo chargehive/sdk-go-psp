@@ -12,7 +12,7 @@ func TestCapture(t *testing.T) {
 	h := testCaptureHandler{c: testHandlerCredentials{"abc", "123"}}
 
 	con := NewTestConnection(h)
-	req := CaptureRequest{BaseTransactionRequest{Amount: NewAmount(123, "USD")}}
+	req := CaptureRequest{BaseTransactionRequest: BaseTransactionRequest{Amount: NewAmount(123, "USD")}}
 	resp, err := req.Do(con)
 
 	if err != nil {
