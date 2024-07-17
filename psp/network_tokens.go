@@ -42,6 +42,7 @@ const (
 type NetworkTokenManageRequest struct {
 	BaseTransactionRequest
 	Action NetworkTokenManageAction `json:"action"`
+	Reason string                   `json:"reason"`
 }
 
 type NetworkTokenManageResponse struct {
