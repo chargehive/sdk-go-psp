@@ -75,6 +75,7 @@ type NetworkTokenStatusResponse struct {
 	TokenState       NetworkTokenState   `json:"tokenState"`
 	TokenExpiryMonth int32               `json:"tokenExpiryMonth"`
 	TokenExpiryYear  int32               `json:"tokenExpiryYear"`
+	TokenRequestorID string              `json:"tokenRequestorId"`
 
 	PaymentAccountReference string `json:"paymentAccountReference"`
 
