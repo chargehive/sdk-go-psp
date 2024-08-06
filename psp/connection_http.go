@@ -46,7 +46,6 @@ func (c *HttpConnection) Do(r Request) ([]byte, http.Header, error) {
 	req.Header.Set(RequestHeaderAuthorization, c.authHeader)
 	req.Header.Set(RequestHeaderCorrelationID, r.GetCorrelationID())
 	req.Header.Set(RequestHeaderWorkspaceID, r.GetWorkspaceID())
-	req.Close = true
 
 	httpClient := c.httpClient
 	if httpClient == nil {
