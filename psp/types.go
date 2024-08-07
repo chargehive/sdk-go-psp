@@ -173,6 +173,7 @@ type NetworkToken struct {
 	Cryptogram  string `json:"cryptogram"` // aka TAVV
 	ExpiryMonth int32  `json:"expiryMonth"`
 	ExpiryYear  int32  `json:"expiryYear"`
+	RequestorID string `json:"requestorID"`
 }
 
 type PaymentInstrumentResponse struct {
