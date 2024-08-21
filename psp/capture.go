@@ -2,11 +2,18 @@ package psp
 
 import (
 	"encoding/json"
+	"time"
 )
 
 type CaptureRequest struct {
 	BaseTransactionRequest
 	ThreeDSResult *ThreeDSResult `json:"3dsResult"`
+
+	// Retry fields
+	RetryCount            int       `json:"retryCount"`
+	RetryReference        string    `json:"retryReference"`
+	RetryDate             time.Time `json:"retryDate"`
+	RetryFirstAttemptDate time.Time `json:"retryFirstAttemptDate"`
 }
 
 type CaptureResponse struct {
@@ -21,6 +28,12 @@ type CaptureResponse struct {
 	CVVResponse          string               `json:"cvvResponse"`
 	AVS                  string               `json:"avs"`
 	ECI                  string               `json:"eci"`
+
+	// Retry fields
+	RetryCount            int       `json:"retryCount"`
+	RetryReference        string    `json:"retryReference"`
+	RetryDate             time.Time `json:"retryDate"`
+	RetryFirstAttemptDate time.Time `json:"retryFirstAttemptDate"`
 }
 
 func NewCaptureResponse(currency string) CaptureResponse {

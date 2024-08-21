@@ -227,6 +227,7 @@ type TransactionResponse struct {
 	BaseResponse
 	TransactionID          string                  `json:"transactionId"`
 	GatewayTransactionID   string                  `json:"gatewayTransactionId"`
+	SubGatewayTransactionID string                  `json:"subGatewayTransactionId"`
 	GatewayStatusCode      string                  `json:"gatewayStatusCode"`
 	AcquirerTransactionID  string                  `json:"acquirerTransactionId"`
 	NetworkTransactionID   string                  `json:"networkTransactionId"`
