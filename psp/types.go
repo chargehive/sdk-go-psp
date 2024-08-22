@@ -231,6 +231,7 @@ type TransactionResponse struct {
 	AcquirerTransactionID  string                  `json:"acquirerTransactionId"`
 	NetworkTransactionID   string                  `json:"networkTransactionId"`
 	ARN                    string                  `json:"arn"`
+	TokenType              TokenType               `json:"tokenType"`
 	TransactionTime        time.Time               `json:"transactionTime"`
 	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
