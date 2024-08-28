@@ -225,24 +225,32 @@ type TransactionIdentifier struct {
 
 type TransactionResponse struct {
 	BaseResponse
-	TransactionID          string                  `json:"transactionId"`
-	GatewayTransactionID   string                  `json:"gatewayTransactionId"`
-	GatewayStatusCode      string                  `json:"gatewayStatusCode"`
-	AcquirerTransactionID  string                  `json:"acquirerTransactionId"`
-	NetworkTransactionID   string                  `json:"networkTransactionId"`
-	ARN                    string                  `json:"arn"`
-	TokenType              TokenType               `json:"tokenType"`
-	TransactionTime        time.Time               `json:"transactionTime"`
-	TransactionStatus      TransactionStatus       `json:"transactionStatus"`
-	TransactionIdentifiers []TransactionIdentifier `json:"transactions"`
-	FailureCategory        FailureCategory         `json:"failureCategory"`
-	FailureType            FailureType             `json:"failureType"`
-	ErrorType              ErrorType               `json:"errorType"`
-	MerchantMessage        string                  `json:"merchantMessage"`
-	Tags                   []string                `json:"tags"`
-	RetryDelay             *time.Duration          `json:"retryDelay"`             // Delay before retrying the transaction
-	RetryMaxAttempts       *int                    `json:"retryMaxAttempts"`       // Only retry this many times
-	RetryMaxAttemptsPeriod *time.Duration          `json:"retryMaxAttemptsPeriod"` // within this time period
+	TransactionID           string                  `json:"transactionId"`
+	SubGatewayID            string                  `json:"subGatewayId"`
+	GatewayTransactionID    string                  `json:"gatewayTransactionId"`
+	SubGatewayTransactionID string                  `json:"subGatewayTransactionId"`
+	GatewayStatusCode       string                  `json:"gatewayStatusCode"`
+	AcquirerTransactionID   string                  `json:"acquirerTransactionId"`
+	NetworkTransactionID    string                  `json:"networkTransactionId"`
+	ARN                     string                  `json:"arn"`
+	TokenType               TokenType               `json:"tokenType"`
+	TransactionTime         time.Time               `json:"transactionTime"`
+	TransactionStatus       TransactionStatus       `json:"transactionStatus"`
+	TransactionIdentifiers  []TransactionIdentifier `json:"transactions"`
+	FailureCategory         FailureCategory         `json:"failureCategory"`
+	FailureType             FailureType             `json:"failureType"`
+	ErrorType               ErrorType               `json:"errorType"`
+	MerchantMessage         string                  `json:"merchantMessage"`
+	Tags                    []string                `json:"tags"`
+	RetryDelay              *time.Duration          `json:"retryDelay"`             // Delay before retrying the transaction
+	RetryMaxAttempts        *int                    `json:"retryMaxAttempts"`       // Only retry this many times
+	RetryMaxAttemptsPeriod  *time.Duration          `json:"retryMaxAttemptsPeriod"` // within this time period
+	RetryDate               *time.Time              `json:"retryDate"`              // to be used by scheduler
+
+	AuthCode    string `json:"authCode"`
+	CVVResponse string `json:"cvvResponse"`
+	AVS         string `json:"avs"`
+	ECI         string `json:"eci"`
 }
 
 type ThreeDSResult struct {
@@ -499,6 +507,7 @@ type BaseTransactionRequest struct {
 
 	Amount                Amount                  `json:"amount"`
 	MerchantReference     string                  `json:"merchantReference"`
+	ChargeEntityID        string                  `json:"chargeEntityId"`
 	BillingProfileID      string                  `json:"billingProfileId"`
 	Initiator             RequestInitiator        `json:"initiator"`
 	IsMoto                bool                    `json:"isMoto"`
@@ -522,6 +531,7 @@ type BaseTransactionRequest struct {
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
 	Meta              Meta              `json:"meta"`
+	LastDecline       *TransactionResponse
 }
 
 func (r *BaseTransactionRequest) GetInitialTransactionId(allowLastCapture bool) string {

@@ -17,10 +17,6 @@ type CaptureResponse struct {
 	AuthorizeTransaction *TransactionResponse `json:"authorizeTransaction,omitempty"`
 	ThreeDSResult        *ThreeDSResult       `json:"3dsResult"`
 	AmountAuthorized     *Amount              `json:"amountAuthorized"`
-	AuthCode             string               `json:"authCode"`
-	CVVResponse          string               `json:"cvvResponse"`
-	AVS                  string               `json:"avs"`
-	ECI                  string               `json:"eci"`
 }
 
 func NewCaptureResponse(currency string) CaptureResponse {
