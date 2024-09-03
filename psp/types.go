@@ -75,6 +75,7 @@ type Address struct {
 type TransactionSource struct {
 	IPAddress string `json:"ipAddress"`
 	UserAgent string `json:"userAgent"`
+	URL       string `json:"url"`
 }
 
 type ColorDepth int32
