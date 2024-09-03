@@ -164,6 +164,7 @@ type PaymentInstrument struct {
 	ExpiryMonth        int32               `json:"expiryMonth"`
 	ExpiryYear         int32               `json:"expiryYear"`
 	Bin                string              `json:"bin"`
+	Last4              string              `json:"last4"`
 	BinData            *pcib.BinData       `json:"binData"`
 }
 
