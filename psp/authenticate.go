@@ -8,6 +8,7 @@ type AuthenticateRequest struct {
 	BaseTransactionRequest
 	SCAChallengeRequest SCAChallengePreference `json:"scaChallengeRequest"`
 	ThreeRI             *ThreeRI               `json:"threeRI"`
+	ChallengeWindowSize string                 `json:"challengeWindowSize"`
 }
 
 type AuthenticateResponse struct {
