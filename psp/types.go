@@ -349,6 +349,8 @@ type Request interface {
 	GetCorrelationID() string
 	SetWorkspaceID(string)
 	GetWorkspaceID() string
+	SetMerchantUUID(string)
+	GetMerchantUUID() string
 }
 
 type RequestInitiator string
