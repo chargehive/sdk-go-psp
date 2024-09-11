@@ -349,6 +349,8 @@ type Request interface {
 	GetCorrelationID() string
 	SetWorkspaceID(string)
 	GetWorkspaceID() string
+	SetMerchantUUID(string)
+	GetMerchantUUID() string
 }
 
 type RequestInitiator string
@@ -488,6 +490,7 @@ const (
 type BaseRequest struct {
 	correlationID string
 	workspaceID   string
+	merchantUUID  string
 }
 
 func (r *BaseRequest) SetCorrelationID(correlationID string) {
@@ -502,6 +505,13 @@ func (r *BaseRequest) SetWorkspaceID(workspaceID string) {
 }
 func (r *BaseRequest) GetWorkspaceID() string {
 	return r.workspaceID
+}
+
+func (r *BaseRequest) SetMerchantUUID(muid string) {
+	r.merchantUUID = muid
+}
+func (r *BaseRequest) GetMerchantUUID() string {
+	return r.merchantUUID
 }
 
 type BaseTransactionRequest struct {

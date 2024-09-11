@@ -46,6 +46,7 @@ func (c *HttpConnection) Do(r Request) ([]byte, http.Header, error) {
 		return nil, nil, err
 	}
 	req.Header.Set(RequestHeaderAuthorization, c.authHeader)
+	req.Header.Set(RequestHeaderMerchantUUID, r.GetMerchantUUID())
 	req.Header.Set(RequestHeaderCorrelationID, r.GetCorrelationID())
 	req.Header.Set(RequestHeaderWorkspaceID, r.GetWorkspaceID())
 
