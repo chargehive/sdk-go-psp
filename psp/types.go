@@ -236,6 +236,7 @@ type TransactionResponse struct {
 	NetworkTransactionID    string                  `json:"networkTransactionId"`
 	ARN                     string                  `json:"arn"`
 	TokenType               TokenType               `json:"tokenType"`
+	InitialTransactionType  InitialTransactionType  `json:"initialTransactionType"`
 	TransactionTime         time.Time               `json:"transactionTime"`
 	TransactionStatus       TransactionStatus       `json:"transactionStatus"`
 	TransactionIdentifiers  []TransactionIdentifier `json:"transactions"`
@@ -696,6 +697,14 @@ const (
 	TokenTypeApplePay  TokenType = "applePay"
 	TokenTypeNetwork   TokenType = "network"
 	DefaultTokenType             = TokenTypePCIB
+)
+
+type InitialTransactionType string
+
+//goland:noinspection GoUnusedConst
+const (
+	InitialTransactionTypeConnector TokenType = "connector"
+	InitialTransactionTypeNetwork   TokenType = "network"
 )
 
 type DeviceType string
