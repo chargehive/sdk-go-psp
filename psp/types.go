@@ -227,28 +227,28 @@ type TransactionIdentifier struct {
 
 type TransactionResponse struct {
 	BaseResponse
-	TransactionID           string                  `json:"transactionId"`
-	SubGatewayID            string                  `json:"subGatewayId"`
-	GatewayTransactionID    string                  `json:"gatewayTransactionId"`
-	SubGatewayTransactionID string                  `json:"subGatewayTransactionId"`
-	GatewayStatusCode       string                  `json:"gatewayStatusCode"`
-	AcquirerTransactionID   string                  `json:"acquirerTransactionId"`
-	NetworkTransactionID    string                  `json:"networkTransactionId"`
-	ARN                     string                  `json:"arn"`
-	TokenType               TokenType               `json:"tokenType"`
-	InitialTransactionType  InitialTransactionType  `json:"initialTransactionType"`
-	TransactionTime         time.Time               `json:"transactionTime"`
-	TransactionStatus       TransactionStatus       `json:"transactionStatus"`
-	TransactionIdentifiers  []TransactionIdentifier `json:"transactions"`
-	FailureCategory         FailureCategory         `json:"failureCategory"`
-	FailureType             FailureType             `json:"failureType"`
-	ErrorType               ErrorType               `json:"errorType"`
-	MerchantMessage         string                  `json:"merchantMessage"`
-	Tags                    []string                `json:"tags"`
-	RetryDelay              *time.Duration          `json:"retryDelay"`             // Delay before retrying the transaction
-	RetryMaxAttempts        *int                    `json:"retryMaxAttempts"`       // Only retry this many times
-	RetryMaxAttemptsPeriod  *time.Duration          `json:"retryMaxAttemptsPeriod"` // within this time period
-	RetryDate               *time.Time              `json:"retryDate"`              // to be used by scheduler
+	TransactionID           string                    `json:"transactionId"`
+	SubGatewayID            string                    `json:"subGatewayId"`
+	GatewayTransactionID    string                    `json:"gatewayTransactionId"`
+	SubGatewayTransactionID string                    `json:"subGatewayTransactionId"`
+	GatewayStatusCode       string                    `json:"gatewayStatusCode"`
+	AcquirerTransactionID   string                    `json:"acquirerTransactionId"`
+	NetworkTransactionID    string                    `json:"networkTransactionId"`
+	ARN                     string                    `json:"arn"`
+	TokenType               TokenType                 `json:"tokenType"`
+	InitialTransactionType  PreviousTransactionIdType `json:"initialTransactionType"`
+	TransactionTime         time.Time                 `json:"transactionTime"`
+	TransactionStatus       TransactionStatus         `json:"transactionStatus"`
+	TransactionIdentifiers  []TransactionIdentifier   `json:"transactions"`
+	FailureCategory         FailureCategory           `json:"failureCategory"`
+	FailureType             FailureType               `json:"failureType"`
+	ErrorType               ErrorType                 `json:"errorType"`
+	MerchantMessage         string                    `json:"merchantMessage"`
+	Tags                    []string                  `json:"tags"`
+	RetryDelay              *time.Duration            `json:"retryDelay"`             // Delay before retrying the transaction
+	RetryMaxAttempts        *int                      `json:"retryMaxAttempts"`       // Only retry this many times
+	RetryMaxAttemptsPeriod  *time.Duration            `json:"retryMaxAttemptsPeriod"` // within this time period
+	RetryDate               *time.Time                `json:"retryDate"`              // to be used by scheduler
 
 	AuthCode    string `json:"authCode"`
 	CVVResponse string `json:"cvvResponse"`
@@ -699,12 +699,20 @@ const (
 	DefaultTokenType             = TokenTypePCIB
 )
 
-type InitialTransactionType string
+type PreviousTransactionIdType string
 
 //goland:noinspection GoUnusedConst
 const (
-	InitialTransactionTypeConnector TokenType = "connector"
-	InitialTransactionTypeNetwork   TokenType = "network"
+	PreviousTransactionIdTypeFirstAuth   PreviousTransactionIdType = "firstAuth"
+	PreviousTransactionIdTypeLastCapture PreviousTransactionIdType = "lastCapture"
+)
+
+type PreviousTransactionIdSource string
+
+//goland:noinspection GoUnusedConst
+const (
+	PreviousTransactionIdSourceConnector PreviousTransactionIdSource = "connector"
+	PreviousTransactionIdSourceNetwork   PreviousTransactionIdSource = "network"
 )
 
 type DeviceType string
