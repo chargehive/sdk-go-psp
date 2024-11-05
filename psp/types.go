@@ -532,15 +532,11 @@ type BaseTransactionRequest struct {
 	SubscribeAuthorizationID string `json:"subscribeAuthorizationId"`
 	// SubscribeAuthorizationNetworkID is the network transaction id for the original auth in the sequence
 	SubscribeAuthorizationNetworkID string `json:"subscribeAuthorizationNetworkId"`
-	// SubscribeExternalAuthorizationNetworkID is the network transaction id for the original auth in the sequence, provided by different gateway
-	SubscribeExternalAuthorizationNetworkID string `json:"subscribeExternalAuthorizationNetworkId"`
 
 	// LastSuccessfulCaptureID is the gateway transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureID string `json:"lastSuccessfulCaptureID"`
 	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
-	// LastSuccessfulCaptureExternalNetworkID is the network transaction id for the last successful capture in the sequence, provided by different gateway
-	LastSuccessfulCaptureExternalNetworkID string `json:"lastSuccessfulCaptureExternalNetworkID"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
@@ -548,35 +544,11 @@ type BaseTransactionRequest struct {
 	LastDecline       *TransactionResponse
 }
 
-func (r *BaseTransactionRequest) GetInitialTransactionId(allowLastCapture bool) string {
-	tid := r.SubscribeAuthorizationID
-	if tid == "" && allowLastCapture {
-		tid = r.LastSuccessfulCaptureID
-	}
-	return tid
-}
-
-func (r *BaseTransactionRequest) GetInitialNetworkTransactionID(allowLastCapture bool) string {
-	tid := r.SubscribeAuthorizationNetworkID
-	if tid == "" && allowLastCapture && r.PaymentInstrument.CardNetwork == payment.CardNetworkVisa {
-		tid = r.LastSuccessfulCaptureNetworkID
-	}
-	return tid
-}
-
-func (r *BaseTransactionRequest) GetInitialExternalNetworkTransactionID(allowLastCapture bool) string {
-	tid := r.SubscribeExternalAuthorizationNetworkID
-	if tid == "" && allowLastCapture && r.PaymentInstrument.CardNetwork == payment.CardNetworkVisa {
-		tid = r.LastSuccessfulCaptureExternalNetworkID
-	}
-	return tid
-}
-
-func (r *BaseTransactionRequest) GetInitialAuthTransaction(external bool) (tid string) {
-	if external {
+func (r *BaseTransactionRequest) GetInitialAuthTransactionID(getNetwork bool) (tid string) {
+	if getNetwork {
 		tid = r.SubscribeAuthorizationNetworkID
-		if tid == "" {
-			tid = r.SubscribeExternalAuthorizationNetworkID
+		if len(tid) == 13 {
+			tid += "  "
 		}
 	} else {
 		tid = r.SubscribeAuthorizationID
@@ -584,11 +556,11 @@ func (r *BaseTransactionRequest) GetInitialAuthTransaction(external bool) (tid s
 	return tid
 }
 
-func (r *BaseTransactionRequest) GetLastCaptureTransaction(external bool) (tid string) {
-	if external {
+func (r *BaseTransactionRequest) GetLastCaptureTransactionID(getNetwork bool) (tid string) {
+	if getNetwork {
 		tid = r.LastSuccessfulCaptureNetworkID
-		if tid == "" {
-			tid = r.LastSuccessfulCaptureExternalNetworkID
+		if len(tid) == 13 {
+			tid += "  "
 		}
 	} else {
 		tid = r.LastSuccessfulCaptureID
