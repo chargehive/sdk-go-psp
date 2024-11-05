@@ -544,7 +544,7 @@ type BaseTransactionRequest struct {
 	LastDecline       *TransactionResponse
 }
 
-func (r *BaseTransactionRequest) GetInitialAuthTransaction(getNetwork bool) (tid string) {
+func (r *BaseTransactionRequest) GetInitialAuthTransactionID(getNetwork bool) (tid string) {
 	if getNetwork {
 		tid = r.SubscribeAuthorizationNetworkID
 		if len(tid) == 13 {
@@ -556,7 +556,7 @@ func (r *BaseTransactionRequest) GetInitialAuthTransaction(getNetwork bool) (tid
 	return tid
 }
 
-func (r *BaseTransactionRequest) GetLastCaptureTransaction(getNetwork bool) (tid string) {
+func (r *BaseTransactionRequest) GetLastCaptureTransactionID(getNetwork bool) (tid string) {
 	if getNetwork {
 		tid = r.LastSuccessfulCaptureNetworkID
 		if len(tid) == 13 {
