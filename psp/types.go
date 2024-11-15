@@ -251,6 +251,8 @@ type TransactionResponse struct {
 	RetryMaxAttemptsPeriod      *time.Duration              `json:"retryMaxAttemptsPeriod"` // within this time period
 	RetryDate                   *time.Time                  `json:"retryDate"`              // to be used by scheduler
 
+	DescriptorUsed string `json:"descriptorUsed"`
+
 	AuthCode    string `json:"authCode"`
 	CVVResponse string `json:"cvvResponse"`
 	AVS         string `json:"avs"`
@@ -521,6 +523,7 @@ type BaseTransactionRequest struct {
 
 	Amount                Amount                  `json:"amount"`
 	MerchantReference     string                  `json:"merchantReference"`
+	Descriptor            string                  `json:"descriptor"`
 	ChargeEntityID        string                  `json:"chargeEntityId"`
 	BillingProfileID      string                  `json:"billingProfileId"`
 	Initiator             RequestInitiator        `json:"initiator"`
