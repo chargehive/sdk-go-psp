@@ -758,3 +758,28 @@ const (
 	ThreeDSAuthMethodAVS          ThreeDSAuthMethod = "avs"
 	ThreeDSAuthMethodOther        ThreeDSAuthMethod = "other"
 )
+
+type AccountUpdateStatus string
+
+//goland:noinspection GoUnusedConst
+const (
+	AccountUpdateStatusInvalid   AccountUpdateStatus = ""
+	AccountUpdateStatusNoUpdate  AccountUpdateStatus = "no-update"
+	AccountUpdateStatusHasUpdate AccountUpdateStatus = "has-update"
+	AccountUpdateStatusClosed    AccountUpdateStatus = "closed"
+	AccountUpdateStatusFailed    AccountUpdateStatus = "failed"
+)
+
+type AccountUpdateResult string
+
+//goland:noinspection GoUnusedConst
+const (
+	AccountUpdateResultNotAvailable      AccountUpdateResult = "not-available"  // No update
+	AccountUpdateResultNoUpdate          AccountUpdateResult = "no-update"      // No update
+	AccountUpdateResultBinUpdated        AccountUpdateResult = "bin-update"     // Bin update
+	AccountUpdateResultExpiryUpdated     AccountUpdateResult = "expiry-update"  // Expiry update
+	AccountUpdateResultAccountClosed     AccountUpdateResult = "account-closed" // Account closed
+	AccountUpdateResultContactCardholder AccountUpdateResult = "contact-holder" // Contact update
+	AccountUpdateResultError             AccountUpdateResult = "error"          // Error
+	AccountUpdateResultRetry             AccountUpdateResult = "retry"          // Retry again
+)
