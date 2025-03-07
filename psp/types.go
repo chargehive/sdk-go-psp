@@ -737,9 +737,11 @@ type SCAChallengePreference string
 
 //goland:noinspection GoUnusedConst
 const (
-	SCAChallengePreferenceNone    SCAChallengePreference = "none"
-	SCAChallengePreferenceRequest SCAChallengePreference = "request"
-	SCAChallengePreferenceMandate SCAChallengePreference = "mandate"
+	SCAChallengePreferenceNone         SCAChallengePreference = "none" // keep for backwards compatibility
+	SCAChallengePreferenceNoPreference SCAChallengePreference = "no-preference"
+	SCAChallengePreferenceNoChallenge  SCAChallengePreference = "no-challenge"
+	SCAChallengePreferenceRequest      SCAChallengePreference = "request"
+	SCAChallengePreferenceMandate      SCAChallengePreference = "mandate"
 )
 
 type ThreeRI struct {
