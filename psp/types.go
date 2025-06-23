@@ -671,6 +671,7 @@ const (
 	TokenTypeConnector TokenType = "connector"
 	TokenTypeGooglePay TokenType = "googlePay"
 	TokenTypeApplePay  TokenType = "applePay"
+	TokenTypePayPal    TokenType = "payPal"
 	TokenTypeNetwork   TokenType = "network"
 	DefaultTokenType             = TokenTypePCIB
 )
@@ -731,6 +732,7 @@ const (
 	MethodTypeCard      MethodType = "card"
 	MethodTypeGooglePay MethodType = "googlePay"
 	MethodTypeApplePay  MethodType = "applePay"
+	MethodTypePayPal    MethodType = "payPal"
 )
 
 type SCAChallengePreference string
