@@ -524,6 +524,7 @@ type BaseTransactionRequest struct {
 	Amount                Amount                  `json:"amount"`
 	MerchantReference     string                  `json:"merchantReference"`
 	Descriptor            string                  `json:"descriptor"`
+	TransactionTimeID     string                  `json:"transactionTimeId"`
 	ChargeEntityID        string                  `json:"chargeEntityId"`
 	BillingProfileID      string                  `json:"billingProfileId"`
 	Initiator             RequestInitiator        `json:"initiator"`
@@ -545,6 +546,10 @@ type BaseTransactionRequest struct {
 	BillPayer         Person            `json:"billPayer"`
 	Meta              Meta              `json:"meta"`
 	LastDecline       *TransactionResponse
+}
+
+func (r *BaseTransactionRequest) TimeBasedDescriptor(descriptor string) string {
+	return strings.Replace(descriptor, "######", r.TransactionTimeID, -1)
 }
 
 func (r *BaseTransactionRequest) GetInitialAuthTransactionID(getNetwork bool) (tid string) {
