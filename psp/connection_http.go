@@ -13,7 +13,6 @@ type HttpConnection struct {
 	authHeader   string
 	host         string
 	httpClient   *http.Client
-	newRequest   func(method, url string, body io.Reader) (*http.Request, error)
 }
 
 func NewHTTPConnection(credentialID string, credentialToken string) HttpConnection {
@@ -21,7 +20,6 @@ func NewHTTPConnection(credentialID string, credentialToken string) HttpConnecti
 		host:         "https://psp.api.chargehive.com",
 		credentialID: credentialID,
 		authHeader:   "Basic " + base64.StdEncoding.EncodeToString([]byte(credentialID+":"+credentialToken)),
-		newRequest:   http.NewRequest,
 	}
 
 	return c
