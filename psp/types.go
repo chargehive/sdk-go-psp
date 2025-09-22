@@ -775,6 +775,7 @@ const (
 	AccountUpdateStatusInvalid   AccountUpdateStatus = ""
 	AccountUpdateStatusNoUpdate  AccountUpdateStatus = "no-update"
 	AccountUpdateStatusHasUpdate AccountUpdateStatus = "has-update"
+	AccountUpdateStatusContact   AccountUpdateStatus = "contact"
 	AccountUpdateStatusClosed    AccountUpdateStatus = "closed"
 	AccountUpdateStatusFailed    AccountUpdateStatus = "failed"
 )
