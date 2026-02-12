@@ -152,21 +152,22 @@ type Meta struct {
 }
 
 type PaymentInstrument struct {
-	InstrumentID       string              `json:"instrumentId"`
-	LVT                string              `json:"lvt"`
-	HVT                string              `json:"hvt"`
-	NetworkToken       *NetworkToken       `json:"networkToken,omitempty"`
-	TokenType          TokenType           `json:"tokenType"`
-	MethodType         MethodType          `json:"methodType"`
-	EphemeralToken     string              `json:"ephemeralToken"`
-	AuthenticationData map[string]string   `json:"authenticationData"`
-	AccountHolder      string              `json:"accountHolder"`
-	CardNetwork        payment.CardNetwork `json:"cardNetwork"`
-	ExpiryMonth        int32               `json:"expiryMonth"`
-	ExpiryYear         int32               `json:"expiryYear"`
-	Bin                string              `json:"bin"`
-	Last4              string              `json:"last4"`
-	BinData            *pcib.BinData       `json:"binData"`
+	InstrumentID            string              `json:"instrumentId"`
+	LVT                     string              `json:"lvt"`
+	HVT                     string              `json:"hvt"`
+	NetworkToken            *NetworkToken       `json:"networkToken,omitempty"`
+	TokenType               TokenType           `json:"tokenType"`
+	MethodType              MethodType          `json:"methodType"`
+	EphemeralToken          string              `json:"ephemeralToken"`
+	AuthenticationData      map[string]string   `json:"authenticationData"`
+	AccountHolder           string              `json:"accountHolder"`
+	CardNetwork             payment.CardNetwork `json:"cardNetwork"`
+	ExpiryMonth             int32               `json:"expiryMonth"`
+	ExpiryYear              int32               `json:"expiryYear"`
+	Bin                     string              `json:"bin"`
+	Last4                   string              `json:"last4"`
+	PaymentAccountReference string              `json:"paymentAccountReference"`
+	BinData                 *pcib.BinData       `json:"binData"`
 }
 
 type NetworkToken struct {
