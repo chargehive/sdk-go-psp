@@ -54,10 +54,8 @@ func (t testReq) GetPath(credentialID string) string {
 func NewTestConnection(h testHandler) *HttpConnection {
 	srv := httptest.NewServer(h)
 	con := NewHTTPConnection(h.GetHandlerCredentials().id, h.GetHandlerCredentials().token)
+	con.SetClient(srv.Client())
 	con.SetHost(srv.URL)
-	con.newRequest = func(method, url string, body io.Reader) (*http.Request, error) {
-		return httptest.NewRequest(method, url, body), nil
-	}
 	return &con
 }
 
