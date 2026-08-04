@@ -235,6 +235,7 @@ type TransactionResponse struct {
 	GatewayStatusCode           string                      `json:"gatewayStatusCode"`
 	AcquirerTransactionID       string                      `json:"acquirerTransactionId"`
 	NetworkTransactionID        string                      `json:"networkTransactionId"`
+	TransactionLinkID           string                      `json:"transactionLinkId"`
 	ARN                         string                      `json:"arn"`
 	TokenType                   TokenType                   `json:"tokenType"`
 	PreviousTransactionIdType   PreviousTransactionIdType   `json:"previousTransactionIdType"`
@@ -537,11 +538,15 @@ type BaseTransactionRequest struct {
 	SubscribeAuthorizationID string `json:"subscribeAuthorizationId"`
 	// SubscribeAuthorizationNetworkID is the network transaction id for the original auth in the sequence
 	SubscribeAuthorizationNetworkID string `json:"subscribeAuthorizationNetworkId"`
+	// SubscribeAuthorizationTransactionLinkID is the mastercard transaction link id (tlid) for the original auth in the sequence
+	SubscribeAuthorizationTransactionLinkID string `json:"subscribeAuthorizationTransactionLinkId"`
 
 	// LastSuccessfulCaptureID is the gateway transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureID string `json:"lastSuccessfulCaptureID"`
 	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
+	// LastSuccessfulCaptureTransactionLinkID is the mastercard transaction link id (tlid) for the latest successful capture in the sequence
+	LastSuccessfulCaptureTransactionLinkID string `json:"lastSuccessfulCaptureTransactionLinkId"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
