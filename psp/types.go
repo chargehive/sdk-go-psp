@@ -226,10 +226,6 @@ type TransactionIdentifier struct {
 	ID     string `json:"id"`
 }
 
-type TransactionLinks struct {
-	MastercardLinkID string `json:"mastercardLinkId,omitempty"`
-}
-
 type TransactionResponse struct {
 	BaseResponse
 	TransactionID               string                      `json:"transactionId"`
@@ -239,7 +235,7 @@ type TransactionResponse struct {
 	GatewayStatusCode           string                      `json:"gatewayStatusCode"`
 	AcquirerTransactionID       string                      `json:"acquirerTransactionId"`
 	NetworkTransactionID        string                      `json:"networkTransactionId"`
-	TransactionLinks            TransactionLinks            `json:"transactionLinks,omitempty"`
+	SchemeLinkID                string                      `json:"schemeLinkId,omitempty"`
 	ARN                         string                      `json:"arn"`
 	TokenType                   TokenType                   `json:"tokenType"`
 	PreviousTransactionIdType   PreviousTransactionIdType   `json:"previousTransactionIdType"`
@@ -548,7 +544,7 @@ type BaseTransactionRequest struct {
 	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
 
-	TransactionLinks TransactionLinks `json:"transactionLinks,omitempty"`
+	SchemeLinkID string `json:"schemeLinkId,omitempty"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
