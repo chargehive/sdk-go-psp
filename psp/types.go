@@ -235,6 +235,7 @@ type TransactionResponse struct {
 	GatewayStatusCode           string                      `json:"gatewayStatusCode"`
 	AcquirerTransactionID       string                      `json:"acquirerTransactionId"`
 	NetworkTransactionID        string                      `json:"networkTransactionId"`
+	SchemeLinkID                string                      `json:"schemeLinkId,omitempty"`
 	ARN                         string                      `json:"arn"`
 	TokenType                   TokenType                   `json:"tokenType"`
 	PreviousTransactionIdType   PreviousTransactionIdType   `json:"previousTransactionIdType"`
@@ -542,6 +543,8 @@ type BaseTransactionRequest struct {
 	LastSuccessfulCaptureID string `json:"lastSuccessfulCaptureID"`
 	// LastSuccessfulCaptureNetworkID is the network transaction id for the last successful capture in the sequence
 	LastSuccessfulCaptureNetworkID string `json:"lastSuccessfulCaptureNetworkID"`
+
+	SchemeLinkID string `json:"schemeLinkId,omitempty"`
 
 	PaymentInstrument PaymentInstrument `json:"paymentInstrument"`
 	BillPayer         Person            `json:"billPayer"`
